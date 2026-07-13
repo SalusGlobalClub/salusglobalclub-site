@@ -1,20 +1,23 @@
 /* SALUS GLOBAL CLUB — Wealth Club
    Static rendering of webinar + Telegram cards.
-   Data synced with https://bio.site/salusglobal.club (2026-07-13).
+   Webinar schedule from the "Speaker Flyer" sheet (2026-07-13).
    Telegram targets use the salusglobal.club redirect subdomains
    (managed via GoDaddy forwarding). */
 
 const WEBINARS = [
-  { title: 'Business Präsentation GER | TUESDAYS 9.30 CEST | 50 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/webinar-ger.jpg' },
-  { title: 'Leader Training GER | TUESDAYS 10.30 CEST | 90 min', url: 'https://zoom.us/j/95770825858', thumb: 'assets/leaders-ger.jpg' },
-  { title: 'Leader Training ENG | TUESDAYS 12.30 CEST | 90 min', url: 'https://zoom.us/j/95770825858', thumb: 'assets/leaders-eng.jpg' },
-  { title: 'Presentazione aziendale ITA | TUESDAYS 19.00 CEST | 90 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/webinar-04.jpg' },
-  { title: 'Business Presentation ENG | WEDNESDAYS 19.00 CEST | 50 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/webinar-eng.jpg' },
-  { title: 'Business Präsentation und Q&A GER | THURSDAYS 19.00 CEST | 90 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/webinar-ger.jpg' },
-  { title: 'Business Presentation ENG - WEBINAR MODE | THURSDAYS 9.30 CEST | 60 Min', url: 'https://zoom.us/j/98916828025', thumb: 'assets/webinar-eng.jpg' },
-  { title: 'Business Presentation ESP | THURSDAYS 21.00 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/webinar-esp.jpg' },
-  { title: 'Starter Training GER | SATURDAYS 10:00 CEST | 90 Min', url: 'https://zoom.us/j/93664485403', thumb: 'assets/webinar-09.jpg' },
-  { title: 'Starter Training ENG | SATURDAYS 12:00 CEST | 90 Min | (Autotranslate in 35 languages)', url: 'https://zoom.us/j/91355320262', thumb: 'assets/starter-eng.jpg' },
+  { title: 'Business Presentation ENG | MONDAYS 17:00 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/webinar-eng.jpg', speakers: 'Manuel Leidel · David Bunenberg · Claudio Catrini' },
+  { title: 'Business Presentation GER | TUESDAYS 9:30 CEST | 50 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/webinar-ger.jpg', speakers: 'Manuel Leidel · Claudio Catrini' },
+  { title: 'Leader Training GER | TUESDAYS 10:30 CEST | 2h', url: 'https://zoom.us/j/95770825858', thumb: 'assets/leaders-ger.jpg', speakers: 'Claudio Catrini' },
+  { title: 'Business Presentation ENG | TUESDAYS 17:00 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/webinar-eng.jpg', speakers: 'Manuel Leidel · David Bunenberg · Claudio Catrini' },
+  { title: 'Business Presentation ITA | TUESDAYS 19:00 CEST | 90 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/webinar-04.jpg', speakers: 'Francesco Mercone · Claudio Catrini' },
+  { title: 'Business Presentation ENG | WEDNESDAYS 17:00 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/webinar-eng.jpg', speakers: 'Manuel Leidel · David Bunenberg · Claudio Catrini' },
+  { title: 'Business Presentation ENG (Privacy Mode) | THURSDAYS 9:30 CEST | 60 Min', url: 'https://zoom.us/j/98916828025', thumb: 'assets/webinar-eng.jpg', speakers: 'Manuel Leidel · Claudio Catrini' },
+  { title: 'Business Presentation ENG | THURSDAYS 17:00 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/webinar-eng.jpg', speakers: 'Manuel Leidel · David Bunenberg · Claudio Catrini' },
+  { title: 'Business Presentation GER | THURSDAYS 19:00 CEST | 90 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/webinar-ger.jpg', speakers: 'Manuel Leidel · Claudio Catrini' },
+  { title: 'Business Presentation ESP | THURSDAYS 21:00 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/webinar-esp.jpg', speakers: 'Manuel Leidel' },
+  { title: 'Business Presentation HINDI | FRIDAYS 17:00 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/webinar-hin.jpg', speakers: 'Sunil Kumar' },
+  { title: 'Starter Training GER | SATURDAYS 10:00 CEST | 2h', url: 'https://zoom.us/j/95346205331', thumb: 'assets/webinar-09.jpg', speakers: 'Claudio Catrini' },
+  { title: 'Starter Training ENG | SATURDAYS 10:00 CEST | 90 Min', url: 'https://zoom.us/j/91355320262', thumb: 'assets/starter-eng.jpg', speakers: 'David Bunenberg' },
 ];
 
 const TELEGRAM = [
@@ -49,6 +52,13 @@ function renderCard(item, kind) {
   title.className = 'card__title';
   title.textContent = item.title;
   body.appendChild(title);
+
+  if (item.speakers) {
+    const speakers = document.createElement('p');
+    speakers.className = 'card__speakers';
+    speakers.textContent = item.speakers;
+    body.appendChild(speakers);
+  }
 
   const meta = document.createElement('span');
   meta.className = 'card__meta';
