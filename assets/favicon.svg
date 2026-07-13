@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Salus Global Club">
+  <!-- Favicon reconstruction of the visible stylised S / flame mark.
+       Real profile logo is stored at assets/profile-logo.png; this SVG
+       is a simplified mark for the browser tab. Colours from logo:
+       navy #172747 disc, cream #e4dcd1 mark. -->
+  <circle cx="32" cy="32" r="32" fill="#172747"/>
+  <g fill="none" stroke="#e4dcd1" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M28 15
+             C20 21 17 27 17 33
+             C17 38 20 42 24 45"/>
+    <path d="M33 20
+             C26 25 23 30 23 35
+             C23 39 26 42 30 44"/>
+    <path d="M36 49
+             C44 43 47 37 47 31
+             C47 26 44 22 40 19"/>
+    <path d="M31 44
+             C38 39 41 34 41 29
+             C41 25 38 22 34 20"/>
+    <path d="M27 30 L37 40"/>
+  </g>
+</svg>

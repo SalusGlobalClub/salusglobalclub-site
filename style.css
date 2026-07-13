@@ -1,0 +1,230 @@
+/* ============================================================
+   SALUS GLOBAL CLUB — Wealth Club
+   Palette derived from the real profile logo:
+   navy #172747 surface, cream #e4dcd1 mark, gold accent.
+   ============================================================ */
+
+:root {
+  /* Type scale */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+  --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3rem);
+
+  /* Spacing */
+  --space-1: 0.25rem;  --space-2: 0.5rem;  --space-3: 0.75rem;
+  --space-4: 1rem;     --space-5: 1.25rem; --space-6: 1.5rem;
+  --space-8: 2rem;     --space-10: 2.5rem; --space-12: 3rem;
+  --space-16: 4rem;    --space-20: 5rem;
+
+  --radius-md: 0.5rem; --radius-lg: 0.875rem; --radius-xl: 1.25rem;
+  --radius-full: 9999px;
+  --transition: 200ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  --content: 560px;
+
+  --font-body: 'General Sans', 'Helvetica Neue', system-ui, sans-serif;
+  --font-display: 'Cabinet Grotesk', 'General Sans', system-ui, sans-serif;
+}
+
+/* DARK (default — matches the source brand) */
+:root, [data-theme='dark'] {
+  --color-bg: #0f1a30;
+  --color-bg-2: #131f39;
+  --color-surface: #1a294a;
+  --color-surface-hover: #213256;
+  --color-border: #2a3d63;
+  --color-text: #eae4da;
+  --color-text-muted: #a9b3c9;
+  --color-text-faint: #6c7896;
+  --color-cream: #e4dcd1;
+  --color-navy: #172747;
+  --color-gold: #c8a86a;
+  --color-gold-hover: #d9bd83;
+  --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme='light'] {
+  --color-bg: #f4f1ea;
+  --color-bg-2: #efeadf;
+  --color-surface: #ffffff;
+  --color-surface-hover: #faf7f0;
+  --color-border: #e0d9cb;
+  --color-text: #172747;
+  --color-text-muted: #5a6480;
+  --color-text-faint: #98a0b4;
+  --color-cream: #172747;
+  --color-navy: #172747;
+  --color-gold: #a37f38;
+  --color-gold-hover: #8c6a2a;
+  --shadow-md: 0 6px 20px rgba(23, 39, 71, 0.10);
+}
+
+/* ---- base reset ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  -webkit-text-size-adjust: none; text-size-adjust: none;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth; scroll-padding-top: var(--space-16);
+}
+body {
+  min-height: 100dvh;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+  background-image: radial-gradient(120% 80% at 50% -10%, var(--color-bg-2) 0%, var(--color-bg) 55%);
+  background-attachment: fixed;
+}
+img, svg { display: block; max-width: 100%; height: auto; }
+ul[role='list'] { list-style: none; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; background: none; border: none; color: inherit; font: inherit; }
+
+a, button {
+  transition: color var(--transition), background var(--transition),
+              border-color var(--transition), transform var(--transition),
+              box-shadow var(--transition);
+}
+
+:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; border-radius: var(--radius-md); }
+
+.skip-link {
+  position: absolute; left: -999px; top: 0; z-index: 100;
+  background: var(--color-gold); color: var(--color-navy);
+  padding: var(--space-2) var(--space-4); border-radius: 0 0 var(--radius-md) 0; font-weight: 600;
+}
+.skip-link:focus { left: 0; }
+
+/* ---- top bar ---- */
+.topbar {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  max-width: var(--content); margin: 0 auto;
+  backdrop-filter: blur(10px);
+}
+.topbar__brand {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: var(--text-xs); letter-spacing: 0.14em; color: var(--color-text-muted);
+}
+.theme-toggle {
+  display: grid; place-items: center;
+  width: 40px; height: 40px; border-radius: var(--radius-full);
+  color: var(--color-text-muted); border: 1px solid var(--color-border);
+}
+.theme-toggle:hover { color: var(--color-gold); border-color: var(--color-gold); }
+
+/* ---- layout ---- */
+main { max-width: var(--content); margin: 0 auto; padding: 0 var(--space-4) var(--space-16); }
+
+/* ---- profile head ---- */
+.profile {
+  position: relative; text-align: center;
+  padding: var(--space-8) 0 var(--space-10);
+}
+.profile__glow {
+  position: absolute; inset: -20% 10% auto 10%; height: 260px; z-index: 0;
+  background: radial-gradient(50% 60% at 50% 40%, rgba(200, 168, 106, 0.20), transparent 70%);
+  filter: blur(10px); pointer-events: none;
+}
+.profile__logo {
+  position: relative; z-index: 1;
+  width: clamp(112px, 30vw, 140px); height: auto;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-md), 0 0 0 4px rgba(200, 168, 106, 0.25);
+  margin: 0 auto var(--space-5);
+}
+.profile__name {
+  position: relative; z-index: 1;
+  font-family: var(--font-display); font-weight: 800;
+  font-size: var(--text-2xl); letter-spacing: 0.02em; line-height: 1.1;
+}
+.profile__subtitle {
+  position: relative; z-index: 1;
+  margin-top: var(--space-2);
+  font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.34em;
+  color: var(--color-gold);
+}
+
+/* ---- social row ---- */
+.social {
+  position: relative; z-index: 1;
+  display: flex; justify-content: center; gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+.social__link {
+  display: grid; place-items: center;
+  width: 48px; height: 48px; border-radius: var(--radius-full);
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+.social__link:hover {
+  color: var(--color-navy); background: var(--color-gold);
+  border-color: var(--color-gold); transform: translateY(-2px);
+}
+
+/* ---- sections ---- */
+.section { margin-top: var(--space-12); }
+.section__title {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: var(--text-lg); text-align: center; letter-spacing: 0.01em;
+}
+.section__title::after {
+  content: ''; display: block; width: 44px; height: 3px; margin: var(--space-3) auto 0;
+  background: var(--color-gold); border-radius: var(--radius-full);
+}
+.section__desc {
+  margin: var(--space-5) auto 0; max-width: 52ch; text-align: center;
+  color: var(--color-text-muted); font-size: var(--text-sm);
+}
+
+/* ---- cards ---- */
+.cards { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-6); }
+.card {
+  display: flex; align-items: center; gap: var(--space-4);
+  padding: var(--space-3); border-radius: var(--radius-lg);
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+}
+.card:hover {
+  background: var(--color-surface-hover); border-color: var(--color-gold);
+  transform: translateY(-2px);
+}
+.card:hover .card__thumb { box-shadow: 0 0 0 2px var(--color-gold); }
+.card__thumb {
+  flex: 0 0 auto; width: 60px; height: 60px; border-radius: var(--radius-md);
+  object-fit: cover; background: var(--color-bg-2);
+}
+.card__body { min-width: 0; flex: 1; }
+.card__title {
+  font-size: var(--text-sm); font-weight: 600; line-height: 1.35; color: var(--color-text);
+}
+.card__meta {
+  margin-top: 2px; font-size: var(--text-xs); color: var(--color-text-faint);
+  display: inline-flex; align-items: center; gap: var(--space-2);
+}
+.card__badge {
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em;
+  color: var(--color-gold); border: 1px solid var(--color-gold);
+  padding: 1px var(--space-2); border-radius: var(--radius-full);
+}
+.card__arrow { flex: 0 0 auto; color: var(--color-text-faint); }
+.card:hover .card__arrow { color: var(--color-gold); transform: translateX(2px); }
+
+/* ---- footer ---- */
+.footer {
+  max-width: var(--content); margin: 0 auto;
+  padding: var(--space-8) var(--space-4) var(--space-10);
+  text-align: center; font-size: var(--text-xs); color: var(--color-text-faint);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important; transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
