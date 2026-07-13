@@ -1,7 +1,10 @@
 /* ============================================================
    SALUS GLOBAL CLUB — Wealth Club
-   Palette aligned with salusglobal.club (near-black navy,
-   Montserrat), cream/gold accents from the profile logo.
+   Palette per SGC Partner Brand Kit 2026 (23.06.2026, S. 2):
+   Schwarz · Gold · Weiss — Noir #0D0D0D, Gold-Verlauf
+   #9A7A28 → #C8A84B → #E2C872, Weiss #FFFFFF,
+   Steel Gray #374151 (Borders). Fonts: Inter (Body,
+   Fallback von PP Neue Montreal), Montserrat (Headlines/Buttons).
    ============================================================ */
 
 :root {
@@ -25,43 +28,44 @@
 
   --content: 560px;
 
-  --font-body: 'Montserrat', 'Helvetica Neue', system-ui, sans-serif;
+  --font-body: 'Inter', 'DM Sans', 'Helvetica Neue', system-ui, sans-serif;
   --font-display: 'Montserrat', 'Helvetica Neue', system-ui, sans-serif;
+
+  /* Brand-Gold-Verlauf (Fläche / Linie / Glow) */
+  --gold-gradient: linear-gradient(90deg, #9a7a28 0%, #c8a84b 50%, #e2c872 100%);
 }
 
-/* DARK (default — matches salusglobal.club) */
+/* DARK (default — Noir · Gold · Weiss) */
 :root, [data-theme='dark'] {
-  --color-bg: #00020f;
-  --color-bg-2: #050a26;
-  --color-surface: #0a1233;
-  --color-surface-hover: #101a42;
-  --color-border: #1c2850;
-  --color-text: #eae4da;
-  --color-text-muted: #a9b3c9;
-  --color-text-faint: #6c7896;
-  --color-cream: #e4dcd1;
-  --color-navy: #172747;
-  --color-gold: #c8a86a;
-  --color-gold-hover: #d9bd83;
-  --color-footer-bg: #00041f;
-  --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.45);
+  --color-bg: #0d0d0d;
+  --color-bg-2: #171614;
+  --color-surface: #161616;
+  --color-surface-hover: #1e1d1a;
+  --color-border: #374151;
+  --color-text: #ffffff;
+  --color-text-muted: #b6bcc7;
+  --color-text-faint: #7d8494;
+  --color-on-gold: #0d0d0d;
+  --color-gold: #c8a84b;
+  --color-gold-hover: #e2c872;
+  --color-footer-bg: #080808;
+  --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.55);
 }
 
 [data-theme='light'] {
-  --color-bg: #f4f1ea;
-  --color-bg-2: #efeadf;
+  --color-bg: #ffffff;
+  --color-bg-2: #f7f5ef;
   --color-surface: #ffffff;
-  --color-surface-hover: #faf7f0;
-  --color-border: #e0d9cb;
-  --color-text: #172747;
-  --color-text-muted: #5a6480;
-  --color-text-faint: #98a0b4;
-  --color-cream: #172747;
-  --color-navy: #172747;
-  --color-gold: #a37f38;
-  --color-gold-hover: #8c6a2a;
-  --color-footer-bg: #ece7dc;
-  --shadow-md: 0 6px 20px rgba(23, 39, 71, 0.10);
+  --color-surface-hover: #faf7ef;
+  --color-border: #e3e0d6;
+  --color-text: #0d0d0d;
+  --color-text-muted: #4b5563;
+  --color-text-faint: #9aa1ad;
+  --color-on-gold: #ffffff;
+  --color-gold: #9a7a28;
+  --color-gold-hover: #7d621f;
+  --color-footer-bg: #f6f4ee;
+  --shadow-md: 0 6px 20px rgba(13, 13, 13, 0.08);
 }
 
 /* ---- base reset ---- */
@@ -78,8 +82,8 @@ body {
   line-height: 1.6;
   color: var(--color-text);
   background: var(--color-bg);
-  background-image: radial-gradient(120% 80% at 50% -10%, var(--color-bg-2) 0%, var(--color-bg) 55%);
-  background-attachment: fixed;
+  background-image: radial-gradient(1200px 600px at 50% -120px, var(--color-bg-2) 0%, var(--color-bg) 70%);
+  background-repeat: no-repeat;
 }
 img, svg { display: block; max-width: 100%; height: auto; }
 ul[role='list'] { list-style: none; }
@@ -96,7 +100,7 @@ a, button {
 
 .skip-link {
   position: absolute; left: -999px; top: 0; z-index: 100;
-  background: var(--color-gold); color: var(--color-navy);
+  background: var(--color-gold); color: var(--color-on-gold);
   padding: var(--space-2) var(--space-4); border-radius: 0 0 var(--radius-md) 0; font-weight: 600;
 }
 .skip-link:focus { left: 0; }
@@ -130,14 +134,14 @@ main { max-width: var(--content); margin: 0 auto; padding: 0 var(--space-4) var(
 }
 .profile__glow {
   position: absolute; inset: -20% 10% auto 10%; height: 260px; z-index: 0;
-  background: radial-gradient(50% 60% at 50% 40%, rgba(200, 168, 106, 0.20), transparent 70%);
+  background: radial-gradient(50% 60% at 50% 40%, rgba(200, 168, 75, 0.22), transparent 70%);
   filter: blur(10px); pointer-events: none;
 }
 .profile__logo {
   position: relative; z-index: 1;
   width: clamp(112px, 30vw, 140px); height: auto;
   border-radius: var(--radius-full);
-  box-shadow: var(--shadow-md), 0 0 0 4px rgba(200, 168, 106, 0.25);
+  box-shadow: var(--shadow-md), 0 0 0 3px rgba(200, 168, 75, 0.45);
   margin: 0 auto var(--space-5);
 }
 .profile__name {
@@ -165,7 +169,7 @@ main { max-width: var(--content); margin: 0 auto; padding: 0 var(--space-4) var(
   color: var(--color-text-muted);
 }
 .social__link:hover {
-  color: var(--color-navy); background: var(--color-gold);
+  color: var(--color-on-gold); background: var(--color-gold);
   border-color: var(--color-gold); transform: translateY(-2px);
 }
 
@@ -177,7 +181,7 @@ main { max-width: var(--content); margin: 0 auto; padding: 0 var(--space-4) var(
 }
 .section__title::after {
   content: ''; display: block; width: 44px; height: 3px; margin: var(--space-3) auto 0;
-  background: var(--color-gold); border-radius: var(--radius-full);
+  background: var(--gold-gradient); border-radius: var(--radius-full);
 }
 .section__desc {
   margin: var(--space-5) auto 0; max-width: 52ch; text-align: center;

@@ -1,10 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Salus Global Club">
-  <!-- Favicon reconstruction of the visible stylised S / flame mark.
+  <!-- Favicon reconstruction of the stylised S / flame mark.
        Real profile logo is stored at assets/profile-logo.png; this SVG
-       is a simplified mark for the browser tab. Colours from logo:
-       navy #172747 disc, cream #e4dcd1 mark. -->
-  <circle cx="32" cy="32" r="32" fill="#172747"/>
-  <g fill="none" stroke="#e4dcd1" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+       is a simplified mark for the browser tab. Colours per SGC Partner
+       Brand Kit 2026: noir #0D0D0D disc, gold gradient mark
+       #9A7A28 -> #C8A84B -> #E2C872. -->
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E2C872"/>
+      <stop offset="0.5" stop-color="#C8A84B"/>
+      <stop offset="1" stop-color="#9A7A28"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="32" fill="#0D0D0D"/>
+  <g fill="none" stroke="url(#gold)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
     <path d="M28 15
              C20 21 17 27 17 33
              C17 38 20 42 24 45"/>
