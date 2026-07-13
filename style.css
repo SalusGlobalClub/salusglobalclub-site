@@ -1,7 +1,7 @@
 /* ============================================================
    SALUS GLOBAL CLUB — Wealth Club
-   Palette derived from the real profile logo:
-   navy #172747 surface, cream #e4dcd1 mark, gold accent.
+   Palette aligned with salusglobal.club (near-black navy,
+   Montserrat), cream/gold accents from the profile logo.
    ============================================================ */
 
 :root {
@@ -25,17 +25,17 @@
 
   --content: 560px;
 
-  --font-body: 'General Sans', 'Helvetica Neue', system-ui, sans-serif;
-  --font-display: 'Cabinet Grotesk', 'General Sans', system-ui, sans-serif;
+  --font-body: 'Montserrat', 'Helvetica Neue', system-ui, sans-serif;
+  --font-display: 'Montserrat', 'Helvetica Neue', system-ui, sans-serif;
 }
 
-/* DARK (default — matches the source brand) */
+/* DARK (default — matches salusglobal.club) */
 :root, [data-theme='dark'] {
-  --color-bg: #0f1a30;
-  --color-bg-2: #131f39;
-  --color-surface: #1a294a;
-  --color-surface-hover: #213256;
-  --color-border: #2a3d63;
+  --color-bg: #00020f;
+  --color-bg-2: #050a26;
+  --color-surface: #0a1233;
+  --color-surface-hover: #101a42;
+  --color-border: #1c2850;
   --color-text: #eae4da;
   --color-text-muted: #a9b3c9;
   --color-text-faint: #6c7896;
@@ -43,7 +43,8 @@
   --color-navy: #172747;
   --color-gold: #c8a86a;
   --color-gold-hover: #d9bd83;
-  --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.35);
+  --color-footer-bg: #00041f;
+  --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.45);
 }
 
 [data-theme='light'] {
@@ -59,6 +60,7 @@
   --color-navy: #172747;
   --color-gold: #a37f38;
   --color-gold-hover: #8c6a2a;
+  --color-footer-bg: #ece7dc;
   --shadow-md: 0 6px 20px rgba(23, 39, 71, 0.10);
 }
 
@@ -215,12 +217,29 @@ main { max-width: var(--content); margin: 0 auto; padding: 0 var(--space-4) var(
 .card__arrow { flex: 0 0 auto; color: var(--color-text-faint); }
 .card:hover .card__arrow { color: var(--color-gold); transform: translateX(2px); }
 
-/* ---- footer ---- */
+/* ---- footer (full-width band, styled after salusglobal.club) ---- */
 .footer {
-  max-width: var(--content); margin: 0 auto;
-  padding: var(--space-8) var(--space-4) var(--space-10);
+  margin-top: var(--space-16);
+  background: var(--color-footer-bg);
+  border-top: 1px solid var(--color-border);
   text-align: center; font-size: var(--text-xs); color: var(--color-text-faint);
 }
+.footer__inner {
+  max-width: var(--content); margin: 0 auto;
+  padding: var(--space-8) var(--space-4) var(--space-10);
+  display: flex; flex-direction: column; gap: var(--space-2);
+}
+.footer__claim {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: var(--text-sm); color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+.footer__copyright { letter-spacing: 0.04em; }
+.footer__link {
+  color: var(--color-gold); font-weight: 500;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+.footer__link:hover { color: var(--color-gold-hover); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
