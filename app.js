@@ -20,12 +20,16 @@ const WEBINARS = [
   { title: 'Starter Training ENG | SATURDAYS 10:00 CEST | 90 Min', url: 'https://zoom.us/j/91355320262', thumb: 'assets/starter-eng.jpg', speakers: 'David Bunenberg' },
 ];
 
+/* Telegram cards link straight to t.me: Telegram's in-app browser
+   intercepts direct t.me links cleanly, while 301 redirects
+   (dach.salusglobal.club etc.) freeze Telegram on iOS. The redirect
+   subdomains remain in use on bio.site and printed flyers only. */
 const TELEGRAM = [
-  { title: 'SGC - DACH Offiziell 🇩🇪🇦🇹🇨🇭', url: 'https://dach.salusglobal.club', thumb: 'assets/tg-dach.jpg' },
-  { title: 'SGC - International Official 🌍', url: 'https://int.salusglobal.club', thumb: 'assets/tg-int.jpg' },
-  { title: 'SGC - Español Oficial 🇪🇸', url: 'https://es.salusglobal.club', thumb: 'assets/tg-es.jpg' },
-  { title: 'SGC - Japanese Official 🇯🇵', url: 'https://jp.salusglobal.club', thumb: 'assets/tg-jp.jpg' },
-  { title: 'SGC - Italiano Ufficiale 🇮🇹', url: 'https://it.salusglobal.club', thumb: 'assets/tg-it.jpg' },
+  { title: 'SGC - DACH Offiziell 🇩🇪🇦🇹🇨🇭', url: 'https://t.me/SGC_DACH', thumb: 'assets/tg-dach.jpg' },
+  { title: 'SGC - International Official 🌍', url: 'https://t.me/SGC_international', thumb: 'assets/tg-int.jpg' },
+  { title: 'SGC - Español Oficial 🇪🇸', url: 'https://t.me/SGC_espanol', thumb: 'assets/tg-es.jpg' },
+  { title: 'SGC - Japanese Official 🇯🇵', url: 'https://t.me/SGC_japanese', thumb: 'assets/tg-jp.jpg' },
+  { title: 'SGC - Italiano Ufficiale 🇮🇹', url: 'https://t.me/+-yE3zJcTM1EwNjE6', thumb: 'assets/tg-it.jpg' },
 ];
 
 const ARROW = '<svg class="card__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>';
@@ -35,8 +39,10 @@ function renderCard(item, kind) {
   const a = document.createElement('a');
   a.className = 'card';
   a.href = item.url;
-  a.target = '_blank';
-  a.rel = 'noopener noreferrer';
+  if (kind === 'zoom') {
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+  }
 
   const img = document.createElement('img');
   img.className = 'card__thumb';

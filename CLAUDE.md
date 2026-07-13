@@ -15,8 +15,10 @@ Live: https://bio.salusglobal.club
 | Farben / Fonts / Design | `style.css` (alles über CSS-Variablen im `:root`-Block; je ein Block Dark/Light) |
 
 Wichtig:
-- Die Telegram-Karten verlinken auf Redirect-Subdomains (`dach.salusglobal.club` usw.,
-  GoDaddy-Forwarding) — NICHT direkt auf t.me umstellen, die Subdomains sind zentral gepflegt.
+- Die Telegram-Karten verlinken DIREKT auf t.me — NICHT auf die Redirect-Subdomains
+  (`dach.salusglobal.club` usw.) umstellen: deren 301-Weiterleitung lässt Telegram auf
+  iOS einfrieren (Kanal lässt sich nicht mehr schließen, Bug vom 13.07.2026).
+  Die Subdomains bleiben nur für bio.site und gedruckte Flyer in Gebrauch.
 - `CNAME` (Inhalt: `bio.salusglobal.club`) niemals löschen — sonst verliert die Seite ihre Domain.
 - Neue Bilder: quadratisch zuschneiden, auf 240×240 verkleinern, als JPEG (~85 % Qualität) speichern.
 - Design-Referenz ist die Hauptseite https://salusglobal.club (fast-schwarzes Navy, Montserrat).
