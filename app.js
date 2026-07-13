@@ -5,19 +5,19 @@
    (managed via GoDaddy forwarding). */
 
 const WEBINARS = [
-  { title: 'Business Presentation ENG | MONDAYS 17:00 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-eng.jpg', speakers: 'Manuel Leidel · David Bunenberg · Claudio Catrini' },
-  { title: 'Business Presentation GER | TUESDAYS 9:30 CEST | 50 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-ger.jpg', speakers: 'Manuel Leidel · Claudio Catrini' },
-  { title: 'Leader Training GER | TUESDAYS 10:30 CEST | 2h', url: 'https://zoom.us/j/95770825858', thumb: 'assets/leader-ger.jpg', speakers: 'Claudio Catrini' },
-  { title: 'Business Presentation ENG | TUESDAYS 17:00 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-eng.jpg', speakers: 'Manuel Leidel · David Bunenberg · Claudio Catrini' },
-  { title: 'Business Presentation ITA | TUESDAYS 19:00 CEST | 90 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-ita.jpg', speakers: 'Francesco Mercone · Claudio Catrini' },
-  { title: 'Business Presentation ENG | WEDNESDAYS 17:00 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-eng.jpg', speakers: 'Manuel Leidel · David Bunenberg · Claudio Catrini' },
-  { title: 'Business Presentation ENG (Privacy Mode) | THURSDAYS 9:30 CEST | 60 Min', url: 'https://zoom.us/j/98916828025', thumb: 'assets/presentation-eng.jpg', speakers: 'Manuel Leidel · Claudio Catrini' },
-  { title: 'Business Presentation ENG | THURSDAYS 17:00 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-eng.jpg', speakers: 'Manuel Leidel · David Bunenberg · Claudio Catrini' },
-  { title: 'Business Presentation GER | THURSDAYS 19:00 CEST | 90 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-ger.jpg', speakers: 'Manuel Leidel · Claudio Catrini' },
-  { title: 'Business Presentation ESP | THURSDAYS 21:00 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-esp.jpg', speakers: 'Manuel Leidel' },
-  { title: 'Business Presentation HINDI | FRIDAYS 17:00 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-hin.jpg', speakers: 'Sunil Kumar' },
-  { title: 'Starter Training GER | SATURDAYS 10:00 CEST | 2h', url: 'https://zoom.us/j/95346205331', thumb: 'assets/starter-ger.jpg', speakers: 'Claudio Catrini' },
-  { title: 'Starter Training ENG | SATURDAYS 10:00 CEST | 90 Min', url: 'https://zoom.us/j/91355320262', thumb: 'assets/starter-eng.jpg', speakers: 'David Bunenberg' },
+  { title: 'Business Presentation ENG | MONDAYS 17:00 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-eng.jpg' },
+  { title: 'Business Presentation GER | TUESDAYS 9:30 CEST | 50 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-ger.jpg' },
+  { title: 'Leader Training GER | TUESDAYS 10:30 CEST | 2h', url: 'https://zoom.us/j/95770825858', thumb: 'assets/leader-ger.jpg' },
+  { title: 'Business Presentation ENG | TUESDAYS 17:00 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-eng.jpg' },
+  { title: 'Business Presentation ITA | TUESDAYS 19:00 CEST | 90 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-ita.jpg' },
+  { title: 'Business Presentation ENG | WEDNESDAYS 17:00 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-eng.jpg' },
+  { title: 'Business Presentation ENG (Privacy Mode) | THURSDAYS 9:30 CEST | 60 Min', url: 'https://zoom.us/j/98916828025', thumb: 'assets/presentation-eng.jpg' },
+  { title: 'Business Presentation ENG | THURSDAYS 17:00 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-eng.jpg' },
+  { title: 'Business Presentation GER | THURSDAYS 19:00 CEST | 90 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-ger.jpg' },
+  { title: 'Business Presentation ESP | THURSDAYS 21:00 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-esp.jpg' },
+  { title: 'Business Presentation HINDI | FRIDAYS 17:00 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-hin.jpg' },
+  { title: 'Starter Training GER | SATURDAYS 10:00 CEST | 2h', url: 'https://zoom.us/j/95346205331', thumb: 'assets/starter-ger.jpg' },
+  { title: 'Starter Training ENG | SATURDAYS 10:00 CEST | 90 Min', url: 'https://zoom.us/j/91355320262', thumb: 'assets/starter-eng.jpg' },
 ];
 
 /* Telegram cards link straight to t.me: Telegram's in-app browser
@@ -86,11 +86,11 @@ TELEGRAM.forEach((t) => telegramList.appendChild(renderCard(t, 'telegram')));
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
-/* dark / light toggle — dark is the brand default (matches salusglobal.club) */
+/* dark / light toggle — light is the default */
 (function () {
   const t = document.querySelector('[data-theme-toggle]');
   const r = document.documentElement;
-  let d = 'dark';
+  let d = 'light';
   r.setAttribute('data-theme', d);
   const sun = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
   const moon = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
