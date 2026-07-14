@@ -29,6 +29,7 @@ const TELEGRAM = [
   { title: 'SGC - Español Oficial 🇪🇸', url: 'https://telegram.me/SGC_espanol', thumb: 'assets/tg-es.jpg' },
   { title: 'SGC - Japanese Official 🇯🇵', url: 'https://telegram.me/SGC_japanese', thumb: 'assets/tg-jp.jpg' },
   { title: 'SGC - Italiano Ufficiale 🇮🇹', url: 'https://telegram.me/+-yE3zJcTM1EwNjE6', thumb: 'assets/tg-it.jpg' },
+  { title: 'SGC - Hindi Official 🇮🇳', url: 'https://telegram.me/sgc_hindi', thumb: 'assets/tg-hi.jpg' },
 ];
 
 const ARROW = '<svg class="card__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>';
