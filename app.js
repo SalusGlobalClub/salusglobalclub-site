@@ -13,7 +13,7 @@ const WEBINARS = [
   { title: 'Compensation Plan Training ENG | THURSDAYS 17:30 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/leader-eng.jpg' },
   { title: 'Business Presentation GER | THURSDAYS 19:00 CEST | 90 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-ger.jpg' },
   { title: 'Business Presentation ESP | THURSDAYS 21:00 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-esp.jpg' },
-  { title: 'Business Presentation HINDI | FRIDAYS 17:00 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-hin.jpg' },
+  { title: 'Business Presentation HINDI | FRIDAYS 17:30 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-hin.jpg' },
   { title: 'Starter Training GER | SATURDAYS 10:00 CEST | 2h', url: 'https://zoom.us/j/95346205331', thumb: 'assets/starter-ger.jpg' },
   { title: 'Starter Training ENG | SATURDAYS 10:00 CEST | 90 Min', url: 'https://zoom.us/j/91355320262', thumb: 'assets/starter-eng.jpg' },
 ];
