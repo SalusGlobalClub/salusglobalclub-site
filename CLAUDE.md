@@ -13,7 +13,7 @@ Live: https://bio.salusglobal.club
 | Vorschaubilder | `assets/*.jpg` — quadratisch, 240×240 JPEG, ≤ ~50 KB |
 | Beschreibungstext, Social-Links, Logo, Footer | `index.html` |
 | Farben / Fonts / Design | `style.css` (alles über CSS-Variablen im `:root`-Block; je ein Block Dark/Light) |
-| Umsatzprognose-Tool (unverlinkt) | `tools/prognose/index.html` — Quelle: `Documents\#Claude\SGC-Berechnungstool\Umsatzprognose-Vertriebstool.html`; Update = Datei neu herüberkopieren (inkl. `noindex`-Meta) |
+| Umsatzprognose-Tool (unverlinkt) | `tools/prognose/salus-prognose-v<VERSION>.html` — Quelle: `Documents\#Claude\SGC-Berechnungstool\Umsatzprognose-Vertriebstool.html`; Update = Datei neu herüberkopieren (inkl. `noindex`-Meta), Dateiname trägt IMMER die aktuelle Version; alte Versions-Datei per `git rm` entfernen, sonst bleibt der alte Link erreichbar |
 
 Wichtig:
 - Die Telegram-Karten verlinken DIREKT auf t.me — NICHT auf die Redirect-Subdomains
@@ -23,7 +23,11 @@ Wichtig:
 - `CNAME` (Inhalt: `bio.salusglobal.club`) niemals löschen — sonst verliert die Seite ihre Domain.
 - `tools/prognose/` ist ein **bewusst unverlinktes** internes Tool („Unlisted", Entscheidung 22.07.2026):
   NICHT auf der Bio-Seite verlinken, NICHT als verwaist aufräumen. Der Link wird nur intern
-  (Telegram) geteilt; `noindex` ist gesetzt.
+  (Telegram) geteilt; `noindex` ist gesetzt. Dateiname seit 22.07.2026 versioniert
+  (`salus-prognose-v<VERSION>.html` statt `index.html`) — erschwert zufälliges Aufrufen über
+  den nackten Ordnerpfad (kein Directory-Listing + kein Default-Index mehr) und veraltet den
+  geteilten Link automatisch bei jedem Versions-Bump. Bei jedem Update: alte Versions-Datei per
+  `git rm` löschen, neue mit aktueller Version anlegen, neuen Link intern teilen.
 - Neue Bilder: quadratisch zuschneiden, auf 240×240 verkleinern, als JPEG (~85 % Qualität) speichern.
 - Design-Referenz ist die Hauptseite https://salusglobal.club (fast-schwarzes Navy, Montserrat).
 
