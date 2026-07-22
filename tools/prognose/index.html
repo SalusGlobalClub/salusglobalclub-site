@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="version" content="2.1.0">
+<meta name="robots" content="noindex">
+<title>Salus Global Club – Umsatzprognose | Vertriebstool</title>
+<style>
+  :root{
+    --bg:#0b1220;
+    --bg2:#111a2e;
+    --panel:#15203a;
+    --panel2:#1b2942;
+    --line:#27365a;
+    --txt:#e8eefc;
+    --muted:#93a3c4;
+    --accent:#36d1a0;       /* Direkt */
+    --accent2:#5b8cff;      /* Team */
+    --gold:#e8b659;         /* Matching */
+    --danger:#ff6b6b;
+    --shadow:0 10px 30px rgba(0,0,0,.35);
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+    background:radial-gradient(1200px 700px at 80% -10%,#1a2746 0%,var(--bg) 55%);
+    color:var(--txt);
+    min-height:100vh;
+    line-height:1.45;
+  }
+  .wrap{max-width:1280px;margin:0 auto;padding:26px 22px 48px}
+
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:18px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .logo{height:56px;width:auto;border-radius:10px;flex:0 0 auto;box-shadow:var(--shadow)}
+  .brand h1{font-size:19px;margin:0;letter-spacing:.2px}
+  .brand p{margin:0;color:var(--muted);font-size:12.5px}
+
+  .product-pick{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .product-pick label{font-size:12.5px;color:var(--muted)}
+  select,input[type="number"]{
+    background:var(--panel2);border:1px solid var(--line);color:var(--txt);
+    border-radius:10px;padding:9px 11px;font-size:14px;outline:none;width:100%;
+  }
+  select:focus,input:focus{border-color:var(--accent2)}
+  select{min-width:230px;width:auto}
+
+  .grid{display:grid;grid-template-columns:380px 1fr;gap:20px}
+  @media(max-width:980px){.grid{grid-template-columns:1fr}}
+
+  .card{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+  .card .hd{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .card .hd h2{font-size:14px;margin:0;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted)}
+  .card .bd{padding:16px 18px}
+
+  .field{margin-bottom:14px}
+  .field:last-child{margin-bottom:0}
+  .field .row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+  .field label{font-size:13px;color:var(--txt)}
+  .field .val{font-size:13px;color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums}
+  .field .hint{font-size:11px;color:var(--muted);margin-top:3px}
+  input[type="range"]{width:100%;accent-color:var(--accent2);height:5px}
+
+  .seg{display:flex;background:var(--bg2);border:1px solid var(--line);border-radius:11px;padding:4px;gap:4px;margin-bottom:14px}
+  .seg button{flex:1;background:transparent;border:0;color:var(--muted);padding:8px 6px;font-size:12.5px;border-radius:8px;cursor:pointer;font-weight:600}
+  .seg button.active{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#07121f}
+
+  .divider{height:1px;background:var(--line);margin:16px 0}
+  .sub{font-size:11.5px;text-transform:uppercase;letter-spacing:1.3px;color:var(--muted);margin:0 0 10px}
+
+  .distgrid{display:grid;grid-template-columns:1fr 92px;gap:8px 10px;align-items:center;margin-bottom:8px}
+  .distgrid label{font-size:13px}
+  .distgrid input{padding:7px 9px;font-size:13px;text-align:right}
+
+  /* results */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:6px}
+  @media(max-width:820px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:460px){.kpis{grid-template-columns:1fr}}
+  .kpi{position:relative;background:linear-gradient(180deg,var(--panel2),var(--bg2));border:1px solid var(--line);border-radius:14px;padding:15px 15px 13px;overflow:hidden;transition:.2s;cursor:pointer}
+  .kpi .lbl{font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted)}
+  .kpi .big{font-size:23px;font-weight:800;margin-top:6px;font-variant-numeric:tabular-nums;letter-spacing:.2px}
+  .kpi .sm{font-size:11.5px;color:var(--muted);margin-top:3px}
+  .kpi.is-active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 8px 22px rgba(54,209,160,.18)}
+  .kpi .tag{position:absolute;top:10px;right:10px;font-size:9.5px;background:var(--accent);color:#07121f;padding:2px 7px;border-radius:20px;font-weight:800;letter-spacing:.6px;opacity:0;transition:.2s}
+  .kpi.is-active .tag{opacity:1}
+
+  .breakdown{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px}
+  .bk{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+  .dot{width:11px;height:11px;border-radius:3px;flex:0 0 auto}
+  .bk b{color:var(--txt);font-variant-numeric:tabular-nums}
+
+  .chart-wrap{margin-top:6px}
+  svg{display:block;width:100%;height:auto}
+  .tick{fill:var(--muted);font-size:10px}
+  .axis{stroke:var(--line);stroke-width:1}
+
+  .legend{display:flex;gap:18px;justify-content:flex-end;margin-bottom:8px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+  .legend span{display:flex;align-items:center;gap:7px}
+
+  .disclaimer{margin-top:20px;border:1px solid #4a2530;background:linear-gradient(180deg,#23161c,#1a1117);border-radius:14px;padding:14px 16px;font-size:12px;color:#f0c9cf;display:flex;gap:12px;align-items:flex-start}
+  .disclaimer .ic{color:var(--danger);font-size:18px;line-height:1}
+  .disclaimer b{color:#ffd9de}
+
+  .meta{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px;font-size:11.5px;color:var(--muted)}
+  .pill{background:var(--bg2);border:1px solid var(--line);border-radius:20px;padding:5px 11px}
+  .btn{background:var(--panel2);border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:8px 14px;font-size:12.5px;cursor:pointer}
+  .btn:hover{border-color:var(--accent2)}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .rankinfo{font-size:11.5px;color:var(--accent2);font-weight:600;margin-top:2px}
+
+  .tablescroll{overflow-x:auto}
+  table.cmp{width:100%;border-collapse:collapse;font-size:13px;min-width:820px}
+  table.cmp th{text-align:left;color:var(--muted);font-size:10.5px;text-transform:uppercase;letter-spacing:.6px;padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+  table.cmp td{padding:8px 10px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums;white-space:nowrap}
+  table.cmp td.r,table.cmp th.r{text-align:right}
+  table.cmp td.b{font-weight:800;color:var(--accent)}
+  table.cmp tr.inactive{opacity:.4}
+  table.cmp tr.params td{border-bottom:1px solid var(--line);background:rgba(27,41,66,.45);padding:7px 10px 10px;white-space:normal}
+  table.cmp tr.params .pset{display:flex;gap:6px 14px;flex-wrap:wrap;align-items:center;font-size:11.5px;color:var(--muted)}
+  table.cmp tr.params .pset .pi{display:flex;align-items:center;gap:5px;white-space:nowrap}
+  table.cmp tr.totrow td{border-top:2px solid var(--line);border-bottom:0;font-weight:800;background:rgba(91,140,255,.07);padding-top:11px;padding-bottom:11px}
+  input.mini{width:68px;padding:5px 7px;font-size:12px;text-align:right}
+  input.mini.wide{width:90px}
+  input.mini.tiny{width:56px}
+  /* Spin-Buttons ausblenden, damit 3-stellige Werte nicht abgeschnitten werden */
+  input.mini::-webkit-outer-spin-button,input.mini::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  input.mini{-moz-appearance:textfield;appearance:textfield}
+  input[type="checkbox"]{width:17px;height:17px;accent-color:var(--accent2);cursor:pointer}
+
+  table.info{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
+  table.info th{text-align:left;color:var(--muted);font-size:10.5px;text-transform:uppercase;letter-spacing:.6px;padding:9px 10px;border-bottom:1px solid var(--line)}
+  table.info td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.info td.b1{font-weight:700;white-space:nowrap}
+  .badge{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap}
+  .badge.ok{background:rgba(54,209,160,.15);color:var(--accent)}
+  .badge.est{background:rgba(232,182,89,.16);color:var(--gold)}
+  .badge.no{background:rgba(147,163,196,.13);color:var(--muted)}
+
+  .warn{color:var(--gold);font-size:12px;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="brand">
+      <img class="logo" alt="Salus Global Club Logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABkEAAAH7CAMAAABMusiTAAAAQlBMVEUXJ0dQXHRCRmDk3NFubH6hnKPSy8aGgo84PlnBu7ljYnZMT2Z8hZfFydGorrqTj5h6d4ctNlOwqq5YWG4iLk2Lk6OXRAQPAAAhMUlEQVR42uzdW5LTMBCGUYGGXKAgxPbsf6tc/hdqAiFSXrrG52ziK8tSd/v2CgDjvrYPDQDGvSoIAAoCwG8KAkBlCgKAggAQCgJAZQoCgIIAEAoCQGUKAoCCABAKAkBlCgKAggAQCgJAZQoCgIIAEAoCQGUKAoCCABAKAkBlCgKAggAQCgJAZQoCgIIAEAoCQGUKAoCCABAKAkBlCgKAggAQCgJAZQoCgIIAEAoCQGUKAoCCABAKAkBlCgKAggAQCgJAZQoCgIIAEAoCQGUKAoCCABAKAkBlCgKAggAQCgJAZQoCgIIAEAoCQGUKAoCCABAKAkBlCgKAggAQCgJAZQoCgIIAEAoCQGUKAoCCABAKAkBlCgKAggAQCgJAZQoCgIIAEAoCQGUKAoCCABAKAkBlCgKAggAQCgJAZQoCgIIAEAoCQGUKAoCCABAKAkBlCgKAggAQCgJAZQoCgIIAEAoCQGUKAoCCABAKAkBlCgKAggAQCgJAZQoCgIIAEAoCQGUKAoCCABAKAkBlCgKAggAQCgJAZQoCgIIAEAoCQGUKAoCCABAKAkBlCgKAggAQCgJAZQoCgIIAEAoCQGUKAoCCABAKAkBlCgKAggAQCgJAZQoCgIIAEAoCQGUKAoCCABAKAkBlCgKAggAQCgJAZQoCgIIAEAoCQGUKAoCCABAKAkBlCgKAggAQCgJAZQoCgIIAEArypO1yagAoyLhjP0gIgILMBKT389YAUJDxgPT+vQGgIIMBiWsDQEEGA+IjBEBBpgIS5waAgjzspffeHWMBKMiotf/hYwNAQR6zdgUBUJAJa1cQAAWZsHYFAVCQ6YD4kw6gIJMBcZsXQEGGnA79jWMDQEHGAhKm8wIoyFRAPjUAFOShgLiJBfCTgkwHxFxFAAWZD4gFUwAK8ojtNiCW3AIoyP9tS7+1NgAUREAABiiIgAAU9h4KMhqQqx/sAAryr4Ac1nu3thYJAVCQBGTkFtb10PvSAFCQ41hAtsVTQwAFmQqIcScACjIfEOdYALsvyExA4ksDYMcFmQpIXBoA+y3IZECiAbDbgrz0G+e7AbE6BEBBfln7jWW7FxBTTwAU5LmAxEsDYJcFeSIg8bkBsMeCDAakLVaoAyjITECO/YbpigB7LMh0QLwHAdh3QU7jAXGIBaAgrZ0O/a3L/YD4BAFQkL8H5NgGA2LH1A/2zmzJdVUHoBRitB9shv//1rvrdN2qJEoMyBO2tR737k5oDCzEIDMMwzzQIFsIxDjBMAzDPM0gLBCGYZgybBAWCMMwTMdczCCBBcIwDFMBGwSRIwuEYRimAjZIhUCSWGBmgTAMw7BBKAJJzQLhM74MwzD3NIjeWyCj4ZeGMAzD3NEgdm+BJF7jYhiGuaVB9hcIb5MwDMPc0iDzIQIBMEEwDMMwdzJI2l0gnDKLYRjmlgbZXyCctpdhGOaWBjlSIACzYBiGYW5iEHmoQABGwTAMw9zCIM7sLRC+t84wDHNLgzQKRLYLhF9AxTAMc0uD5DaBOEMVCG+FMAzD3MsgOR4kEN4KYRiGuZlBzhEIGF7HYhiGubhB7LEC4VshDMMwdzHIAB/YPQTC61gMwzC3M8h4iEB4HYthGOZ2BkFKmAgCKWZr5HUshmGY2xkkR3RNY1OBWFhGCoZhGOaaBpngHXOsQMALhmEY5pIGGZAP9hUIRgmGYRjmggZxpuEcb95CIEbxZjrDMMwdDBIbEo3kuIVAHPpXK5jTCDKI3ZH/R5xJkH9wRs/VD5JfMfrOcw2i4B19gEBE9vBOEPvjBqsNwB9Rz4MUJNQLSVTi5CsCQfpN+o/jCvHaKpnF9oQ0awMvRK3GXG2crQZ8qab42gr1nEK1dwpksYasXpDEZnFQ/4GPKnRigUCuJPyb9B938gcXm030apCAFpQOEIgQ7uggRFoDGD20qyuR1t80vCIQxN+k/7ibPWCicoJA6VswcXZiCTSrWUNOE3zDz65yklVGTwQB44/3xGaxN6M18A1vx8p6k+RprVz14xrKGG2H3k+E9moQDe/InQXiHXroBwQhycMvYspramy4pkFShF94FcQ25ORhAT/kQwwip6VCqEw2CEYngkQM6oC9GSTMBn5j5nB1g/yHmbpOj9GpQRK8M+8kEHzTxB8XhIweoNADyO9x9Fc0iIywiA1iPVkZKGDmvLtBkMXa/1oF9Rgb1nVB3Z1BgoUSNtzAIP8wqt8zPX0aJHt4w+ejBCLkUUFInqDInMkpKNP1DDIDYnuHDIbSZekGqXclRmW6QTBq3UmW0JdBsoUabL6DQQBMt3FInwZR8I48RCB/TMcEIc5DBWYg7huBvppBcoTaUZWOi1CJl/sZJE/0cYNuEIiOHtMC2K4MMhiowwy3MAjA1GkY0qFB8O0Oe6BARDgkCHEG6tCB5FwAdy2DuFg/tJNR0MCcdzLIaLYZNxQ0Yhw9IQSY3I9Bsm4aem9hkF5fvd2lQRRqu4cJBH+7OlAg9DAEf569lEFyhGoUfdxpIrpdDDJDC96tNAhtuAyAUN0YxJnGKryFQTpVSI8GyQYqzxVNmwsEf73Z8y+kreViEmDClQwSoQGdiStYjZhUMMgBGgMzbmgQ4+ia870YJLU/x1sYpE+F9GiQVNty7Q4CwT0zic3R0MQoSnjAqAsZhLApTJi4tjNsbZAcoZlENggmZvoUJ/VhkATtpFsYBGbRyEMN4isb7lwUSLn3xlzsPlpszbh1u5EAGHMdgzhoIh4lEOPIBqELBJOIBqHLdwDA6C4MkoDCfAuDgBSNPNIgtTcbElEg5RUyu/Neut962jjBN9JlDKIJ4/oBAoGtV7FyBBJpO4OYTG+hsgODJCAR72EQLRp5pEFs3TjoqAIpd6gAb6jdO4G3g/zHqKwHhKvb9sT4qxjE4ccyqfGvQmKN9elDt7bqH5P2hfn6NgaJ8B2vZ6WU1R5+4KgGwSh6kGzPN4iDH+jp70H+mnTcwyDNQcgTDZLr1mKyoQgEo8pzer9z1mEtX22QdHOPt/AdeRGDWHjHp6XkUdNWG09euZevkXNEA2aTQYjPydiXfI75R54nk8sDFCYpvWZegQm7GoR8BCUO7sUxQwSE63wfJErMMEcA6D5beH8GSXUDqCYJBGNyeQ7mdk0amRbT/egVJ7umixjEwBvzYiISk4nHw7G3P3HWoNXDDQ2SAONTXb4TXfyrqnOAOfpEX51tEA0Y61AHUgbe6P4slq5N/GVEE480yFQ17VFEgWCG8vWKeU9Fjou5m0yo3/bEhEsYxFU8kGRWxPGu+l5iViiTzmYGCeanP/AfixiKBqlN/zGQY1ow+VyDDIDQbuk5/jF0fx9Eix+EuOqC8yMNUjWNllSBYHz5mFfccZ9nXu7346qNeXsJgww1w3JWdJvHhis2QaP2tJFB9EIpymlPTKAZBAtBVa8jY9KpBskGi3XxOf5h+7+TrheGrs43QroziKxqsp4gkJZe4XYUv677aOkrFIBjGvM+Z7yCQWzd5ZegiTIf2gbCARVjE4OMTaVI8MlENkj2baVW8BN/qkEs7vUVj11fIC+Wrg6glWjigQaZ4Y1ceDTrBQK6rKgkNqQ2vMkz+Nw6lPsZXhmuYJDqTxrAuC1mrqmc9HIQTQYhRIpGNibPkgSDFIO84hKu1agQZxkk4F5fkbw05msbRExskBUz9KmuKUGjQMoRht3uBAR9EBpd8yJ/CvCKv5VBhBtFO6p5KSZHW/vw6KVwrbdENdkgobrUOPyREv3yWQaxZYHgnm/yFXLz6iX/s0GagDeGumg2rREIzMU1B3+sQej9yuSPKUu6lUE2WTwfTnl4vlVjIiHnEAxCKHWEF+JnycNpBgmE7NPWuEu8H0SL30g2yIptkFA1O1OtArGy5Ie830bItm4KnzL8mDNeziB55/M70wn6xzqYCdkN7TYGmVp6YPosuj3NIDNlJhCu8Y7CgkHo85/nGWRA42s5BJlaBTJ/fIYr9oQktmNbNyn0aR5ecVczSNo3hYzJpxgkwhs+E97UCXkTg6iG0/QGBXEmn2UQA82Vf5n3pC8ahM9i0Scatiaa9blRIOnzQ+ZiQebdesK05adNeLprr2YQn3dNg5HEGQZxpOQUEpWdYBAcVjTEtAp3BXWSQUZ4xz3FIIrvg9DHpaEmmpWtAkGBTCw2WL3fvVq74fVEiRf+IXRvkBndkthv7UOLgw1CLwVuKhPRIDNqENU/i6XiTzKI/ew2TzFIXLXq/TiD+PIzMtUryuG7QLAhcmkuZvbrCqDDVvXlvzVc1b1BBngnyv0WscZzDIKvhZGCkEwySDb112OzwcpChzOONwju9uEpBhk7f0NIbwaBNyqiWZ/bMnqnby1yLJYk75mawQZBBK9PYPl1bxCJK0TudIDHi+MNgksRqfHq2GwQHIgPrTEtOpxxikHcZxT3EIM4s27t7mkGyeWeZlGnIglETAWz6702sAJgdMrrk4iZ/LWKUu8GEQYQcQh7JCEbzjAILgW1+KrVIDgQN7k1psUrA4cbBM+70kMMIg2/H6QJWd5lRlVKE4hQhU+ZCqKiE+EbenArZTR/r0XfvUEsfCPOcvNtkHCKQeilyPCGbjUITlOrGrar03eR2TMMMsEb+REGcRag8xCkb4OocjQrWwRi5K/OUnz86ojXrJlpcCu2VMIPR8neDeIWKmSlRTSS6dEGwaWI5PKbFoNkOaqItNzwdSb/mLaFEwwSP2r+7gYJMs2e35O+0iBDOcdPk0Dcz68KRYMc9ZZbY1OmXbeefjlq6t0g7/+JLRK22lezJxmEPg4oeAP9XyMmEGJa3BlOMAi8oW5mkMu+47Y7gwyFR4TW+EkCwQaRhAU1OiMso4ewprbwnLF3gwQDiG12RSrSMOtF5u0NkuhNRa4ziHGEmBarxeTDDZLhjfGJBolZEHiYQVCdF+JsukCELLRIuaP+LZSYEuEo7696tL0bRCQoEVNenyRHln4Eo8sGoZeijNvSIN61DNNTYeJ2oEFwFT7QIJomkEcbpJx6miYQ3CbV7gZpbj5e5ab9lLRwmyX3bhBhoYixYXWatS4MkulB1LjGIDoTRzx8OONsg4jnGUSJPrmcQVCHIgjkfIPkCcoYlUnbnnhEHro3iLBQgc0rB54uDLJq/Z9ukJke0+LDGWyQYw1ikuiUqxkkV8zmphqBiOFIg2BmqMDL6gWOean0vn+DiGSgjBnYIPQYRBJjWvyfmg1yrEHo147ZIO/IioExmJo9qPlcgwjpoYK5fttzac6Y+jeIcBoq0JkNUjAI1SFxIaZFhzPYIOsNcguH9GyQKDCypgePWCAYfbJBRFZmxYiJtz0X54wXMIgQyUOZ6NggtQbBzLmylPPycGjZIDsahB6BY55sEC0wsqoZKyQQDBxvEOwQD0ViJjRP/JqQKxikziHGXdwgB+6kY2IgxLR4xmIyG+RIg9AvND3MIKnJIEr8QheHYHmGQTBpghJTRa5SX2q+9hoGEUJaU3bqc07zZsJpXpqAA2p0i4ZRfJp3A4Pc4E5Iz3fSPd0g2ZfqfEZzO9Iy0HpyUSJDxbZncezJFzHIP0ZrSk6txXVhEEe/Dic3Nwj4mg4hS3+FP9ggfKOQeLX5yQYpnsVSFZ02ZuKLSNSBD26cI/zG5Iptz+Kc8ToG+YdTGhaQ1G2Egw2yPiXHUJ3VRH/Bwzd0OUOOLz/CxFlNtjOI0V8wl7gXcjWDiNrKTGgjunFpej72ueXx96BpS+WP6gsWXjH7GiQTDFJADpOB72jqK4VPMognx7OWkFmxWItJFENuhflon/pYg5iHZVb8jyz/Kr3n99x2ZhDXZBBd7Hu2rmd6gdEnmH+cfWUQMkEraeMOP9X3JvoXORXhG46a2xYT8Ei5uUE0IN3S3EN7R2EyUGzuHlpxxxkEV2EPBkmiwEwwCCLMfe+md/2OwtLqTRQL5LhQ2aG8uOjRwushuNlUjP4BmomEDr9hPzTULOth8ADkNNczwTxqc4MoampFR3nDFCbrUgFGaMYeZxD8IMdTDDLip0HPR13dkpzvOQjp2iDFzIpiCWdsbWrDQWAAFeUoki921hnakXsaZKCnRS8jNXzgie9imc8xyEhdhJtpb7nF6MKMSf+PvbtbdxRFAyjMAwhqDhTh/q91psvpmp2QLfBpjHtnvafdVU9KxeU/pl04rSD5IvTnFyR/ZeakgqjgxBNtfl5BhtLKtfVrP1RPNNuXH0A/lS3sMJMz7aZXFmRuOpjuVKObM/eSbEph956CJNGl7Hw9K1lB8p1QvpgE7HkFyRdhen9BuqajJicviIoXnibkagXpSptoPGLOLl8+oh2z1X+maO5lP04iHDrgddO8e7Hu/L96zmItnM0rnlKQ0iG+lx1JTPKCKL+5+LwRcIKCyC2FfIkLIs+Y4KhJVhA1SJfq5xVkKg20/oBZS0PFVfXpvdkfN3f+g5GYDx3wfemYUPCtYMELAYKDhdMLkic/iE5B4o6C3LZWQDIi8bSC5IvQpRMKIr+0nf9iv6cg83VnS79aQWxxuR6wLLuKp0rcmx/Cdhvb6s2IuHTogDd3ouSfI19pVjofpH1LQYLoceQ5W3+igpS/wWCNyHBeQfJF6N9RkK7l0u2ULXJpQeQ/+fMKEs1XxZXoj7hEtIhfI5YLasdVh87IjIcO+KVhn3grnv6ntmNQK52U3oV3FERN2aoo09k+81UFGYyMPrEgapG8Vhrku+Ny011L8jQFOYUunhyMe59sS67iZNy+9gG66Hr5NtMboeHQAT83DOiulOzeRcEuUPJUwvKWgmjzoG/fTsOrChKN0HRmQaJpv46lnS8PLflviA0bnqIg5ygeqfV7z2Wn5o+GmOH4Troo3ma8kbqJBvz+R1R16YZM7wpRkBckmAf+HQVRg2k8F0pLduWrUBDxowyLkQrnFSRfhEuq2eH7iqEl3ZiGVP30W7erIJ6CyDaTqbwhhb2HMsaWtxSvDtW7bD/a8K3tZMS64wZ8/jtixXcuV/r53nJKasMovazoywmRF0S+2S2pLSCmLxREfFFeGzF/ZkFsvghr/oA/rCB5bOfqA9VxV0EcBZGdIbjy1ZNOsPcun4KMx98GyXeoS2h+fi8fAEO3zdzpxQO+PEZcL34eqquY1HeSDqJgHvk3FCS/eeX6hoCUj6VlL7fnq2fpNi3Z4DmtIGpoSkjqqu4f6V2TU8eGp+/kBRkNBalmi1eL+0LcGw/txoptNamX3BJ0tvKQdamfbnR7RPsjB3ys3CX60lPFPptCr7jWk3jUF892+uUlBdHmkYsNUyC7JC9IvtnrbwvrUtPh8HhmQWLLhJXa5Vv9/oIEc8/pup/aqR0F6Z3hfZCc/HL3kl1QrjdVfR+jz1a/SHmHOuiqi6he/n5qNHfSgQM+uZrhlKbSxfOY7VWLu8BB/DtX7qa+kWbBt3mFITNTKPyGbFctK0hYNlaBld0lWg2Cgsh11R87D9mLZYWCiH/CWHXBLQoKkrdwtahqn1gQVV5YUT5tlzWPtOCzWUe+GdXdKr6lFr/t563xxRJbM+DlS3NO5Y98Tdt35IdYDoiZG+/55zqtngjWmVcVJA0mZ0PpU7qrqbj4WybkX77va2g8Co9nFiQ4kxlixWr0xYLIt6Uu1HzHTVyQ4I0Rb/wfWZCuuEGnbPOQnwbPR33GSP4TBhseR7x5kNRfuvVY3NZ/ncfoCmn74N73pe/q6sKNKePmXt1Joyt0v8CbJ7qYCrNFlgqy6Aqlp7D9Lfs288a8gpL5QUzGCs5pS19rkG9QgtGTDaDSavTfLrdRlwX1f0NhFabYmUyUFSRpu5h/XPeV9HcWRP7FPiuctquvGZn5378c/BhWbvDx34HUR7+5+U/Z2dGuY8bOtNKld5ldZ0etdbR+MU/4/Mg85yarw98F4gqHdIK7X6vO3vS6kPQ4L1UzTDWreO9iXWBa3+zkCnObN81RuJhvhD2zGGhzp9+/QTXw5qnBW/3HOHfFt2mtaWWLT6511v5ZgXMnennfFSaYlG78H1mQ7CC75p1A6d5bCz5HtIszG4bBPBXEtz3z5ixHDvg0mDb5T56MQBSEW+DogihvZKIqFKSNV+Jz2rw5/tSCqMWILGl/QeRbrC4U5HUb/ycWJHv2uepGlWwvYmtGpkvqONHtG/Bz9l8ak2z0kQNem1a3A/btg1KnJWQ6rCDyhER1aEFc+HYDGAWXksKpBUmLMCCHFSQ50SdN5QW58n30SxbEPx/B2ytxlmx6nVI7b7OcsStzqXDbs+2YcTp0wFtBDe+FRfATTkuIT0cVRJ6QqI4tSGx5lLc8QOwJBZEmJA/I/oKo20Gzg4q4XjX4zILcKm5jx42hXtjwiuPFvvbGVVp2HLWPWQEFx4yHDni/ezClybSZT0p3fkwuL4g8IS6qYwviv/85XnKM504qiDwhS1JHFkSNkiPAvCC/4RrWJQuiXMX+omtsc1pqa55e/vT1bFrMuydvT9kCPXLAL61DOTe6M07j+/Y9T68OKoh8drChV8cWxKvCo7yChzPOKIj8kMMndWxBlD/gpKH7HQG5ZEF8RcKDkwWkvDL869eZHgQDPj89G6QL9NABn3xrQHKhk1To1Xseq3KmWeEFsYIpqf0FqX25rpM9cT+cWJCVFZxHHlkQZfcfAXS/IyCXLIiuud0d9wZkVE/pM56dS1aw7cpnWQrmznjwgJ8FOy/xaUiXlIDgZKfr1UEFkZfMjYX9qPySmPycNr/QrM8uiNKD5DxSXhDxEzFdKldYXKOyDy2IGmquI3pJQMq7s+Wc6gdvKrjbVgmSEh4zHj3gb67231J4cbrMvnSxlz83Y5rt2AH6oI4tyBS2DsMG6QidTi+ISlaw75cXRHpN1BbGZBObVKtPLchYsxrS8oqA2MJtsFMbMqWtq1Fe/HDC7egBn+aWi9Hyhixa7aU7U9ZFpY4sSC6WG9JppQ4tyKS392Kj+DJSOLUgq+AFCZYWRHZC2wV1WEGcD6rdpxYkOXMnbIRBFpCp9q31Ub1OGoemPUgyd3rxWV13/IAPvjiUy1JczIYhqiNoXxqrWqmjC5KLi9ni9bF3A5YxFK7YuiSeG8afUJBc8IJ+yAoiOOTJxu+egkwxqYu6ZEGUrzph6J00IEuqvIY1qNfq58U8Ncyh9BWLHbce+xcM+DQu3+68kqoVxqW0X5cr/1TjCmPVNNta+UNhiR1UkG6OoTzM/J6nXU4uSPmQY8nW4/6C5OJk6savvCCus7fL5uOyBQl1G1m/HBwQ+4ZnH9LNds58NUxjr56I9iutGiT7zZ+NtlVQ3wrRZwn2MexeIKabb4cv9bzdrisvVNtMbenHyYmXmLZl49aXC7MVWy/YO2HnBiWXos86vPiYCsutjS5tSPn4LYq27Ka1urprFiSb1W4jD/q4gOj3fUFA63W7jj9gm9mm9fj/vZcS0/pm/9A6qBfptbV26rputjbqpN4j6WitX3/F7aev/ffQN2vnrusma63u1el6Hf/GRl/5hOFzChIqTyPTHI8LSHLGXHg6SQBo8MEFUV74aZFyQHz9E9qTAgD8uIKEI74t0j8LSP3HRtxFn58DgLJPLoiy+z+n17uWgETzyCoAwA8sSDZ50e21Aekv/yF+AKj32QVRt8I1JUlAxo3/++LTEQNAk88uSHZje0l7AxI3zni4hgUAv6cgwRn5ZIHRNAVk4RoWAPyiguRz8cx7AuL6rYDwHBYA/KaC5C9oxBcF5EdM5QIALT69IMmZB1EakKUtIF4BAH5yQdTNPIrCgKSmgCwf9m0bAPh9BVFznpATAuJ4kBcAfnxBVJcnpD0gXm0HhA8qAsAvLEhydQmRB4S76ADwOwuielcsgjwgqjPcRQeA31qQZ03o0re9MU3vlnsCAgC/uCBqNI+GVH/CEjcDwmNYAPCbC6J87TcP00JAAOAfFORfvvK6VEdAAOAPCvLXYr5wST1nCQgArCjIX2mpOAXR5oEjIADw8QW5S0ionOLD9QQEACjIl4RM6rmZgADAvyjI04RE9VQwD268BwIAFOQuIanuOaxIQACAgtwlZKm7jT4TEACgIH+lbk1DxSnIQkAAgII87PxjzV0QFwgIAFCQO97omgexRgICABTkwaieGsxXAwEBAApSpzd3IgEBAAoimU59ICAAQEEqLearsSUgswIAfHBBzJ2gnvPMiQ4AFGTrdcKBgAAABREVZFJPWQICABTk0VgxhWEkIABAQQqnF5aAAAAFEV3FsgQEACiIrCAEBAAoSKVgvvIEBAAoSC1nvhgICABQkFqT+SoUA+JuCgBAQfLHeYsB6RUAgILkN0JcIiAAQEFEn1a0BAQAKIjoMpYLBAQAKEid5MxXCwEBAApSyZs7noAAAAWpE4zJZpnqCQgAUJAyn8092DsCAgAUpCw5c28iIABAQapYU7IEBQCgILmhFJCkAAAU5AlNQADgfyhIo5mAAMCKgjRKAwEBgD8oSKuegADAHxSkmSUgAPAPCtJuIiAA8F8UpF0aCAgAKEVBBHpnHnUEBAAoSIWbeeAVAICC1IgEBAAoiIwnIABAQWQ8AQEACiLjCQgAUBCZhYAAAAURSQsBAQAKIpImAgIAFETGExAAoCAAgDYUBABwZRQEAEBBAAArCgIAuDIKAgCgIACAFQUBAFwZBQEAUBAAwIqCAACujIIAACgIAGBFQQAAV0ZBAAAUBACwoiAAgCujIAAACgIAWFEQAMCVURAAAAUBAKwoCADgyigIAICCAABWFAQAcGUUBABAQQAAKwoCALgyCgIAoCAAgBUFAQBcGQUBAFAQAMCKggAAroyCAAAoCABgRUEAAFdGQQAAFAQAsKIgAIAroyAAAAoCAFhREADAlVEQAAAFAQCsKAgA4MooCACAggAAVhQEAHBlFAQAQEEAACsKAgC4MgoCAKAgAIAVBQEAXBkFAQBQEADAioIAAK6MggAAKAgAYEVBAABXRkEAABQEALCiIACAK6MgAAAKAgBYURAAwJVREAAABQEArCgIAODKKAgAgIIAAFYUBABwZRQEAEBBAAArCgIAuDIKAgCgIACAFQUBAFwZBQEAUBAAwIqCAACujIIAACgIAGBFQQAAV0ZBAAAUBADwn/bqmAZgGACCmLpX5Q+3wyNIphtsEh6DAFBmEAAMAsAYBIAygwBgEADGIACUGQQAgwAwBgGgzCAAGASAMQgAZQYBwCAAjEEAKDMIAAYBYAwCQJlBADAIAGMQAMoMAoBBABiDAFBmEAAMAsAYBIAygwBgEADGIACUGQQAgwAwBgGgzCAAGASAMQgAZQYBwCAAjEEAKDMIAAYBYAwCQJlBADAIAGMQAMoMAoBBABiDAFBmEAAMAsAYBIAygwBgEADGIACUGQSA20HeBwDOfT8Jt0wmzoQ5cAAAAABJRU5ErkJggg==">
+      <div>
+        <h1>Umsatzprognose</h1>
+        <p>Vertriebstool – Provisionsprognose je Produktpartner in konkreten Zahlen</p>
+      </div>
+    </div>
+    <div class="product-pick">
+      <label for="rank">Karrierestufe</label>
+      <select id="rank"></select>
+    </div>
+  </header>
+
+  <div class="grid">
+
+    <!-- ============ EINGABEN ============ -->
+    <section class="card">
+      <div class="hd"><h2>Eingaben</h2><button class="btn" id="reset" type="button">Zurücksetzen</button></div>
+      <div class="bd">
+
+        <p class="sub">Personen &amp; Verteilung auf Partner</p>
+        <div class="field">
+          <div class="row"><label for="totalPeople">Personen gesamt (12 Monate)</label></div>
+          <input type="number" id="totalPeople" min="0" step="10">
+          <div class="hint">Gesamtzahl der Kunden, die im Jahresverlauf gewonnen werden.</div>
+        </div>
+
+        <div class="seg" id="distSeg">
+          <button data-dmode="abs" class="active" type="button">Anzahl</button>
+          <button data-dmode="pct" type="button">Prozent&nbsp;%</button>
+        </div>
+
+        <div class="distgrid" id="distGrid">
+          <label>Aionas 21 (Mining)</label><input type="number" id="dist_aionas" min="0" step="1">
+          <label>tegasFX (Funded Trading)</label><input type="number" id="dist_tegasfx" min="0" step="1">
+          <label>Auvesta (Edelmetalle)</label><input type="number" id="dist_auvesta" min="0" step="1">
+          <label>Havenbanq (Banking)</label><input type="number" id="dist_havenbanq" min="0" step="1">
+        </div>
+        <div class="hint" id="distWarn" style="color:var(--gold);display:none"></div>
+        <div class="hint">Verteilung der Personen auf die vier Produktpartner – als absolute Anzahl oder als Prozentanteile. Wird intern auf die Gesamtzahl normiert.</div>
+
+        <div class="field" style="margin-top:12px">
+          <div class="row"><label>Davon Eigenkunden (%)</label><span class="val" id="ownShareV"></span></div>
+          <input type="range" id="ownShare" min="0" max="100" step="1">
+          <div class="hint">Anteil der Personen, die du persönlich vermittelst → deren Direktprovisionen sind dein „Direkt"-Einkommen. Alle BVs (100&nbsp;%) fließen ins Teamvolumen.</div>
+        </div>
+
+        <div class="field">
+          <div class="row"><label>Anlaufkurve (% / Monat)</label><span class="val" id="rampV"></span></div>
+          <input type="range" id="ramp" min="0" max="40" step="1">
+          <div class="hint">0&nbsp;% = Personen gleichmäßig über 12 Monate verteilt. Höher = langsamer Start, stärkeres Jahresende (Gesamtzahl bleibt gleich).</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <p class="sub">Team-Bonus</p>
+        <div class="two">
+          <div class="field">
+            <div class="row"><label>Dual-Team-Bonus (Rang)</label><span class="val" id="teamRateV"></span></div>
+            <div class="rankinfo" id="rankInfo"></div>
+            <div class="hint">Satz ergibt sich aus der Karrierestufe (oben wählbar). Gezahlt auf das schwächere Bein.</div>
+          </div>
+          <div class="field">
+            <div class="row"><label>Schwächeres Bein (%)</label><span class="val" id="legShareV"></span></div>
+            <input type="range" id="legShare" min="10" max="50" step="1">
+            <div class="hint">50&nbsp;% = perfekt balanciert, niedriger = unausgewogene Beine.</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="row"><label>Matching (% des Team-Bonus)</label><span class="val" id="matchingRateV"></span></div>
+          <input type="range" id="matchingRate" min="0" max="100" step="5">
+          <div class="hint">Downline-Matching (bis 20&nbsp;% über 10 Ebenen) als grobe Schätzung – Anteil zusätzlich zum Dual-Team-Bonus. Bewusst konservativ wählen.</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ ERGEBNIS ============ -->
+    <section class="card">
+      <div class="hd">
+        <h2>Prognose (alle Partner)</h2>
+        <div class="seg" style="margin:0;width:auto" id="periodSeg">
+          <button data-period="week" type="button">Woche</button>
+          <button data-period="month" type="button">Monat</button>
+          <button data-period="quarter" type="button">Quartal</button>
+          <button data-period="year" class="active" type="button">Jahr</button>
+        </div>
+      </div>
+      <div class="bd">
+
+        <div class="kpis">
+          <div class="kpi" data-kpi="week"><span class="tag">FOKUS</span><div class="lbl">Woche</div><div class="big" id="kWeek">–</div><div class="sm">Run-Rate / Woche</div></div>
+          <div class="kpi" data-kpi="month"><span class="tag">FOKUS</span><div class="lbl">Monat (Start)</div><div class="big" id="kMonth">–</div><div class="sm">Run-Rate Monat 1</div></div>
+          <div class="kpi" data-kpi="quarter"><span class="tag">FOKUS</span><div class="lbl">Quartal</div><div class="big" id="kQuarter">–</div><div class="sm">Summe Monat 1–3</div></div>
+          <div class="kpi is-active" data-kpi="year"><span class="tag">FOKUS</span><div class="lbl">Jahr</div><div class="big" id="kYear">–</div><div class="sm">Summe Monat 1–12</div></div>
+        </div>
+
+        <div class="breakdown">
+          <div class="bk"><span class="dot" style="background:var(--accent)"></span>Direkt eigene (Jahr): <b id="bkDirect">–</b></div>
+          <div class="bk"><span class="dot" style="background:var(--accent2)"></span>Team (Jahr): <b id="bkTeam">–</b></div>
+          <div class="bk"><span class="dot" style="background:var(--gold)"></span>Matching (Jahr): <b id="bkMatch">–</b></div>
+          <div class="bk">Personen: <b id="bkPeople">–</b></div>
+          <div class="bk">BV gesamt (Jahr): <b id="bkBV">–</b></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="chart-wrap">
+          <div class="legend">
+            <span><span class="dot" style="background:var(--accent)"></span>Direkt (eigene)</span>
+            <span><span class="dot" style="background:var(--accent2)"></span>Team</span>
+            <span><span class="dot" style="background:var(--gold)"></span>Matching</span>
+          </div>
+          <svg id="chart" viewBox="0 0 720 300" preserveAspectRatio="xMidYMid meet" aria-label="Provisionsverlauf über 12 Monate"></svg>
+        </div>
+
+        <div class="meta">
+          <span class="pill" id="pillMonth12">Monat 12: –</span>
+          <span class="pill">Modell: Direktprovisionen je Partner + Dual-Team auf BV + Matching (Schätzung)</span>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ PARTNER-TABELLE ============ -->
+  <section class="card" style="margin-top:20px">
+    <div class="hd">
+      <h2>Produktpartner &amp; Gesamtsumme</h2>
+      <span class="pill">Zeitraum: <b id="cmpPeriod">Jahr</b></span>
+    </div>
+    <div class="bd">
+      <div class="tablescroll">
+        <table class="cmp">
+          <thead>
+            <tr>
+              <th>Aktiv</th><th>Partner</th><th class="r">Personen&nbsp;(12&nbsp;Mon.)</th>
+              <th class="r">Direkt generiert</th><th class="r">davon eigene</th>
+              <th class="r">BV</th><th class="r">Team-Bonus</th><th class="r">Gesamt (dein Einkommen)</th>
+            </tr>
+          </thead>
+          <tbody id="mixBody"></tbody>
+        </table>
+      </div>
+      <div class="hint" style="margin-top:8px">
+        <b>Direkt generiert</b> = alle Direktprovisionen, die die Personengruppe erzeugt (wie im Partner-Chart „Generated Direct Commissions"). <b>davon eigene</b> = dein Anteil gemäß „Eigenkunden&nbsp;%". <b>Team-Bonus</b> = BV × schwächeres Bein × Rang-Satz. <b>Gesamt</b> = eigene Direktprovisionen + Team-Bonus + Matching. Parameter je Partner sind in der grauen Zeile darunter editierbar. Die Zeilen <b>AI TradingPilot</b> (Lizenz als Zusatzkauf der tegasFX-Kunden) und <b>ClubPilot Autoship</b> (10&nbsp;BV je aktiver Person/Monat) sind Zusatzposten – die Personen sind dieselben und zählen in der Summenzeile nicht doppelt. Dual-Team wird real wöchentlich auf das schwächere Bein gezahlt (Cap $250.000/Woche); das Tool aggregiert monatlich.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BONUS-ÜBERSICHT ============ -->
+  <section class="card" style="margin-top:20px">
+    <div class="hd"><h2>Bonusarten im Salus-Vergütungsplan</h2></div>
+    <div class="bd">
+      <div class="tablescroll">
+        <table class="info">
+          <thead><tr><th>Bonus</th><th>Was</th><th>Basis</th><th>Im Tool</th></tr></thead>
+          <tbody>
+            <tr><td class="b1">Direktbonus</td><td>je Produktpartner (Karten, Setups, Pakete, Fees – siehe Partner-Tabelle)</td><td>Verkaufspreis / Volumen</td><td><span class="badge ok">✓ berechnet</span></td></tr>
+            <tr><td class="b1">Streamline-Bonus</td><td>Anteile aus 1 %-Pools (Kunden- &amp; Influencer-Pool)</td><td>globale Käufe / Shares</td><td><span class="badge no">pool-abhängig</span></td></tr>
+            <tr><td class="b1">Dual-Team-Bonus</td><td>10–20 % nach Rang auf das schwächere Bein</td><td>Bein-Volumen (BV)</td><td><span class="badge ok">✓ berechnet</span></td></tr>
+            <tr><td class="b1">Downline-Matching</td><td>bis 20 % über 10 Ebenen (+1 % Infinity)</td><td>Dual-Team-Einkommen der Downline</td><td><span class="badge est">≈ Schätzung</span></td></tr>
+            <tr><td class="b1">Upline-Matching</td><td>4 % über 3 Ebenen</td><td>Dual-Team-Einkommen der Upline</td><td><span class="badge no">nicht enthalten</span></td></tr>
+            <tr><td class="b1">Rang-Aufstiegsbonus</td><td>bis $500.000 Funded Accounts</td><td>einmalig bei Rang-Erreichung</td><td><span class="badge no">einmalig</span></td></tr>
+            <tr><td class="b1">Lifestyle-/Travel-Bonus</td><td>Reise-/Incentive-Programm</td><td>Qualifikation / Status</td><td><span class="badge no">kein Cash</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="hint" style="margin-top:8px">Gerechnet werden Direkt-, Dual-Team- und (geschätzt) Downline-Matching-Bonus. Streamline-, Upline-Matching-, Rang-Aufstiegs- und Travel-Bonus sind nicht im prognostizierten Betrag enthalten – sie kämen real on top. Provisionslauf jeden Montag, Auszahlung jeden Mittwoch (Comp-Plan S. 4/22).</div>
+    </div>
+  </section>
+
+  <div class="disclaimer">
+    <div class="ic">⚠</div>
+    <div>
+      <b>Unverbindliche Beispielrechnung – keine Gewinngarantie.</b>
+      Die dargestellten Werte sind rein illustrative Szenarien auf Basis der eingegebenen Annahmen und
+      stellen keine Zusage künftiger Erträge dar. Der Matching-Bonus ist eine grobe Schätzung; Streamline-,
+      Upline-Matching-, Rang- und Travel-Boni sind nicht enthalten. Tatsächliche Ergebnisse hängen von
+      individueller Leistung, Marktbedingungen und Produktrisiken ab. Bei Krypto-Mining-, Trading- und
+      Edelmetallprodukten besteht <b>Totalverlustrisiko</b>. Diese Darstellung ist kein Angebot und keine
+      Anlage- oder Steuerberatung.
+    </div>
+  </div>
+
+  <div class="hint" id="versionFooter" style="text-align:center;margin-top:14px"></div>
+
+</div>
+
+<script>
+"use strict";
+
+/* ============ Version ============ */
+const VERSION = "2.1.0";
+const VERSION_DATE = "22.07.2026";
+const PLAN_BASIS = "SGC Compensation Plan 09.07.2026";
+
+/* ============ Partner-Registry mit Provisionslogik ============ */
+/* Jede calc()-Funktion liefert pro Monat {direct, bv} aus Neukunden + Bestand (ctx = kumulierter Zustand). */
+const PARTNERS = {
+  aionas: {
+    name:"Aionas 21 – Mining",
+    note:"10% Direkt + 10% BV instant; Hosting-Gebühren (~20%, $0.004/kWh) über 60 Monate als BV (Comp-Plan S. 5/17).",
+    kw:{ starter:0.0495, basic:1.55, pro:5.94, vip:31.35 },   // kW je Paket lt. Mining-Chart
+    calc(newC, ctx, p){
+      const s = normShares([p.mStarter, p.mBasic, p.mPro, p.mVip]);
+      const avgPkg = s[0]*p.pStarter + s[1]*p.pBasic + s[2]*p.pPro + s[3]*p.pVip;
+      const avgKw  = s[0]*this.kw.starter + s[1]*this.kw.basic + s[2]*this.kw.pro + s[3]*this.kw.vip;
+      ctx.exist = (ctx.exist||0) + newC;
+      const hostBV = ctx.exist * avgKw * 24 * 30.44 * 0.004 * (p.uptime/100);
+      return { direct: newC*avgPkg*0.10, bv: newC*avgPkg*0.10 + hostBV };
+    }
+  },
+  tegasfx: {
+    name:"tegasFX – Funded Trading",
+    note:"5% Direkt + 5% BV auf den Kaufpreis; Funded-Volumen = 10× Sales, 10% des Monatsprofits als BV.",
+    calc(newC, ctx, p){
+      const shares = normShares(p.mix.map(e=>e.share));
+      const avgSale = p.mix.reduce((a,e,i)=>a + shares[i]*e.price, 0);
+      const sales = newC*avgSale;
+      ctx.cumSales = (ctx.cumSales||0) + sales;
+      const funded = ctx.cumSales*10;
+      const perfBV = funded * (p.perf/100) * 0.10;
+      return { direct: sales*0.05, bv: sales*0.05 + perfBV };
+    }
+  },
+  auvesta: {
+    name:"Auvesta – Edelmetalle",
+    note:"Setup-Fee je Paket + 3% auf Goldkäufe (1,5% + 1,5% BV) + 0,20% BV je Ratio-Switch.",
+    setup:{ starter:50, basic:200, pro:400, vip:800 },
+    calc(newC, ctx, p){
+      const s = normShares([p.mVip, p.mPro, p.mStarter, p.mBasic]);
+      const setupAvg = s[0]*this.setup.vip + s[1]*this.setup.pro + s[2]*this.setup.starter + s[3]*this.setup.basic;
+      const goldVol = newC * (p.goldShare/100) * p.goldAvg;
+      ctx.gold = (ctx.gold||0) + goldVol;
+      const switchBV = ctx.gold * (p.switches/12) * 0.0020;
+      const direct = newC*setupAvg + goldVol*0.015;
+      const bv     = newC*setupAvg + goldVol*0.015 + switchBV;
+      return {direct, bv};
+    }
+  },
+  havenbanq: {
+    name:"Havenbanq – Banking",
+    note:"Karte: fix $75 Direkt + 75 BV je Konto (Kartenpreis PRO $650 / VIP $750, Comp-Plan S. 20). Abo-Provision Pro $1,5+1,5 · VIP $5+5 je Monat. Deposit-Fee: Basic 0,2%+0,2% · Pro 0,175%+0,175% · VIP 0,15%+0,15%.",
+    calc(newC, ctx, p){
+      const s = normShares([p.tBasic, p.tPro, p.tVip]);
+      ctx.exist = (ctx.exist||0) + newC;
+      const card = newC * p.cardComm;
+      const sub  = ctx.exist * (s[1]*p.subProComm + s[2]*p.subVipComm);
+      const depMonthly = ctx.exist * p.deposit/12;
+      const dep = depMonthly * (s[0]*0.0020 + s[1]*0.00175 + s[2]*0.0015);
+      const sum = card + sub + dep;
+      return { direct: sum, bv: sum };
+    }
+  }
+};
+const PARTNER_KEYS = ["aionas","tegasfx","auvesta","havenbanq"];
+const TABLE_KEYS = ["aionas","tegasfx","tradingpilot","auvesta","havenbanq","autoship"];
+/* Zusatzposten ohne eigene Personen-Verteilung */
+const EXTRAS = {
+  tradingpilot: {
+    name:"AI TradingPilot – Lizenz",
+    note:"$199-Lizenz: 50% Direkt ($99,5) + 50% BV (99,5) je Verkauf (Comp-Plan S. 5/7). Modelliert als Anteil der neuen tegasFX-Kunden, die zusätzlich die Lizenz kaufen (einmalig)."
+  },
+  autoship: {
+    name:"ClubPilot Autoship",
+    note:"Active-Status: $10/30 Tage = 10 BV je Person und Monat (oder $100/360 Tage = 100 BV). Zugleich Qualifikationsbedingung für Provisionen (Comp-Plan S. 5/6/22). Erzeugt nur BV, keine Direktprovision."
+  }
+};
+
+/* Rang-Tabelle (Dual Team Bonus) – Salus Compensation Plan, Slide 45 */
+const RANKS = {
+  none:    { name:"Kunde / Influencer", dtb:0,  bv:0 },
+  bronze:  { name:"Bronze",             dtb:10, bv:50 },
+  silver:  { name:"Silver",             dtb:11, bv:5000 },
+  gold:    { name:"Gold",               dtb:12, bv:15000 },
+  emerald: { name:"Emerald",            dtb:13, bv:40000 },
+  sapphire:{ name:"Sapphire",           dtb:14, bv:100000 },
+  ruby:    { name:"Ruby",               dtb:15, bv:300000 },
+  diamond: { name:"Diamond",            dtb:16, bv:1000000 },
+  ddiamond:{ name:"Double Diamond",     dtb:17, bv:2500000 },
+  tdiamond:{ name:"Triple Diamond",     dtb:18, bv:7000000 },
+  crown:   { name:"Crown Diamond",      dtb:20, bv:20000000 }
+};
+
+const DEFAULTS = {
+  rank:"gold",
+  totalPeople:500,
+  distMode:"abs",
+  dist:    { aionas:200, tegasfx:150, auvesta:100, havenbanq:50 },
+  distPct: { aionas:40,  tegasfx:30,  auvesta:20,  havenbanq:10 },
+  ownShare:10,
+  ramp:0,
+  legShare:45,
+  matchingRate:30,
+  teamRate:12,   // wird aus dem Rang abgeleitet
+  active:{ aionas:true, tegasfx:true, tradingpilot:true, auvesta:true, havenbanq:true, autoship:true },
+  p:{
+    aionas:   { mStarter:35, mBasic:20, mPro:35, mVip:10, pStarter:39, pBasic:880, pPro:4310, pVip:21900, uptime:92 },
+    tegasfx:  { perf:1.35, mix:[
+                  {price:100,   share:10},
+                  {price:300,   share:20},
+                  {price:500,   share:5},
+                  {price:1000,  share:15},
+                  {price:5000,  share:10},
+                  {price:10000, share:35},
+                  {price:50000, share:5}
+               ]},
+    auvesta:  { mVip:50, mPro:20, mStarter:20, mBasic:10, goldShare:100, goldAvg:10000, switches:6 },
+    havenbanq:{ tBasic:40, tPro:30, tVip:30, cardComm:75, subProComm:1.5, subVipComm:5, deposit:40000 },
+    tradingpilot: { share:100, price:199 },
+    autoship: { share:100, bvMon:10 }
+  }
+};
+
+const MONTHS = 12;
+const WEEKS_PER_MONTH = 52/12;   // ≈ 4,33
+const usd = new Intl.NumberFormat("de-DE",{style:"currency",currency:"USD",maximumFractionDigits:0});
+const num = new Intl.NumberFormat("de-DE",{maximumFractionDigits:1});
+const num0 = new Intl.NumberFormat("de-DE",{maximumFractionDigits:0});
+
+let state = clone(DEFAULTS);
+let activePeriod = "year";
+
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+const $ = id => document.getElementById(id);
+function normShares(arr){
+  const sum = arr.reduce((a,v)=>a+(Number(v)||0),0) || 1;
+  return arr.map(v=>(Number(v)||0)/sum);
+}
+
+/* ============ Rechenmodell ============ */
+/* Personen je Partner: Verteilung (Anzahl oder %) über aktive Partner normiert auf die Gesamtzahl */
+function peoplePerPartner(){
+  const src = state.distMode==="abs" ? state.dist : state.distPct;
+  const act = PARTNER_KEYS.filter(k=>state.active[k]);
+  const sum = act.reduce((a,k)=>a+(Number(src[k])||0),0);
+  const out = {};
+  PARTNER_KEYS.forEach(k=>{
+    out[k] = (state.active[k] && sum>0) ? state.totalPeople * (Number(src[k])||0)/sum : 0;
+  });
+  return out;
+}
+
+/* Monatsgewichte: (1+ramp)^m, normiert – Gesamtzahl bleibt konstant */
+function monthWeights(){
+  const g = state.ramp/100;
+  const w = []; let sum=0;
+  for(let m=0;m<MONTHS;m++){ const v=Math.pow(1+g,m); w.push(v); sum+=v; }
+  return w.map(v=>v/sum);
+}
+
+/* Liefert Monats-Gesamtreihe + Reihen je Partner */
+function projectAll(){
+  const people = peoplePerPartner();
+  const weights = monthWeights();
+  const legShare = state.legShare/100;
+  const team  = state.teamRate/100;
+  const match = state.matchingRate/100;
+  const own   = state.ownShare/100;
+
+  const months = [];
+  const perPartner = {}; TABLE_KEYS.forEach(k=>perPartner[k]=[]);
+  const ctx = {}; PARTNER_KEYS.forEach(k=>ctx[k]={});
+  let cumPeople = 0;
+
+  for(let m=0; m<MONTHS; m++){
+    let dGen=0, dOwn=0, bvTot=0;
+    PARTNER_KEYS.forEach(k=>{
+      let r = {direct:0, bv:0};
+      if(state.active[k] && people[k]>0){
+        r = PARTNERS[k].calc(people[k]*weights[m], ctx[k], state.p[k]);
+      }
+      const tB = r.bv * legShare * team;
+      const mB = tB * match;
+      perPartner[k].push({
+        directGen:r.direct, direct:r.direct*own, bv:r.bv,
+        team:tB, match:mB, total:r.direct*own + tB + mB
+      });
+      dGen += r.direct; dOwn += r.direct*own; bvTot += r.bv;
+      cumPeople += people[k]*weights[m];
+    });
+    // AI TradingPilot: Anteil der neuen tegasFX-Kunden kauft die Lizenz (50% Direkt + 50% BV, einmalig)
+    const pt = state.p.tradingpilot;
+    const newLic = (state.active.tradingpilot && state.active.tegasfx) ? people.tegasfx*weights[m]*(pt.share/100) : 0;
+    const licHalf = newLic * pt.price * 0.5;
+    const lT = licHalf*legShare*team, lM = lT*match;
+    perPartner.tradingpilot.push({ directGen:licHalf, direct:licHalf*own, bv:licHalf, team:lT, match:lM, total:licHalf*own+lT+lM });
+    dGen += licHalf; dOwn += licHalf*own; bvTot += licHalf;
+    // ClubPilot Autoship: 10 BV je aktiver Person und Monat (nur BV, keine Direktprovision)
+    const pa = state.p.autoship;
+    const aBV = state.active.autoship ? cumPeople * (pa.share/100) * pa.bvMon : 0;
+    const aT = aBV*legShare*team, aM = aT*match;
+    perPartner.autoship.push({ directGen:0, direct:0, bv:aBV, team:aT, match:aM, total:aT+aM });
+    bvTot += aBV;
+    const tB = bvTot*legShare*team, mB = tB*match;
+    months.push({ m:m+1, directGen:dGen, direct:dOwn, bv:bvTot, team:tB, match:mB, total:dOwn+tB+mB });
+  }
+  return { months, perPartner, people };
+}
+
+/* Zeitraum-Aggregat: week=M1/4,33 · month=M1 · quarter=M1-3 · year=M1-12 */
+const AGG_KEYS = ["directGen","direct","bv","team","match","total"];
+function aggregate(rows, period){
+  const out = {}; AGG_KEYS.forEach(k=>out[k]=0);
+  if(!rows || !rows.length) return out;
+  if(period==="week"){
+    const f = 1/WEEKS_PER_MONTH;
+    AGG_KEYS.forEach(k=>out[k]=(rows[0][k]||0)*f);
+    return out;
+  }
+  const sl = period==="month" ? rows.slice(0,1)
+           : period==="quarter" ? rows.slice(0,3)
+           : rows;
+  sl.forEach(r=>AGG_KEYS.forEach(k=>out[k]+=(r[k]||0)));
+  return out;
+}
+
+/* ============ Render ============ */
+const PERIOD_LABEL = { week:"Woche", month:"Monat", quarter:"Quartal", year:"Jahr" };
+
+function render(){
+  const { months, perPartner, people } = projectAll();
+
+  $("kWeek").textContent    = usd.format(aggregate(months,"week").total);
+  $("kMonth").textContent   = usd.format(aggregate(months,"month").total);
+  $("kQuarter").textContent = usd.format(aggregate(months,"quarter").total);
+  $("kYear").textContent    = usd.format(aggregate(months,"year").total);
+
+  const y = aggregate(months,"year");
+  $("bkDirect").textContent = usd.format(y.direct);
+  $("bkTeam").textContent   = usd.format(y.team);
+  $("bkMatch").textContent  = usd.format(y.match);
+  $("bkPeople").textContent = num0.format(PARTNER_KEYS.reduce((a,k)=>a+people[k],0));
+  $("bkBV").textContent     = num0.format(y.bv) + " BV";
+  $("pillMonth12").textContent = "Monat 12: " + usd.format(months[MONTHS-1].total);
+
+  document.querySelectorAll(".kpi").forEach(k=>{
+    k.classList.toggle("is-active", k.dataset.kpi === activePeriod);
+  });
+
+  drawChart(months);
+  renderMix(perPartner, people);
+}
+
+/* Aktualisiert nur die Ergebnis-Zellen der Partner-Tabelle (Inputs bleiben unangetastet) */
+function renderMix(perPartner, people){
+  $("cmpPeriod").textContent = PERIOD_LABEL[activePeriod];
+  let tn=0, tdg=0, tdo=0, tbv=0, ttb=0, tg=0;
+  const allPeople = PARTNER_KEYS.reduce((a,k)=>a+people[k],0);
+
+  TABLE_KEYS.forEach(k=>{
+    const n = k==="autoship" ? allPeople*state.p.autoship.share/100
+            : k==="tradingpilot" ? people.tegasfx*state.p.tradingpilot.share/100
+            : people[k];
+    const agg = aggregate(perPartner[k], activePeriod);
+    $(`r_${k}_n`).textContent  = num0.format(n);
+    $(`r_${k}_dg`).textContent = usd.format(agg.directGen);
+    $(`r_${k}_do`).textContent = usd.format(agg.direct);
+    $(`r_${k}_bv`).textContent = num0.format(agg.bv);
+    $(`r_${k}_tb`).textContent = usd.format(agg.team);
+    $(`r_${k}_g`).textContent  = usd.format(agg.total);
+    const off = !state.active[k];
+    $(`row_${k}`).classList.toggle("inactive", off);
+    $(`params_${k}`).classList.toggle("inactive", off);
+    if(PARTNER_KEYS.includes(k)) tn+=n;   // Autoship/TradingPilot sind dieselben Personen, nicht doppelt zählen
+    tdg+=agg.directGen; tdo+=agg.direct; tbv+=agg.bv; ttb+=agg.team; tg+=agg.total;
+  });
+
+  $("tot_n").textContent  = num0.format(tn);
+  $("tot_dg").textContent = usd.format(tdg);
+  $("tot_do").textContent = usd.format(tdo);
+  $("tot_bv").textContent = num0.format(tbv);
+  $("tot_tb").textContent = usd.format(ttb);
+  $("tot_g").textContent  = usd.format(tg);
+
+  // Verteilungs-Hinweis
+  const src = state.distMode==="abs" ? state.dist : state.distPct;
+  const sum = PARTNER_KEYS.reduce((a,k)=>a+(state.active[k]?(Number(src[k])||0):0),0);
+  const target = state.distMode==="abs" ? state.totalPeople : 100;
+  const unit = state.distMode==="abs" ? "" : " %";
+  const warn = $("distWarn");
+  if(sum>0 && Math.abs(sum-target)>0.5){
+    warn.style.display="";
+    warn.textContent = `Summe der Verteilung: ${num0.format(sum)}${unit} (statt ${num0.format(target)}${unit}) – wird auf ${num0.format(state.totalPeople)} Personen normiert.`;
+  } else {
+    warn.style.display="none";
+  }
+}
+
+/* ============ SVG Stacked Bar Chart (Direkt + Team + Matching) ============ */
+function drawChart(rows){
+  const W=720, H=300, padL=58, padR=12, padT=14, padB=34;
+  const plotW = W-padL-padR, plotH = H-padT-padB;
+  const maxV = Math.max(1, ...rows.map(r=>r.total));
+  const niceMax = niceCeil(maxV);
+  const y = v => padT + plotH - (v/niceMax)*plotH;
+  const bw = plotW/rows.length;
+  const barW = Math.min(34, bw*0.6);
+
+  let g = "";
+  for(let i=0;i<=4;i++){
+    const val = niceMax*i/4, yy = y(val);
+    g += `<line class="axis" x1="${padL}" y1="${yy.toFixed(1)}" x2="${W-padR}" y2="${yy.toFixed(1)}" ${i===0?'':'stroke-opacity="0.5"'}/>`;
+    g += `<text class="tick" x="${padL-8}" y="${(yy+3).toFixed(1)}" text-anchor="end">${usdShort(val)}</text>`;
+  }
+
+  rows.forEach((r,i)=>{
+    const cx = padL + bw*i + bw/2;
+    const x = cx - barW/2;
+    const yTop = padT+plotH;
+    const hD = (r.direct/niceMax)*plotH;
+    const hT = (r.team/niceMax)*plotH;
+    const hM = (r.match/niceMax)*plotH;
+    let yb = yTop;
+    // Direkt (unten)
+    g += `<rect x="${x.toFixed(1)}" y="${(yb-hD).toFixed(1)}" width="${barW}" height="${hD.toFixed(1)}" fill="var(--accent)" rx="2"><title>Monat ${r.m} · Direkt ${usd.format(r.direct)}</title></rect>`;
+    yb -= hD;
+    // Team (mitte)
+    g += `<rect x="${x.toFixed(1)}" y="${(yb-hT).toFixed(1)}" width="${barW}" height="${hT.toFixed(1)}" fill="var(--accent2)" rx="2"><title>Monat ${r.m} · Team ${usd.format(r.team)}</title></rect>`;
+    yb -= hT;
+    // Matching (oben)
+    g += `<rect x="${x.toFixed(1)}" y="${(yb-hM).toFixed(1)}" width="${barW}" height="${hM.toFixed(1)}" fill="var(--gold)" rx="2"><title>Monat ${r.m} · Matching ${usd.format(r.match)}</title></rect>`;
+    // x label
+    g += `<text class="tick" x="${cx.toFixed(1)}" y="${H-padB+18}" text-anchor="middle">M${r.m}</text>`;
+  });
+
+  $("chart").innerHTML = g;
+}
+
+function niceCeil(v){
+  if(v<=0) return 1;
+  const exp = Math.floor(Math.log10(v));
+  const base = Math.pow(10,exp);
+  const f = v/base;
+  let nf;
+  if(f<=1) nf=1; else if(f<=2) nf=2; else if(f<=2.5) nf=2.5; else if(f<=5) nf=5; else nf=10;
+  return nf*base;
+}
+function usdShort(v){
+  if(v>=1000000) return (v/1000000).toLocaleString("de-DE",{maximumFractionDigits:1})+" Mio $";
+  if(v>=1000) return Math.round(v/1000)+"k $";
+  return Math.round(v)+" $";
+}
+
+/* ============ Inputs / Bindings ============ */
+const sliderMap = {
+  ownShare:"ownShareV", ramp:"rampV", legShare:"legShareV", matchingRate:"matchingRateV"
+};
+const sliderFmt = {
+  ownShare:v=>num0.format(v)+" %", ramp:v=>num0.format(v)+" %",
+  legShare:v=>num0.format(v)+" %", matchingRate:v=>num0.format(v)+" %"
+};
+
+function bindRange(id){
+  const el = $(id);
+  el.addEventListener("input",()=>{
+    state[id] = parseFloat(el.value);
+    $(sliderMap[id]).textContent = sliderFmt[id](state[id]);
+    render();
+  });
+}
+
+function syncControlsFromState(){
+  Object.keys(sliderMap).forEach(id=>{
+    const el=$(id); if(!el) return;
+    el.value = state[id];
+    $(sliderMap[id]).textContent = sliderFmt[id](state[id]);
+  });
+  $("totalPeople").value = state.totalPeople;
+  syncDistInputs();
+}
+
+function syncDistInputs(){
+  const src = state.distMode==="abs" ? state.dist : state.distPct;
+  PARTNER_KEYS.forEach(k=>{ $(`dist_${k}`).value = src[k]; });
+  document.querySelectorAll("#distSeg button").forEach(b=>b.classList.toggle("active",b.dataset.dmode===state.distMode));
+}
+
+function applyRank(key){
+  const r = RANKS[key];
+  state.rank = key;
+  state.teamRate = r.dtb;
+  $("rank").value = key;
+  $("teamRateV").textContent = num.format(r.dtb) + " %";
+  $("rankInfo").textContent = r.dtb>0
+    ? `${num.format(r.dtb)} % auf das schwächere Bein · Qualifikation ab ${num0.format(r.bv)} BV Pay-Leg`
+    : "Noch kein Dual-Team-Bonus auf dieser Stufe.";
+}
+
+/* ---- Partner-Parameter: generisches Binding über data-p="pfad.in.state.p" ---- */
+function pGet(path){
+  return path.split(".").reduce((o,k)=>o[k], state.p);
+}
+function pSet(path, val){
+  const ks = path.split(".");
+  const last = ks.pop();
+  const obj = ks.reduce((o,k)=>o[k], state.p);
+  obj[last] = val;
+}
+function pInput(path, opts={}){
+  const step = opts.step!==undefined ? opts.step : 1;
+  const cls  = "mini"+(opts.wide?" wide":"")+(opts.tiny?" tiny":"");
+  return `<input type="number" class="${cls}" data-p="${path}" min="0" step="${step}">`;
+}
+
+/* Parameter-Zeilen je Partner (kompakte editierbare Detail-Parameter) */
+function paramsHTML(k){
+  const S = PARTNERS.auvesta.setup;
+  switch(k){
+    case "aionas": return `
+      <span class="pi">Mix&nbsp;%:</span>
+      <span class="pi">Starter ${pInput("aionas.mStarter",{tiny:true})} à&nbsp;$${pInput("aionas.pStarter",{wide:true})}</span>
+      <span class="pi">Basic ${pInput("aionas.mBasic",{tiny:true})} à&nbsp;$${pInput("aionas.pBasic",{wide:true})}</span>
+      <span class="pi">Pro ${pInput("aionas.mPro",{tiny:true})} à&nbsp;$${pInput("aionas.pPro",{wide:true})}</span>
+      <span class="pi">VIP ${pInput("aionas.mVip",{tiny:true})} à&nbsp;$${pInput("aionas.pVip",{wide:true})}</span>
+      <span class="pi">· Uptime ${pInput("aionas.uptime",{tiny:true})} %</span>
+      <span class="pi">· 10%&nbsp;Direkt + 10%&nbsp;BV instant · Hosting-BV $0,004/kWh über 60&nbsp;Mon.</span>`;
+    case "tegasfx": return `
+      <span class="pi">Kaufpreis-Mix&nbsp;%:</span>
+      ${state.p.tegasfx.mix.map((e,i)=>
+        `<span class="pi">$${num0.format(e.price)} ${pInput("tegasfx.mix."+i+".share",{tiny:true})}</span>`).join("")}
+      <span class="pi">· Performance ${pInput("tegasfx.perf",{tiny:true,step:0.05})} %/Mon.</span>
+      <span class="pi">· 5%+5%&nbsp;BV auf Sales, Funded&nbsp;=&nbsp;10×, 10% des Profits als BV</span>`;
+    case "auvesta": return `
+      <span class="pi">Paket-Mix&nbsp;%:</span>
+      <span class="pi">VIP ${pInput("auvesta.mVip",{tiny:true})} ($${S.vip})</span>
+      <span class="pi">Pro ${pInput("auvesta.mPro",{tiny:true})} ($${S.pro})</span>
+      <span class="pi">Starter ${pInput("auvesta.mStarter",{tiny:true})} ($${S.starter})</span>
+      <span class="pi">Basic ${pInput("auvesta.mBasic",{tiny:true})} ($${S.basic})</span>
+      <span class="pi">· Goldkäufer ${pInput("auvesta.goldShare",{tiny:true})} %</span>
+      <span class="pi">Ø&nbsp;Gold $${pInput("auvesta.goldAvg",{wide:true,step:500})}</span>
+      <span class="pi">Switches/Jahr ${pInput("auvesta.switches",{tiny:true})}</span>`;
+    case "havenbanq": return `
+      <span class="pi">Tier-Mix&nbsp;%:</span>
+      <span class="pi">Basic ${pInput("havenbanq.tBasic",{tiny:true})}</span>
+      <span class="pi">Pro ${pInput("havenbanq.tPro",{tiny:true})}</span>
+      <span class="pi">VIP ${pInput("havenbanq.tVip",{tiny:true})}</span>
+      <span class="pi">· Karten-Prov. $${pInput("havenbanq.cardComm",{tiny:true})} (+gleiche&nbsp;BV)</span>
+      <span class="pi">Abo-Prov./Mon. Pro $${pInput("havenbanq.subProComm",{tiny:true,step:0.5})}</span>
+      <span class="pi">VIP $${pInput("havenbanq.subVipComm",{tiny:true,step:0.5})}</span>
+      <span class="pi">Ø&nbsp;Deposit/Jahr $${pInput("havenbanq.deposit",{wide:true,step:1000})}</span>`;
+    case "tradingpilot": return `
+      <span class="pi">Anteil der tegasFX-Kunden mit Lizenz ${pInput("tradingpilot.share",{tiny:true})} %</span>
+      <span class="pi">· Lizenzpreis $${pInput("tradingpilot.price",{tiny:true})}</span>
+      <span class="pi">· 50% Direkt + 50% BV (bei $199: $99,5 + 99,5 BV), einmalig</span>`;
+    case "autoship": return `
+      <span class="pi">Anteil Personen ${pInput("autoship.share",{tiny:true})} %</span>
+      <span class="pi">· BV je Person/Monat ${pInput("autoship.bvMon",{tiny:true})}</span>
+      <span class="pi">· $10/30&nbsp;Tage = 10&nbsp;BV · zugleich Active-Qualifikation</span>`;
+  }
+  return "";
+}
+
+/* Baut die Partner-Tabelle einmalig auf (Inputs + Ergebniszellen + Summenzeile) */
+function buildMixTable(){
+  const body = $("mixBody");
+  body.innerHTML = "";
+  TABLE_KEYS.forEach(k=>{
+    const meta = EXTRAS[k] || PARTNERS[k];
+    const tr = document.createElement("tr");
+    tr.id = `row_${k}`;
+    tr.innerHTML =
+      `<td><input type="checkbox" class="mixchk" ${state.active[k]?"checked":""}></td>`+
+      `<td title="${meta.note}">${meta.name}</td>`+
+      `<td class="r" id="r_${k}_n">–</td>`+
+      `<td class="r" id="r_${k}_dg">–</td>`+
+      `<td class="r" id="r_${k}_do">–</td>`+
+      `<td class="r" id="r_${k}_bv">–</td>`+
+      `<td class="r" id="r_${k}_tb">–</td>`+
+      `<td class="r b" id="r_${k}_g">–</td>`;
+    const chk = tr.querySelector("input");
+    chk.addEventListener("change",()=>{ state.active[k] = chk.checked; render(); });
+    body.appendChild(tr);
+
+    const pr = document.createElement("tr");
+    pr.className = "params";
+    pr.id = `params_${k}`;
+    pr.innerHTML = `<td></td><td colspan="7"><div class="pset">${paramsHTML(k)}</div></td>`;
+    body.appendChild(pr);
+  });
+
+  const tot = document.createElement("tr");
+  tot.className = "totrow";
+  tot.innerHTML =
+    `<td></td><td>Gesamt (aktiv)</td><td class="r" id="tot_n">–</td>`+
+    `<td class="r" id="tot_dg">–</td><td class="r" id="tot_do">–</td>`+
+    `<td class="r" id="tot_bv">–</td><td class="r" id="tot_tb">–</td><td class="r b" id="tot_g">–</td>`;
+  body.appendChild(tot);
+
+  // Parameter-Inputs: Werte setzen + binden
+  body.querySelectorAll("input[data-p]").forEach(inp=>{
+    inp.value = pGet(inp.dataset.p);
+    inp.addEventListener("input",()=>{
+      pSet(inp.dataset.p, parseFloat(inp.value)||0);
+      render();
+    });
+  });
+}
+
+/* ============ Init ============ */
+function init(){
+  $("versionFooter").textContent = `Umsatzprognose-Vertriebstool v${VERSION} · Stand ${VERSION_DATE} · Basis: ${PLAN_BASIS}`;
+
+  // rank dropdown
+  const rsel = $("rank");
+  Object.entries(RANKS).forEach(([k,r])=>{
+    const o=document.createElement("option"); o.value=k; o.textContent=`${r.name} – ${num.format(r.dtb)}%`; rsel.appendChild(o);
+  });
+  applyRank(state.rank);
+  rsel.addEventListener("change",()=>{ applyRank(rsel.value); render(); });
+
+  // sliders + Personen gesamt
+  Object.keys(sliderMap).forEach(bindRange);
+  $("totalPeople").addEventListener("input",()=>{
+    state.totalPeople = Math.max(0, parseFloat($("totalPeople").value)||0);
+    render();
+  });
+
+  // Verteilungs-Inputs
+  PARTNER_KEYS.forEach(k=>{
+    $(`dist_${k}`).addEventListener("input",()=>{
+      const src = state.distMode==="abs" ? state.dist : state.distPct;
+      src[k] = Math.max(0, parseFloat($(`dist_${k}`).value)||0);
+      render();
+    });
+  });
+
+  // Anzahl / % Umschalter
+  document.querySelectorAll("#distSeg button").forEach(b=>{
+    b.addEventListener("click",()=>{
+      state.distMode = b.dataset.dmode;
+      syncDistInputs();
+      render();
+    });
+  });
+
+  syncControlsFromState();
+  buildMixTable();
+
+  // period toggle
+  document.querySelectorAll("#periodSeg button").forEach(b=>{
+    b.addEventListener("click",()=>{
+      activePeriod=b.dataset.period;
+      document.querySelectorAll("#periodSeg button").forEach(x=>x.classList.toggle("active",x===b));
+      render();
+    });
+  });
+  // KPI-Kachel = Fokus
+  document.querySelectorAll(".kpi").forEach(k=>{
+    k.addEventListener("click",()=>{
+      activePeriod=k.dataset.kpi;
+      document.querySelectorAll("#periodSeg button").forEach(x=>x.classList.toggle("active",x.dataset.period===activePeriod));
+      render();
+    });
+  });
+
+  // reset
+  $("reset").addEventListener("click",()=>{
+    state = clone(DEFAULTS);
+    applyRank(state.rank);
+    syncControlsFromState();
+    buildMixTable();
+    activePeriod="year";
+    document.querySelectorAll("#periodSeg button").forEach(x=>x.classList.toggle("active",x.dataset.period==="year"));
+    render();
+  });
+
+  render();
+}
+
+document.addEventListener("DOMContentLoaded",init);
+</script>
+</body>
+</html>
