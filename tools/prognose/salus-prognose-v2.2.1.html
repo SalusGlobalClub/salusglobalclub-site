@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="version" content="2.2.0">
+<meta name="version" content="2.2.1">
 <meta name="robots" content="noindex">
 <title>Salus Global Club – Umsatzprognose | Vertriebstool</title>
 <style>
@@ -123,6 +123,7 @@
   table.cmp tr.params td{border-bottom:1px solid var(--line);background:rgba(27,41,66,.45);padding:7px 10px 10px;white-space:normal}
   table.cmp tr.params .pset{display:flex;gap:6px 14px;flex-wrap:wrap;align-items:center;font-size:11.5px;color:var(--muted)}
   table.cmp tr.params .pset .pi{display:flex;align-items:center;gap:5px;white-space:nowrap}
+  table.cmp tr.params .pset .mixcnt{color:var(--muted);font-size:10.5px}
   table.cmp tr.totrow td{border-top:2px solid var(--line);border-bottom:0;font-weight:800;background:rgba(91,140,255,.07);padding-top:11px;padding-bottom:11px}
   input.mini{width:68px;padding:5px 7px;font-size:12px;text-align:right}
   input.mini.wide{width:90px}
@@ -333,7 +334,7 @@
 "use strict";
 
 /* ============ Version ============ */
-const VERSION = "2.2.0";
+const VERSION = "2.2.1";
 const VERSION_DATE = "22.07.2026";
 const PLAN_BASIS = "SGC Compensation Plan 09.07.2026";
 
@@ -411,19 +412,20 @@ de: {
   "partner.havenbanq.note":"Karte: fix $75 Direkt + 75 BV je Konto (Kartenpreis PRO $650 / VIP $750, Comp-Plan S. 20). Abo-Provision Pro $1.5+1.5 · VIP $5+5 je Monat. Deposit-Fee: Basic 0.2%+0.2% · Pro 0.175%+0.175% · VIP 0.15%+0.15%.",
   "partner.autoship.name":"ClubPilot Autoship",
   "partner.autoship.note":"Active-Status: $10/30 Tage = 10 BV je Person und Monat (oder $100/360 Tage = 100 BV). Zugleich Qualifikationsbedingung für Provisionen (Comp-Plan S. 5/6/22). Erzeugt nur BV, keine Direktprovision.",
-  "p.mix":"Mix %:",
+  "p.mix":"Mix % (von {n} Personen):",
   "p.at":"à $",
   "p.uptime":"· Uptime",
+  "p.people.short":"Pers.",
   "p.aionas.tail":"· 10% Direkt + 10% BV instant · Hosting-BV $0.004/kWh über 60 Mon.",
   "p.buymix":"Kaufpreis-Mix %:",
   "p.perf":"· Performance",
   "p.permon":"%/Mon.",
   "p.tegasfx.tail":"· 5%+5% BV auf Sales, Funded = 10×, 10% des Profits als BV",
-  "p.pkgmix":"Paket-Mix %:",
+  "p.pkgmix":"Paket-Mix % (von {n} Personen):",
   "p.goldbuyers":"· Goldkäufer",
   "p.avggold":"Ø Gold $",
   "p.switches":"Switches/Jahr",
-  "p.tiermix":"Tier-Mix %:",
+  "p.tiermix":"Tier-Mix % (von {n} Personen):",
   "p.card":"· Karten-Prov. $",
   "p.cardSuffix":"(+gleiche BV)",
   "p.subPro":"Abo-Prov./Mon. Pro $",
@@ -519,19 +521,20 @@ en: {
   "partner.havenbanq.note":"Card: fixed $75 Direct + 75 BV per account (card price PRO $650 / VIP $750, comp plan p. 20). Subscription commission Pro $1.5+1.5 · VIP $5+5 per month. Deposit Fee: Basic 0.2%+0.2% · Pro 0.175%+0.175% · VIP 0.15%+0.15%.",
   "partner.autoship.name":"ClubPilot Autoship",
   "partner.autoship.note":"Active status: $10/30 days = 10 BV per person per month (or $100/360 days = 100 BV). Also the qualification requirement for commissions (comp plan p. 5/6/22). Generates BV only, no direct commission.",
-  "p.mix":"Mix %:",
+  "p.mix":"Mix % (of {n} people):",
   "p.at":"at $",
   "p.uptime":"· Uptime",
+  "p.people.short":"ppl",
   "p.aionas.tail":"· 10% Direct + 10% BV instant · hosting BV $0.004/kWh over 60 mo.",
   "p.buymix":"Purchase price mix %:",
   "p.perf":"· Performance",
   "p.permon":"%/mo.",
   "p.tegasfx.tail":"· 5%+5% BV on sales, funded = 10×, 10% of profit as BV",
-  "p.pkgmix":"Package mix %:",
+  "p.pkgmix":"Package mix % (of {n} people):",
   "p.goldbuyers":"· Gold buyers",
   "p.avggold":"Avg. gold $",
   "p.switches":"Switches/year",
-  "p.tiermix":"Tier mix %:",
+  "p.tiermix":"Tier mix % (of {n} people):",
   "p.card":"· Card comm. $",
   "p.cardSuffix":"(+same BV)",
   "p.subPro":"Sub. comm./mo. Pro $",
@@ -854,6 +857,30 @@ function renderMix(perPartner, people){
   } else {
     warn.style.display="none";
   }
+
+  updateMixHints(people);
+}
+
+/* Zeigt neben jedem Tier-%-Feld die daraus berechnete Personenzahl (bezogen auf people[k]) */
+function updateMixHints(people){
+  const hints = [
+    { key:"aionas",    n:people.aionas,    labelId:"lbl_aionas_mix",    labelKey:"p.mix",
+      tiers:["starter","basic","pro","vip"],
+      shares:()=>normShares([state.p.aionas.mStarter, state.p.aionas.mBasic, state.p.aionas.mPro, state.p.aionas.mVip]) },
+    { key:"auvesta",   n:people.auvesta,   labelId:"lbl_auvesta_mix",   labelKey:"p.pkgmix",
+      tiers:["vip","pro","starter","basic"],
+      shares:()=>normShares([state.p.auvesta.mVip, state.p.auvesta.mPro, state.p.auvesta.mStarter, state.p.auvesta.mBasic]) },
+    { key:"havenbanq", n:people.havenbanq, labelId:"lbl_havenbanq_mix", labelKey:"p.tiermix",
+      tiers:["basic","pro","vip"],
+      shares:()=>normShares([state.p.havenbanq.tBasic, state.p.havenbanq.tPro, state.p.havenbanq.tVip]) },
+  ];
+  hints.forEach(h=>{
+    $(h.labelId).textContent = t(h.labelKey, {n: num0.format(h.n)});
+    const s = h.shares();
+    h.tiers.forEach((tier,i)=>{
+      $(`cnt_${h.key}_${tier}`).textContent = ` → ${num0.format(h.n * s[i])} ${t("p.people.short")}`;
+    });
+  });
 }
 
 /* ============ SVG Stacked Bar Chart (Direkt + Team + Matching) ============ */
@@ -977,11 +1004,11 @@ function paramsHTML(k){
   const S = PARTNERS.auvesta.setup;
   switch(k){
     case "aionas": return `
-      <span class="pi">${t("p.mix")}</span>
-      <span class="pi">Starter ${pInput("aionas.mStarter",{tiny:true})} ${t("p.at")}${pInput("aionas.pStarter",{wide:true})}</span>
-      <span class="pi">Basic ${pInput("aionas.mBasic",{tiny:true})} ${t("p.at")}${pInput("aionas.pBasic",{wide:true})}</span>
-      <span class="pi">Pro ${pInput("aionas.mPro",{tiny:true})} ${t("p.at")}${pInput("aionas.pPro",{wide:true})}</span>
-      <span class="pi">VIP ${pInput("aionas.mVip",{tiny:true})} ${t("p.at")}${pInput("aionas.pVip",{wide:true})}</span>
+      <span class="pi" id="lbl_aionas_mix"></span>
+      <span class="pi">Starter ${pInput("aionas.mStarter",{tiny:true})}<span class="mixcnt" id="cnt_aionas_starter"></span> ${t("p.at")}${pInput("aionas.pStarter",{wide:true})}</span>
+      <span class="pi">Basic ${pInput("aionas.mBasic",{tiny:true})}<span class="mixcnt" id="cnt_aionas_basic"></span> ${t("p.at")}${pInput("aionas.pBasic",{wide:true})}</span>
+      <span class="pi">Pro ${pInput("aionas.mPro",{tiny:true})}<span class="mixcnt" id="cnt_aionas_pro"></span> ${t("p.at")}${pInput("aionas.pPro",{wide:true})}</span>
+      <span class="pi">VIP ${pInput("aionas.mVip",{tiny:true})}<span class="mixcnt" id="cnt_aionas_vip"></span> ${t("p.at")}${pInput("aionas.pVip",{wide:true})}</span>
       <span class="pi">${t("p.uptime")} ${pInput("aionas.uptime",{tiny:true})} %</span>
       <span class="pi">${t("p.aionas.tail")}</span>`;
     case "tegasfx": return `
@@ -995,19 +1022,19 @@ function paramsHTML(k){
       <span class="pi">${t("p.tp.price")}${pInput("tradingpilot.price",{tiny:true})}</span>
       <span class="pi">${t("p.tp.tail")}</span>`;
     case "auvesta": return `
-      <span class="pi">${t("p.pkgmix")}</span>
-      <span class="pi">VIP ${pInput("auvesta.mVip",{tiny:true})} ($${S.vip})</span>
-      <span class="pi">Pro ${pInput("auvesta.mPro",{tiny:true})} ($${S.pro})</span>
-      <span class="pi">Starter ${pInput("auvesta.mStarter",{tiny:true})} ($${S.starter})</span>
-      <span class="pi">Basic ${pInput("auvesta.mBasic",{tiny:true})} ($${S.basic})</span>
+      <span class="pi" id="lbl_auvesta_mix"></span>
+      <span class="pi">VIP ${pInput("auvesta.mVip",{tiny:true})}<span class="mixcnt" id="cnt_auvesta_vip"></span> ($${S.vip})</span>
+      <span class="pi">Pro ${pInput("auvesta.mPro",{tiny:true})}<span class="mixcnt" id="cnt_auvesta_pro"></span> ($${S.pro})</span>
+      <span class="pi">Starter ${pInput("auvesta.mStarter",{tiny:true})}<span class="mixcnt" id="cnt_auvesta_starter"></span> ($${S.starter})</span>
+      <span class="pi">Basic ${pInput("auvesta.mBasic",{tiny:true})}<span class="mixcnt" id="cnt_auvesta_basic"></span> ($${S.basic})</span>
       <span class="pi">${t("p.goldbuyers")} ${pInput("auvesta.goldShare",{tiny:true})} %</span>
       <span class="pi">${t("p.avggold")}${pInput("auvesta.goldAvg",{wide:true,step:500})}</span>
       <span class="pi">${t("p.switches")} ${pInput("auvesta.switches",{tiny:true})}</span>`;
     case "havenbanq": return `
-      <span class="pi">${t("p.tiermix")}</span>
-      <span class="pi">Basic ${pInput("havenbanq.tBasic",{tiny:true})}</span>
-      <span class="pi">Pro ${pInput("havenbanq.tPro",{tiny:true})}</span>
-      <span class="pi">VIP ${pInput("havenbanq.tVip",{tiny:true})}</span>
+      <span class="pi" id="lbl_havenbanq_mix"></span>
+      <span class="pi">Basic ${pInput("havenbanq.tBasic",{tiny:true})}<span class="mixcnt" id="cnt_havenbanq_basic"></span></span>
+      <span class="pi">Pro ${pInput("havenbanq.tPro",{tiny:true})}<span class="mixcnt" id="cnt_havenbanq_pro"></span></span>
+      <span class="pi">VIP ${pInput("havenbanq.tVip",{tiny:true})}<span class="mixcnt" id="cnt_havenbanq_vip"></span></span>
       <span class="pi">${t("p.card")}${pInput("havenbanq.cardComm",{tiny:true})} ${t("p.cardSuffix")}</span>
       <span class="pi">${t("p.subPro")}${pInput("havenbanq.subProComm",{tiny:true,step:0.5})}</span>
       <span class="pi">${t("p.subVip")}${pInput("havenbanq.subVipComm",{tiny:true,step:0.5})}</span>
