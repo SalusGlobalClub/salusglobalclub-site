@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="version" content="2.1.0">
+<meta name="version" content="2.2.0">
 <meta name="robots" content="noindex">
 <title>Salus Global Club – Umsatzprognose | Vertriebstool</title>
 <style>
@@ -47,6 +47,7 @@
   }
   select:focus,input:focus{border-color:var(--accent2)}
   select{min-width:230px;width:auto}
+  select#lang{min-width:0}
 
   .grid{display:grid;grid-template-columns:380px 1fr;gap:20px}
   @media(max-width:980px){.grid{grid-template-columns:1fr}}
@@ -150,13 +151,14 @@
     <div class="brand">
       <img class="logo" alt="Salus Global Club Logo" src="data:image/png;base64,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">
       <div>
-        <h1>Umsatzprognose</h1>
-        <p>Vertriebstool – Provisionsprognose je Produktpartner in konkreten Zahlen</p>
+        <h1 data-i18n="header.h1">Umsatzprognose</h1>
+        <p data-i18n="header.subtitle">Vertriebstool – Provisionsprognose je Produktpartner in konkreten Zahlen</p>
       </div>
     </div>
     <div class="product-pick">
-      <label for="rank">Karrierestufe</label>
+      <label for="rank" data-i18n="header.rank">Karrierestufe</label>
       <select id="rank"></select>
+      <select id="lang" aria-label="Sprache / Language"></select>
     </div>
   </header>
 
@@ -164,62 +166,62 @@
 
     <!-- ============ EINGABEN ============ -->
     <section class="card">
-      <div class="hd"><h2>Eingaben</h2><button class="btn" id="reset" type="button">Zurücksetzen</button></div>
+      <div class="hd"><h2 data-i18n="input.title">Eingaben</h2><button class="btn" id="reset" type="button" data-i18n="input.reset">Zurücksetzen</button></div>
       <div class="bd">
 
-        <p class="sub">Personen &amp; Verteilung auf Partner</p>
+        <p class="sub" data-i18n="input.peopleSub">Personen &amp; Verteilung auf Partner</p>
         <div class="field">
-          <div class="row"><label for="totalPeople">Personen gesamt (12 Monate)</label></div>
+          <div class="row"><label for="totalPeople" data-i18n="input.total.label">Personen gesamt (12 Monate)</label></div>
           <input type="number" id="totalPeople" min="0" step="10">
-          <div class="hint">Gesamtzahl der Kunden, die im Jahresverlauf gewonnen werden.</div>
+          <div class="hint" data-i18n="input.total.hint">Gesamtzahl der Kunden, die im Jahresverlauf gewonnen werden.</div>
         </div>
 
         <div class="seg" id="distSeg">
-          <button data-dmode="abs" class="active" type="button">Anzahl</button>
-          <button data-dmode="pct" type="button">Prozent&nbsp;%</button>
+          <button data-dmode="abs" class="active" type="button" data-i18n="seg.abs">Anzahl</button>
+          <button data-dmode="pct" type="button" data-i18n="seg.pct">Prozent&nbsp;%</button>
         </div>
 
         <div class="distgrid" id="distGrid">
-          <label>Aionas 21 (Mining)</label><input type="number" id="dist_aionas" min="0" step="1">
-          <label>tegasFX (Funded Trading)</label><input type="number" id="dist_tegasfx" min="0" step="1">
-          <label>Auvesta (Edelmetalle)</label><input type="number" id="dist_auvesta" min="0" step="1">
-          <label>Havenbanq (Banking)</label><input type="number" id="dist_havenbanq" min="0" step="1">
+          <label data-i18n="dist.aionas">Aionas 21 (Mining)</label><input type="number" id="dist_aionas" min="0" step="1">
+          <label data-i18n="dist.tegasfx">tegasFX (Funded Trading)</label><input type="number" id="dist_tegasfx" min="0" step="1">
+          <label data-i18n="dist.auvesta">Auvesta (Edelmetalle)</label><input type="number" id="dist_auvesta" min="0" step="1">
+          <label data-i18n="dist.havenbanq">Havenbanq (Banking)</label><input type="number" id="dist_havenbanq" min="0" step="1">
         </div>
         <div class="hint" id="distWarn" style="color:var(--gold);display:none"></div>
-        <div class="hint">Verteilung der Personen auf die vier Produktpartner – als absolute Anzahl oder als Prozentanteile. Wird intern auf die Gesamtzahl normiert.</div>
+        <div class="hint" data-i18n="dist.hint">Verteilung der Personen auf die vier Produktpartner – als absolute Anzahl oder als Prozentanteile. Wird intern auf die Gesamtzahl normiert.</div>
 
         <div class="field" style="margin-top:12px">
-          <div class="row"><label>Davon Eigenkunden (%)</label><span class="val" id="ownShareV"></span></div>
+          <div class="row"><label data-i18n="own.label">Davon Eigenkunden (%)</label><span class="val" id="ownShareV"></span></div>
           <input type="range" id="ownShare" min="0" max="100" step="1">
-          <div class="hint">Anteil der Personen, die du persönlich vermittelst → deren Direktprovisionen sind dein „Direkt"-Einkommen. Alle BVs (100&nbsp;%) fließen ins Teamvolumen.</div>
+          <div class="hint" data-i18n="own.hint">Anteil der Personen, die du persönlich vermittelst → deren Direktprovisionen sind dein „Direkt"-Einkommen. Alle BVs (100 %) fließen ins Teamvolumen.</div>
         </div>
 
         <div class="field">
-          <div class="row"><label>Anlaufkurve (% / Monat)</label><span class="val" id="rampV"></span></div>
+          <div class="row"><label data-i18n="ramp.label">Anlaufkurve (% / Monat)</label><span class="val" id="rampV"></span></div>
           <input type="range" id="ramp" min="0" max="40" step="1">
-          <div class="hint">0&nbsp;% = Personen gleichmäßig über 12 Monate verteilt. Höher = langsamer Start, stärkeres Jahresende (Gesamtzahl bleibt gleich).</div>
+          <div class="hint" data-i18n="ramp.hint">0 % = Personen gleichmäßig über 12 Monate verteilt. Höher = langsamer Start, stärkeres Jahresende (Gesamtzahl bleibt gleich).</div>
         </div>
 
         <div class="divider"></div>
 
-        <p class="sub">Team-Bonus</p>
+        <p class="sub" data-i18n="team.sub">Team-Bonus</p>
         <div class="two">
           <div class="field">
-            <div class="row"><label>Dual-Team-Bonus (Rang)</label><span class="val" id="teamRateV"></span></div>
+            <div class="row"><label data-i18n="dtb.label">Dual-Team-Bonus (Rang)</label><span class="val" id="teamRateV"></span></div>
             <div class="rankinfo" id="rankInfo"></div>
-            <div class="hint">Satz ergibt sich aus der Karrierestufe (oben wählbar). Gezahlt auf das schwächere Bein.</div>
+            <div class="hint" data-i18n="dtb.hint">Satz ergibt sich aus der Karrierestufe (oben wählbar). Gezahlt auf das schwächere Bein.</div>
           </div>
           <div class="field">
-            <div class="row"><label>Schwächeres Bein (%)</label><span class="val" id="legShareV"></span></div>
+            <div class="row"><label data-i18n="leg.label">Schwächeres Bein (%)</label><span class="val" id="legShareV"></span></div>
             <input type="range" id="legShare" min="10" max="50" step="1">
-            <div class="hint">50&nbsp;% = perfekt balanciert, niedriger = unausgewogene Beine.</div>
+            <div class="hint" data-i18n="leg.hint">50 % = perfekt balanciert, niedriger = unausgewogene Beine.</div>
           </div>
         </div>
 
         <div class="field">
-          <div class="row"><label>Matching (% des Team-Bonus)</label><span class="val" id="matchingRateV"></span></div>
+          <div class="row"><label data-i18n="match.label">Matching (% des Team-Bonus)</label><span class="val" id="matchingRateV"></span></div>
           <input type="range" id="matchingRate" min="0" max="100" step="5">
-          <div class="hint">Downline-Matching (bis 20&nbsp;% über 10 Ebenen) als grobe Schätzung – Anteil zusätzlich zum Dual-Team-Bonus. Bewusst konservativ wählen.</div>
+          <div class="hint" data-i18n="match.hint">Downline-Matching (bis 20 % über 10 Ebenen) als grobe Schätzung – Anteil zusätzlich zum Dual-Team-Bonus. Bewusst konservativ wählen.</div>
         </div>
 
       </div>
@@ -228,45 +230,45 @@
     <!-- ============ ERGEBNIS ============ -->
     <section class="card">
       <div class="hd">
-        <h2>Prognose (alle Partner)</h2>
+        <h2 data-i18n="result.title">Prognose (alle Partner)</h2>
         <div class="seg" style="margin:0;width:auto" id="periodSeg">
-          <button data-period="week" type="button">Woche</button>
-          <button data-period="month" type="button">Monat</button>
-          <button data-period="quarter" type="button">Quartal</button>
-          <button data-period="year" class="active" type="button">Jahr</button>
+          <button data-period="week" type="button" data-i18n="period.week">Woche</button>
+          <button data-period="month" type="button" data-i18n="period.month">Monat</button>
+          <button data-period="quarter" type="button" data-i18n="period.quarter">Quartal</button>
+          <button data-period="year" class="active" type="button" data-i18n="period.year">Jahr</button>
         </div>
       </div>
       <div class="bd">
 
         <div class="kpis">
-          <div class="kpi" data-kpi="week"><span class="tag">FOKUS</span><div class="lbl">Woche</div><div class="big" id="kWeek">–</div><div class="sm">Run-Rate / Woche</div></div>
-          <div class="kpi" data-kpi="month"><span class="tag">FOKUS</span><div class="lbl">Monat (Start)</div><div class="big" id="kMonth">–</div><div class="sm">Run-Rate Monat 1</div></div>
-          <div class="kpi" data-kpi="quarter"><span class="tag">FOKUS</span><div class="lbl">Quartal</div><div class="big" id="kQuarter">–</div><div class="sm">Summe Monat 1–3</div></div>
-          <div class="kpi is-active" data-kpi="year"><span class="tag">FOKUS</span><div class="lbl">Jahr</div><div class="big" id="kYear">–</div><div class="sm">Summe Monat 1–12</div></div>
+          <div class="kpi" data-kpi="week"><span class="tag" data-i18n="kpi.tag">FOKUS</span><div class="lbl" data-i18n="period.week">Woche</div><div class="big" id="kWeek">–</div><div class="sm" data-i18n="kpi.week.sm">Run-Rate / Woche</div></div>
+          <div class="kpi" data-kpi="month"><span class="tag" data-i18n="kpi.tag">FOKUS</span><div class="lbl" data-i18n="kpi.monthStart">Monat (Start)</div><div class="big" id="kMonth">–</div><div class="sm" data-i18n="kpi.month.sm">Run-Rate Monat 1</div></div>
+          <div class="kpi" data-kpi="quarter"><span class="tag" data-i18n="kpi.tag">FOKUS</span><div class="lbl" data-i18n="period.quarter">Quartal</div><div class="big" id="kQuarter">–</div><div class="sm" data-i18n="kpi.quarter.sm">Summe Monat 1–3</div></div>
+          <div class="kpi is-active" data-kpi="year"><span class="tag" data-i18n="kpi.tag">FOKUS</span><div class="lbl" data-i18n="period.year">Jahr</div><div class="big" id="kYear">–</div><div class="sm" data-i18n="kpi.year.sm">Summe Monat 1–12</div></div>
         </div>
 
         <div class="breakdown">
-          <div class="bk"><span class="dot" style="background:var(--accent)"></span>Direkt eigene (Jahr): <b id="bkDirect">–</b></div>
-          <div class="bk"><span class="dot" style="background:var(--accent2)"></span>Team (Jahr): <b id="bkTeam">–</b></div>
-          <div class="bk"><span class="dot" style="background:var(--gold)"></span>Matching (Jahr): <b id="bkMatch">–</b></div>
-          <div class="bk">Personen: <b id="bkPeople">–</b></div>
-          <div class="bk">BV gesamt (Jahr): <b id="bkBV">–</b></div>
+          <div class="bk"><span class="dot" style="background:var(--accent)"></span><span data-i18n="bk.direct">Direkt eigene (Jahr):</span> <b id="bkDirect">–</b></div>
+          <div class="bk"><span class="dot" style="background:var(--accent2)"></span><span data-i18n="bk.team">Team (Jahr):</span> <b id="bkTeam">–</b></div>
+          <div class="bk"><span class="dot" style="background:var(--gold)"></span><span data-i18n="bk.match">Matching (Jahr):</span> <b id="bkMatch">–</b></div>
+          <div class="bk"><span data-i18n="bk.people">Personen:</span> <b id="bkPeople">–</b></div>
+          <div class="bk"><span data-i18n="bk.bv">BV gesamt (Jahr):</span> <b id="bkBV">–</b></div>
         </div>
 
         <div class="divider"></div>
 
         <div class="chart-wrap">
           <div class="legend">
-            <span><span class="dot" style="background:var(--accent)"></span>Direkt (eigene)</span>
-            <span><span class="dot" style="background:var(--accent2)"></span>Team</span>
-            <span><span class="dot" style="background:var(--gold)"></span>Matching</span>
+            <span><span class="dot" style="background:var(--accent)"></span><span data-i18n="legend.direct">Direkt (eigene)</span></span>
+            <span><span class="dot" style="background:var(--accent2)"></span><span data-i18n="legend.team">Team</span></span>
+            <span><span class="dot" style="background:var(--gold)"></span><span data-i18n="legend.match">Matching</span></span>
           </div>
           <svg id="chart" viewBox="0 0 720 300" preserveAspectRatio="xMidYMid meet" aria-label="Provisionsverlauf über 12 Monate"></svg>
         </div>
 
         <div class="meta">
-          <span class="pill" id="pillMonth12">Monat 12: –</span>
-          <span class="pill">Modell: Direktprovisionen je Partner + Dual-Team auf BV + Matching (Schätzung)</span>
+          <span class="pill" id="pillMonth12">–</span>
+          <span class="pill" data-i18n="pill.model">Modell: Direktprovisionen je Partner + Dual-Team auf BV + Matching (Schätzung)</span>
         </div>
 
       </div>
@@ -276,61 +278,51 @@
   <!-- ============ PARTNER-TABELLE ============ -->
   <section class="card" style="margin-top:20px">
     <div class="hd">
-      <h2>Produktpartner &amp; Gesamtsumme</h2>
-      <span class="pill">Zeitraum: <b id="cmpPeriod">Jahr</b></span>
+      <h2 data-i18n="cmp.title">Produktpartner &amp; Gesamtsumme</h2>
+      <span class="pill"><span data-i18n="cmp.period">Zeitraum:</span> <b id="cmpPeriod">–</b></span>
     </div>
     <div class="bd">
       <div class="tablescroll">
         <table class="cmp">
           <thead>
             <tr>
-              <th>Aktiv</th><th>Partner</th><th class="r">Personen&nbsp;(12&nbsp;Mon.)</th>
-              <th class="r">Direkt generiert</th><th class="r">davon eigene</th>
-              <th class="r">BV</th><th class="r">Team-Bonus</th><th class="r">Gesamt (dein Einkommen)</th>
+              <th data-i18n="col.active">Aktiv</th><th data-i18n="col.partner">Partner</th><th class="r" data-i18n="col.people">Personen&nbsp;(12&nbsp;Mon.)</th>
+              <th class="r" data-i18n="col.directGen">Direkt generiert</th><th class="r" data-i18n="col.own">davon eigene</th>
+              <th class="r">BV</th><th class="r" data-i18n="col.teamBonus">Team-Bonus</th><th class="r" data-i18n="col.total">Gesamt (dein Einkommen)</th>
             </tr>
           </thead>
           <tbody id="mixBody"></tbody>
         </table>
       </div>
-      <div class="hint" style="margin-top:8px">
-        <b>Direkt generiert</b> = alle Direktprovisionen, die die Personengruppe erzeugt (wie im Partner-Chart „Generated Direct Commissions"). <b>davon eigene</b> = dein Anteil gemäß „Eigenkunden&nbsp;%". <b>Team-Bonus</b> = BV × schwächeres Bein × Rang-Satz. <b>Gesamt</b> = eigene Direktprovisionen + Team-Bonus + Matching. Parameter je Partner sind in der grauen Zeile darunter editierbar. Die Zeilen <b>AI TradingPilot</b> (Lizenz als Zusatzkauf der tegasFX-Kunden) und <b>ClubPilot Autoship</b> (10&nbsp;BV je aktiver Person/Monat) sind Zusatzposten – die Personen sind dieselben und zählen in der Summenzeile nicht doppelt. Dual-Team wird real wöchentlich auf das schwächere Bein gezahlt (Cap $250.000/Woche); das Tool aggregiert monatlich.
-      </div>
+      <div class="hint" style="margin-top:8px" data-i18n-html="cmp.hint"></div>
     </div>
   </section>
 
   <!-- ============ BONUS-ÜBERSICHT ============ -->
   <section class="card" style="margin-top:20px">
-    <div class="hd"><h2>Bonusarten im Salus-Vergütungsplan</h2></div>
+    <div class="hd"><h2 data-i18n="bonus.title">Bonusarten im Salus-Vergütungsplan</h2></div>
     <div class="bd">
       <div class="tablescroll">
         <table class="info">
-          <thead><tr><th>Bonus</th><th>Was</th><th>Basis</th><th>Im Tool</th></tr></thead>
+          <thead><tr><th data-i18n="bonus.col.bonus">Bonus</th><th data-i18n="bonus.col.what">Was</th><th data-i18n="bonus.col.basis">Basis</th><th data-i18n="bonus.col.tool">Im Tool</th></tr></thead>
           <tbody>
-            <tr><td class="b1">Direktbonus</td><td>je Produktpartner (Karten, Setups, Pakete, Fees – siehe Partner-Tabelle)</td><td>Verkaufspreis / Volumen</td><td><span class="badge ok">✓ berechnet</span></td></tr>
-            <tr><td class="b1">Streamline-Bonus</td><td>Anteile aus 1 %-Pools (Kunden- &amp; Influencer-Pool)</td><td>globale Käufe / Shares</td><td><span class="badge no">pool-abhängig</span></td></tr>
-            <tr><td class="b1">Dual-Team-Bonus</td><td>10–20 % nach Rang auf das schwächere Bein</td><td>Bein-Volumen (BV)</td><td><span class="badge ok">✓ berechnet</span></td></tr>
-            <tr><td class="b1">Downline-Matching</td><td>bis 20 % über 10 Ebenen (+1 % Infinity)</td><td>Dual-Team-Einkommen der Downline</td><td><span class="badge est">≈ Schätzung</span></td></tr>
-            <tr><td class="b1">Upline-Matching</td><td>4 % über 3 Ebenen</td><td>Dual-Team-Einkommen der Upline</td><td><span class="badge no">nicht enthalten</span></td></tr>
-            <tr><td class="b1">Rang-Aufstiegsbonus</td><td>bis $500.000 Funded Accounts</td><td>einmalig bei Rang-Erreichung</td><td><span class="badge no">einmalig</span></td></tr>
-            <tr><td class="b1">Lifestyle-/Travel-Bonus</td><td>Reise-/Incentive-Programm</td><td>Qualifikation / Status</td><td><span class="badge no">kein Cash</span></td></tr>
+            <tr><td class="b1">Direct Bonus</td><td data-i18n="bonus.r1.what"></td><td data-i18n="bonus.r1.basis"></td><td><span class="badge ok" data-i18n="badge.calc"></span></td></tr>
+            <tr><td class="b1">Streamline Pool Bonus</td><td data-i18n="bonus.r2.what"></td><td data-i18n="bonus.r2.basis"></td><td><span class="badge no" data-i18n="badge.pool"></span></td></tr>
+            <tr><td class="b1">Dual Team Bonus</td><td data-i18n="bonus.r3.what"></td><td data-i18n="bonus.r3.basis"></td><td><span class="badge ok" data-i18n="badge.calc"></span></td></tr>
+            <tr><td class="b1">Downline Matching Bonus</td><td data-i18n="bonus.r4.what"></td><td data-i18n="bonus.r4.basis"></td><td><span class="badge est" data-i18n="badge.est"></span></td></tr>
+            <tr><td class="b1">Upline Matching Bonus</td><td data-i18n="bonus.r5.what"></td><td data-i18n="bonus.r5.basis"></td><td><span class="badge no" data-i18n="badge.not"></span></td></tr>
+            <tr><td class="b1">Rank Advancement Bonus</td><td data-i18n="bonus.r6.what"></td><td data-i18n="bonus.r6.basis"></td><td><span class="badge no" data-i18n="badge.once"></span></td></tr>
+            <tr><td class="b1">Lifestyle Travel Bonus</td><td data-i18n="bonus.r7.what"></td><td data-i18n="bonus.r7.basis"></td><td><span class="badge no" data-i18n="badge.nocash"></span></td></tr>
           </tbody>
         </table>
       </div>
-      <div class="hint" style="margin-top:8px">Gerechnet werden Direkt-, Dual-Team- und (geschätzt) Downline-Matching-Bonus. Streamline-, Upline-Matching-, Rang-Aufstiegs- und Travel-Bonus sind nicht im prognostizierten Betrag enthalten – sie kämen real on top. Provisionslauf jeden Montag, Auszahlung jeden Mittwoch (Comp-Plan S. 4/22).</div>
+      <div class="hint" style="margin-top:8px" data-i18n-html="bonus.hint"></div>
     </div>
   </section>
 
   <div class="disclaimer">
     <div class="ic">⚠</div>
-    <div>
-      <b>Unverbindliche Beispielrechnung – keine Gewinngarantie.</b>
-      Die dargestellten Werte sind rein illustrative Szenarien auf Basis der eingegebenen Annahmen und
-      stellen keine Zusage künftiger Erträge dar. Der Matching-Bonus ist eine grobe Schätzung; Streamline-,
-      Upline-Matching-, Rang- und Travel-Boni sind nicht enthalten. Tatsächliche Ergebnisse hängen von
-      individueller Leistung, Marktbedingungen und Produktrisiken ab. Bei Krypto-Mining-, Trading- und
-      Edelmetallprodukten besteht <b>Totalverlustrisiko</b>. Diese Darstellung ist kein Angebot und keine
-      Anlage- oder Steuerberatung.
-    </div>
+    <div data-i18n-html="disclaimer"></div>
   </div>
 
   <div class="hint" id="versionFooter" style="text-align:center;margin-top:14px"></div>
@@ -341,16 +333,260 @@
 "use strict";
 
 /* ============ Version ============ */
-const VERSION = "2.1.0";
+const VERSION = "2.2.0";
 const VERSION_DATE = "22.07.2026";
 const PLAN_BASIS = "SGC Compensation Plan 09.07.2026";
+
+/* ============ i18n ============ */
+const LANGS = { de:"Deutsch", en:"English" };
+
+const STRINGS = {
+de: {
+  "page.title":"Salus Global Club – Umsatzprognose | Vertriebstool",
+  "header.h1":"Umsatzprognose",
+  "header.subtitle":"Vertriebstool – Provisionsprognose je Produktpartner in konkreten Zahlen",
+  "header.rank":"Karrierestufe",
+  "input.title":"Eingaben",
+  "input.reset":"Zurücksetzen",
+  "input.peopleSub":"Personen & Verteilung auf Partner",
+  "input.total.label":"Personen gesamt (12 Monate)",
+  "input.total.hint":"Gesamtzahl der Kunden, die im Jahresverlauf gewonnen werden.",
+  "seg.abs":"Anzahl",
+  "seg.pct":"Prozent %",
+  "dist.aionas":"Aionas 21 (Mining)",
+  "dist.tegasfx":"tegasFX (Funded Trading)",
+  "dist.auvesta":"Auvesta (Edelmetalle)",
+  "dist.havenbanq":"Havenbanq (Banking)",
+  "dist.hint":"Verteilung der Personen auf die vier Produktpartner – als absolute Anzahl oder als Prozentanteile. Wird intern auf die Gesamtzahl normiert.",
+  "dist.warn":"Summe der Verteilung: {sum}{unit} (statt {target}{unit}) – wird auf {total} Personen normiert.",
+  "own.label":"Davon Eigenkunden (%)",
+  "own.hint":"Anteil der Personen, die du persönlich vermittelst → deren Direktprovisionen sind dein „Direkt\"-Einkommen. Alle BVs (100 %) fließen ins Teamvolumen.",
+  "ramp.label":"Anlaufkurve (% / Monat)",
+  "ramp.hint":"0 % = Personen gleichmäßig über 12 Monate verteilt. Höher = langsamer Start, stärkeres Jahresende (Gesamtzahl bleibt gleich).",
+  "team.sub":"Team-Bonus",
+  "dtb.label":"Dual Team Bonus (Rang)",
+  "dtb.hint":"Satz ergibt sich aus der Karrierestufe (oben wählbar). Gezahlt auf das schwächere Bein.",
+  "rank.info":"{rate} % auf das schwächere Bein · Qualifikation ab {bv} BV Pay-Leg",
+  "rank.none":"Noch kein Dual Team Bonus auf dieser Stufe.",
+  "leg.label":"Schwächeres Bein (%)",
+  "leg.hint":"50 % = perfekt balanciert, niedriger = unausgewogene Beine.",
+  "match.label":"Matching (% des Dual Team Bonus)",
+  "match.hint":"Downline Matching (bis 20 % über 10 Ebenen) als grobe Schätzung – Anteil zusätzlich zum Dual Team Bonus. Bewusst konservativ wählen.",
+  "result.title":"Prognose (alle Partner)",
+  "period.week":"Woche","period.month":"Monat","period.quarter":"Quartal","period.year":"Jahr",
+  "kpi.tag":"FOKUS",
+  "kpi.monthStart":"Monat (Start)",
+  "kpi.week.sm":"Run-Rate / Woche",
+  "kpi.month.sm":"Run-Rate Monat 1",
+  "kpi.quarter.sm":"Summe Monat 1–3",
+  "kpi.year.sm":"Summe Monat 1–12",
+  "bk.direct":"Direkt eigene (Jahr):",
+  "bk.team":"Team (Jahr):",
+  "bk.match":"Matching (Jahr):",
+  "bk.people":"Personen:",
+  "bk.bv":"BV gesamt (Jahr):",
+  "legend.direct":"Direkt (eigene)","legend.team":"Team","legend.match":"Matching",
+  "chart.aria":"Provisionsverlauf über 12 Monate",
+  "chart.tt.direct":"Monat {m} · Direkt {v}",
+  "chart.tt.team":"Monat {m} · Team {v}",
+  "chart.tt.match":"Monat {m} · Matching {v}",
+  "chart.month":"M{m}",
+  "pill.month12":"Monat 12: {v}",
+  "pill.model":"Modell: Direktprovisionen je Partner + Dual Team auf BV + Matching (Schätzung)",
+  "cmp.title":"Produktpartner & Gesamtsumme",
+  "cmp.period":"Zeitraum:",
+  "col.active":"Aktiv","col.partner":"Partner","col.people":"Personen (12 Mon.)",
+  "col.directGen":"Direkt generiert","col.own":"davon eigene","col.teamBonus":"Team-Bonus","col.total":"Gesamt (dein Einkommen)",
+  "tot.label":"Gesamt (aktiv)",
+  "cmp.hint":"<b>Direkt generiert</b> = alle Direktprovisionen, die die Personengruppe erzeugt (wie im Partner-Chart „Generated Direct Commissions\"). <b>davon eigene</b> = dein Anteil gemäß „Eigenkunden&nbsp;%\". <b>Team-Bonus</b> = BV × schwächeres Bein × Rang-Satz. <b>Gesamt</b> = eigene Direktprovisionen + Team-Bonus + Matching. Parameter je Partner sind in der grauen Zeile darunter editierbar. Die Zeilen <b>AI TradingPilot</b> (Lizenz als Zusatzkauf der tegasFX-Kunden) und <b>ClubPilot Autoship</b> (10&nbsp;BV je aktiver Person/Monat) sind Zusatzposten – die Personen sind dieselben und zählen in der Summenzeile nicht doppelt. Dual Team Bonus wird real wöchentlich auf das schwächere Bein gezahlt (Cap $250,000/Woche); das Tool aggregiert monatlich.",
+  "partner.aionas.name":"Aionas 21 – Mining",
+  "partner.aionas.note":"10% Direkt + 10% BV instant; Hosting-Gebühren (~20%, $0.004/kWh) über 60 Monate als BV (Comp-Plan S. 5/17).",
+  "partner.tegasfx.name":"tegasFX – Funded Trading",
+  "partner.tegasfx.note":"5% Direkt + 5% BV auf den Kaufpreis; Funded-Volumen = 10× Sales, 10% des Monatsprofits als BV.",
+  "partner.tradingpilot.name":"AI TradingPilot – Lizenz",
+  "partner.tradingpilot.note":"$199-Lizenz: 50% Direkt ($99.5) + 50% BV (99.5) je Verkauf (Comp-Plan S. 5/7). Modelliert als Anteil der neuen tegasFX-Kunden, die zusätzlich die Lizenz kaufen (einmalig).",
+  "partner.auvesta.name":"Auvesta – Edelmetalle",
+  "partner.auvesta.note":"Setup-Fee je Paket + 3% auf Goldkäufe (1.5% + 1.5% BV) + 0.20% BV je Ratio-Switch.",
+  "partner.havenbanq.name":"Havenbanq – Banking",
+  "partner.havenbanq.note":"Karte: fix $75 Direkt + 75 BV je Konto (Kartenpreis PRO $650 / VIP $750, Comp-Plan S. 20). Abo-Provision Pro $1.5+1.5 · VIP $5+5 je Monat. Deposit-Fee: Basic 0.2%+0.2% · Pro 0.175%+0.175% · VIP 0.15%+0.15%.",
+  "partner.autoship.name":"ClubPilot Autoship",
+  "partner.autoship.note":"Active-Status: $10/30 Tage = 10 BV je Person und Monat (oder $100/360 Tage = 100 BV). Zugleich Qualifikationsbedingung für Provisionen (Comp-Plan S. 5/6/22). Erzeugt nur BV, keine Direktprovision.",
+  "p.mix":"Mix %:",
+  "p.at":"à $",
+  "p.uptime":"· Uptime",
+  "p.aionas.tail":"· 10% Direkt + 10% BV instant · Hosting-BV $0.004/kWh über 60 Mon.",
+  "p.buymix":"Kaufpreis-Mix %:",
+  "p.perf":"· Performance",
+  "p.permon":"%/Mon.",
+  "p.tegasfx.tail":"· 5%+5% BV auf Sales, Funded = 10×, 10% des Profits als BV",
+  "p.pkgmix":"Paket-Mix %:",
+  "p.goldbuyers":"· Goldkäufer",
+  "p.avggold":"Ø Gold $",
+  "p.switches":"Switches/Jahr",
+  "p.tiermix":"Tier-Mix %:",
+  "p.card":"· Karten-Prov. $",
+  "p.cardSuffix":"(+gleiche BV)",
+  "p.subPro":"Abo-Prov./Mon. Pro $",
+  "p.subVip":"VIP $",
+  "p.deposit":"Ø Deposit/Jahr $",
+  "p.tp.share":"Anteil der tegasFX-Kunden mit Lizenz",
+  "p.tp.price":"· Lizenzpreis $",
+  "p.tp.tail":"· 50% Direkt + 50% BV (bei $199: $99.5 + 99.5 BV), einmalig",
+  "p.as.share":"Anteil Personen",
+  "p.as.bv":"· BV je Person/Monat",
+  "p.as.tail":"· $10/30 Tage = 10 BV · zugleich Active-Qualifikation",
+  "bonus.title":"Bonusarten im Salus-Vergütungsplan",
+  "bonus.col.bonus":"Bonus","bonus.col.what":"Was","bonus.col.basis":"Basis","bonus.col.tool":"Im Tool",
+  "bonus.r1.what":"je Produktpartner (Karten, Setups, Pakete, Fees – siehe Partner-Tabelle)","bonus.r1.basis":"Verkaufspreis / Volumen",
+  "bonus.r2.what":"Anteile aus 1%-Pools (Customer- & Influencer-Pool)","bonus.r2.basis":"globale Käufe / Shares",
+  "bonus.r3.what":"10–20% nach Rang auf das schwächere Bein","bonus.r3.basis":"Bein-Volumen (BV)",
+  "bonus.r4.what":"bis 20% über 10 Ebenen (+1% Infinity)","bonus.r4.basis":"Dual-Team-Einkommen der Downline",
+  "bonus.r5.what":"4% über 3 Ebenen","bonus.r5.basis":"Dual-Team-Einkommen der Upline",
+  "bonus.r6.what":"bis $500,000 Instant Funded Accounts","bonus.r6.basis":"einmalig bei Rang-Erreichung",
+  "bonus.r7.what":"Reise-/Incentive-Programm","bonus.r7.basis":"Qualifikation / Status",
+  "badge.calc":"✓ berechnet","badge.pool":"pool-abhängig","badge.est":"≈ Schätzung","badge.not":"nicht enthalten","badge.once":"einmalig","badge.nocash":"kein Cash",
+  "bonus.hint":"Gerechnet werden Direct, Dual Team und (geschätzt) Downline Matching Bonus. Streamline-, Upline-Matching-, Rank-Advancement- und Travel-Bonus sind nicht im prognostizierten Betrag enthalten – sie kämen real on top. Commission Run jeden Montag, Auszahlung jeden Mittwoch (Comp-Plan S. 4/22).",
+  "disclaimer":"<b>Unverbindliche Beispielrechnung – keine Gewinngarantie.</b> Die dargestellten Werte sind rein illustrative Szenarien auf Basis der eingegebenen Annahmen und stellen keine Zusage künftiger Erträge dar. Der Matching-Bonus ist eine grobe Schätzung; Streamline-, Upline-Matching-, Rang- und Travel-Boni sind nicht enthalten. Tatsächliche Ergebnisse hängen von individueller Leistung, Marktbedingungen und Produktrisiken ab. Bei Krypto-Mining-, Trading- und Edelmetallprodukten besteht <b>Totalverlustrisiko</b>. Diese Darstellung ist kein Angebot und keine Anlage- oder Steuerberatung.",
+  "footer":"Umsatzprognose-Vertriebstool v{v} · Stand {d} · Basis: {basis}"
+},
+en: {
+  "page.title":"Salus Global Club – Income Forecast | Sales Tool",
+  "header.h1":"Income Forecast",
+  "header.subtitle":"Sales tool – commission forecast per product partner in concrete numbers",
+  "header.rank":"Rank",
+  "input.title":"Inputs",
+  "input.reset":"Reset",
+  "input.peopleSub":"People & distribution across partners",
+  "input.total.label":"Total people (12 months)",
+  "input.total.hint":"Total number of customers acquired over the course of the year.",
+  "seg.abs":"Count",
+  "seg.pct":"Percent %",
+  "dist.aionas":"Aionas 21 (Mining)",
+  "dist.tegasfx":"tegasFX (Funded Trading)",
+  "dist.auvesta":"Auvesta (Precious Metals)",
+  "dist.havenbanq":"Havenbanq (Banking)",
+  "dist.hint":"Distribution of people across the four product partners – as absolute counts or as percentages. Internally normalized to the total.",
+  "dist.warn":"Distribution total: {sum}{unit} (instead of {target}{unit}) – normalized to {total} people.",
+  "own.label":"Personally referred (%)",
+  "own.hint":"Share of people you refer personally → their direct commissions are your \"Direct\" income. All BVs (100%) flow into the team volume.",
+  "ramp.label":"Ramp-up (% / month)",
+  "ramp.hint":"0% = people spread evenly across 12 months. Higher = slower start, stronger year-end (the total stays the same).",
+  "team.sub":"Team Bonus",
+  "dtb.label":"Dual Team Bonus (Rank)",
+  "dtb.hint":"The rate follows from your rank (selectable above). Paid on the Weaker Leg.",
+  "rank.info":"{rate}% on the Weaker Leg · qualification from {bv} BV pay leg",
+  "rank.none":"No Dual Team Bonus at this level yet.",
+  "leg.label":"Weaker Leg (%)",
+  "leg.hint":"50% = perfectly balanced, lower = unbalanced legs.",
+  "match.label":"Matching (% of Dual Team Bonus)",
+  "match.hint":"Downline Matching Bonus (up to 20% across 10 levels) as a rough estimate – added on top of the Dual Team Bonus. Choose conservatively.",
+  "result.title":"Forecast (all partners)",
+  "period.week":"Week","period.month":"Month","period.quarter":"Quarter","period.year":"Year",
+  "kpi.tag":"FOCUS",
+  "kpi.monthStart":"Month (start)",
+  "kpi.week.sm":"Run rate / week",
+  "kpi.month.sm":"Run rate month 1",
+  "kpi.quarter.sm":"Total months 1–3",
+  "kpi.year.sm":"Total months 1–12",
+  "bk.direct":"Own direct (year):",
+  "bk.team":"Team (year):",
+  "bk.match":"Matching (year):",
+  "bk.people":"People:",
+  "bk.bv":"Total BV (year):",
+  "legend.direct":"Direct (own)","legend.team":"Team","legend.match":"Matching",
+  "chart.aria":"Commission development over 12 months",
+  "chart.tt.direct":"Month {m} · Direct {v}",
+  "chart.tt.team":"Month {m} · Team {v}",
+  "chart.tt.match":"Month {m} · Matching {v}",
+  "chart.month":"M{m}",
+  "pill.month12":"Month 12: {v}",
+  "pill.model":"Model: direct commissions per partner + Dual Team on BV + Matching (estimate)",
+  "cmp.title":"Product partners & totals",
+  "cmp.period":"Period:",
+  "col.active":"Active","col.partner":"Partner","col.people":"People (12 mo.)",
+  "col.directGen":"Direct generated","col.own":"of which own","col.teamBonus":"Team Bonus","col.total":"Total (your income)",
+  "tot.label":"Total (active)",
+  "cmp.hint":"<b>Direct generated</b> = all direct commissions created by this group of people (as in the partner chart \"Generated Direct Commissions\"). <b>of which own</b> = your share according to \"Personally referred&nbsp;%\". <b>Team Bonus</b> = BV × Weaker Leg × rank rate. <b>Total</b> = own direct commissions + Dual Team Bonus + Matching. Partner parameters are editable in the grey row below each partner. The rows <b>AI TradingPilot</b> (license as an add-on purchase by tegasFX customers) and <b>ClubPilot Autoship</b> (10&nbsp;BV per active person/month) are add-on items – the people are the same and are not double-counted in the totals row. In reality the Dual Team Bonus is paid weekly on the Weaker Leg (cap $250,000/week); this tool aggregates monthly.",
+  "partner.aionas.name":"Aionas 21 – Mining",
+  "partner.aionas.note":"10% Direct + 10% BV instant; hosting fees (~20%, $0.004/kWh) over 60 months as BV (comp plan p. 5/17).",
+  "partner.tegasfx.name":"tegasFX – Funded Trading",
+  "partner.tegasfx.note":"5% Direct + 5% BV on the purchase price; funded volume = 10× sales, 10% of the monthly profit as BV.",
+  "partner.tradingpilot.name":"AI TradingPilot – License",
+  "partner.tradingpilot.note":"$199 license: 50% Direct ($99.5) + 50% BV (99.5) per sale (comp plan p. 5/7). Modeled as the share of new tegasFX customers who also buy the license (one-time).",
+  "partner.auvesta.name":"Auvesta – Precious Metals",
+  "partner.auvesta.note":"Setup fee per package + 3% on gold purchases (1.5% + 1.5% BV) + 0.20% BV per Ratio Switch.",
+  "partner.havenbanq.name":"Havenbanq – Banking",
+  "partner.havenbanq.note":"Card: fixed $75 Direct + 75 BV per account (card price PRO $650 / VIP $750, comp plan p. 20). Subscription commission Pro $1.5+1.5 · VIP $5+5 per month. Deposit Fee: Basic 0.2%+0.2% · Pro 0.175%+0.175% · VIP 0.15%+0.15%.",
+  "partner.autoship.name":"ClubPilot Autoship",
+  "partner.autoship.note":"Active status: $10/30 days = 10 BV per person per month (or $100/360 days = 100 BV). Also the qualification requirement for commissions (comp plan p. 5/6/22). Generates BV only, no direct commission.",
+  "p.mix":"Mix %:",
+  "p.at":"at $",
+  "p.uptime":"· Uptime",
+  "p.aionas.tail":"· 10% Direct + 10% BV instant · hosting BV $0.004/kWh over 60 mo.",
+  "p.buymix":"Purchase price mix %:",
+  "p.perf":"· Performance",
+  "p.permon":"%/mo.",
+  "p.tegasfx.tail":"· 5%+5% BV on sales, funded = 10×, 10% of profit as BV",
+  "p.pkgmix":"Package mix %:",
+  "p.goldbuyers":"· Gold buyers",
+  "p.avggold":"Avg. gold $",
+  "p.switches":"Switches/year",
+  "p.tiermix":"Tier mix %:",
+  "p.card":"· Card comm. $",
+  "p.cardSuffix":"(+same BV)",
+  "p.subPro":"Sub. comm./mo. Pro $",
+  "p.subVip":"VIP $",
+  "p.deposit":"Avg. deposit/year $",
+  "p.tp.share":"Share of tegasFX customers with license",
+  "p.tp.price":"· License price $",
+  "p.tp.tail":"· 50% Direct + 50% BV (at $199: $99.5 + 99.5 BV), one-time",
+  "p.as.share":"Share of people",
+  "p.as.bv":"· BV per person/month",
+  "p.as.tail":"· $10/30 days = 10 BV · also the Active status qualification",
+  "bonus.title":"Bonus types in the Salus Compensation Plan",
+  "bonus.col.bonus":"Bonus","bonus.col.what":"What","bonus.col.basis":"Basis","bonus.col.tool":"In this tool",
+  "bonus.r1.what":"per product partner (cards, setup fees, packages, fees – see partner table)","bonus.r1.basis":"sales price / volume",
+  "bonus.r2.what":"shares from 1% pools (Customer & Influencer pools)","bonus.r2.basis":"global purchases / shares",
+  "bonus.r3.what":"10–20% by rank on the Weaker Leg","bonus.r3.basis":"leg volume (BV)",
+  "bonus.r4.what":"up to 20% across 10 levels (+1% Infinity)","bonus.r4.basis":"Dual Team earnings of your downline",
+  "bonus.r5.what":"4% across 3 levels","bonus.r5.basis":"Dual Team earnings of your upline",
+  "bonus.r6.what":"up to $500,000 Instant Funded Accounts","bonus.r6.basis":"one-time on reaching a rank",
+  "bonus.r7.what":"travel / incentive program","bonus.r7.basis":"qualification / status",
+  "badge.calc":"✓ calculated","badge.pool":"pool-dependent","badge.est":"≈ estimate","badge.not":"not included","badge.once":"one-time","badge.nocash":"no cash",
+  "bonus.hint":"Calculated: Direct, Dual Team and (estimated) Downline Matching Bonus. Streamline, Upline Matching, Rank Advancement and Travel bonuses are not part of the forecast amount – in reality they come on top. Commission run every Monday, payout every Wednesday (comp plan p. 4/22).",
+  "disclaimer":"<b>Non-binding illustrative calculation – no guarantee of earnings.</b> The values shown are purely illustrative scenarios based on the assumptions entered and do not represent any promise of future earnings. Income levels are not guaranteed and should be viewed as potential rather than promise. The Matching Bonus is a rough estimate; Streamline, Upline Matching, Rank Advancement and Travel bonuses are not included. Actual results depend on individual performance, market conditions and product risks. Crypto mining, trading and precious metal products carry a <b>risk of total loss</b>. This presentation is not an offer and does not constitute investment or tax advice.",
+  "footer":"Income Forecast Sales Tool v{v} · updated {d} · based on: {basis}"
+}
+};
+
+let lang = "de";
+try { lang = localStorage.getItem("sgc_lang") || "de"; } catch(e){}
+if(!STRINGS[lang]) lang = "de";
+
+function t(key, vars){
+  let s = STRINGS[lang][key];
+  if(s === undefined) s = STRINGS.en[key];
+  if(s === undefined) s = STRINGS.de[key];
+  if(s === undefined) s = key;
+  if(vars) Object.keys(vars).forEach(k=>{ s = s.split("{"+k+"}").join(vars[k]); });
+  return s;
+}
+
+function applyLang(){
+  document.documentElement.lang = lang;
+  document.title = t("page.title");
+  document.querySelectorAll("[data-i18n]").forEach(el=>{ el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll("[data-i18n-html]").forEach(el=>{ el.innerHTML = t(el.dataset.i18nHtml); });
+  const chart = document.getElementById("chart");
+  if(chart) chart.setAttribute("aria-label", t("chart.aria"));
+  const vf = document.getElementById("versionFooter");
+  if(vf) vf.textContent = t("footer", {v:VERSION, d:VERSION_DATE, basis:PLAN_BASIS});
+}
 
 /* ============ Partner-Registry mit Provisionslogik ============ */
 /* Jede calc()-Funktion liefert pro Monat {direct, bv} aus Neukunden + Bestand (ctx = kumulierter Zustand). */
 const PARTNERS = {
   aionas: {
-    name:"Aionas 21 – Mining",
-    note:"10% Direkt + 10% BV instant; Hosting-Gebühren (~20%, $0.004/kWh) über 60 Monate als BV (Comp-Plan S. 5/17).",
     kw:{ starter:0.0495, basic:1.55, pro:5.94, vip:31.35 },   // kW je Paket lt. Mining-Chart
     calc(newC, ctx, p){
       const s = normShares([p.mStarter, p.mBasic, p.mPro, p.mVip]);
@@ -362,8 +598,6 @@ const PARTNERS = {
     }
   },
   tegasfx: {
-    name:"tegasFX – Funded Trading",
-    note:"5% Direkt + 5% BV auf den Kaufpreis; Funded-Volumen = 10× Sales, 10% des Monatsprofits als BV.",
     calc(newC, ctx, p){
       const shares = normShares(p.mix.map(e=>e.share));
       const avgSale = p.mix.reduce((a,e,i)=>a + shares[i]*e.price, 0);
@@ -375,8 +609,6 @@ const PARTNERS = {
     }
   },
   auvesta: {
-    name:"Auvesta – Edelmetalle",
-    note:"Setup-Fee je Paket + 3% auf Goldkäufe (1,5% + 1,5% BV) + 0,20% BV je Ratio-Switch.",
     setup:{ starter:50, basic:200, pro:400, vip:800 },
     calc(newC, ctx, p){
       const s = normShares([p.mVip, p.mPro, p.mStarter, p.mBasic]);
@@ -390,8 +622,6 @@ const PARTNERS = {
     }
   },
   havenbanq: {
-    name:"Havenbanq – Banking",
-    note:"Karte: fix $75 Direkt + 75 BV je Konto (Kartenpreis PRO $650 / VIP $750, Comp-Plan S. 20). Abo-Provision Pro $1,5+1,5 · VIP $5+5 je Monat. Deposit-Fee: Basic 0,2%+0,2% · Pro 0,175%+0,175% · VIP 0,15%+0,15%.",
     calc(newC, ctx, p){
       const s = normShares([p.tBasic, p.tPro, p.tVip]);
       ctx.exist = (ctx.exist||0) + newC;
@@ -406,21 +636,10 @@ const PARTNERS = {
 };
 const PARTNER_KEYS = ["aionas","tegasfx","auvesta","havenbanq"];
 const TABLE_KEYS = ["aionas","tegasfx","tradingpilot","auvesta","havenbanq","autoship"];
-/* Zusatzposten ohne eigene Personen-Verteilung */
-const EXTRAS = {
-  tradingpilot: {
-    name:"AI TradingPilot – Lizenz",
-    note:"$199-Lizenz: 50% Direkt ($99,5) + 50% BV (99,5) je Verkauf (Comp-Plan S. 5/7). Modelliert als Anteil der neuen tegasFX-Kunden, die zusätzlich die Lizenz kaufen (einmalig)."
-  },
-  autoship: {
-    name:"ClubPilot Autoship",
-    note:"Active-Status: $10/30 Tage = 10 BV je Person und Monat (oder $100/360 Tage = 100 BV). Zugleich Qualifikationsbedingung für Provisionen (Comp-Plan S. 5/6/22). Erzeugt nur BV, keine Direktprovision."
-  }
-};
 
-/* Rang-Tabelle (Dual Team Bonus) – Salus Compensation Plan, Slide 45 */
+/* Rang-Tabelle (Dual Team Bonus) – Salus Compensation Plan */
 const RANKS = {
-  none:    { name:"Kunde / Influencer", dtb:0,  bv:0 },
+  none:    { name:"Customer / Influencer", dtb:0,  bv:0 },
   bronze:  { name:"Bronze",             dtb:10, bv:50 },
   silver:  { name:"Silver",             dtb:11, bv:5000 },
   gold:    { name:"Gold",               dtb:12, bv:15000 },
@@ -464,10 +683,11 @@ const DEFAULTS = {
 };
 
 const MONTHS = 12;
-const WEEKS_PER_MONTH = 52/12;   // ≈ 4,33
-const usd = new Intl.NumberFormat("de-DE",{style:"currency",currency:"USD",maximumFractionDigits:0});
-const num = new Intl.NumberFormat("de-DE",{maximumFractionDigits:1});
-const num0 = new Intl.NumberFormat("de-DE",{maximumFractionDigits:0});
+const WEEKS_PER_MONTH = 52/12;   // ≈ 4.33
+/* Zahlenformat einheitlich en-US ($1,000.00) für alle Sprachen – SGC-Playbook-Regel */
+const usd = new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0});
+const num = new Intl.NumberFormat("en-US",{maximumFractionDigits:1});
+const num0 = new Intl.NumberFormat("en-US",{maximumFractionDigits:0});
 
 let state = clone(DEFAULTS);
 let activePeriod = "year";
@@ -549,7 +769,7 @@ function projectAll(){
   return { months, perPartner, people };
 }
 
-/* Zeitraum-Aggregat: week=M1/4,33 · month=M1 · quarter=M1-3 · year=M1-12 */
+/* Zeitraum-Aggregat: week=M1/4.33 · month=M1 · quarter=M1-3 · year=M1-12 */
 const AGG_KEYS = ["directGen","direct","bv","team","match","total"];
 function aggregate(rows, period){
   const out = {}; AGG_KEYS.forEach(k=>out[k]=0);
@@ -567,8 +787,6 @@ function aggregate(rows, period){
 }
 
 /* ============ Render ============ */
-const PERIOD_LABEL = { week:"Woche", month:"Monat", quarter:"Quartal", year:"Jahr" };
-
 function render(){
   const { months, perPartner, people } = projectAll();
 
@@ -583,7 +801,7 @@ function render(){
   $("bkMatch").textContent  = usd.format(y.match);
   $("bkPeople").textContent = num0.format(PARTNER_KEYS.reduce((a,k)=>a+people[k],0));
   $("bkBV").textContent     = num0.format(y.bv) + " BV";
-  $("pillMonth12").textContent = "Monat 12: " + usd.format(months[MONTHS-1].total);
+  $("pillMonth12").textContent = t("pill.month12", {v: usd.format(months[MONTHS-1].total)});
 
   document.querySelectorAll(".kpi").forEach(k=>{
     k.classList.toggle("is-active", k.dataset.kpi === activePeriod);
@@ -595,7 +813,7 @@ function render(){
 
 /* Aktualisiert nur die Ergebnis-Zellen der Partner-Tabelle (Inputs bleiben unangetastet) */
 function renderMix(perPartner, people){
-  $("cmpPeriod").textContent = PERIOD_LABEL[activePeriod];
+  $("cmpPeriod").textContent = t("period."+activePeriod);
   let tn=0, tdg=0, tdo=0, tbv=0, ttb=0, tg=0;
   const allPeople = PARTNER_KEYS.reduce((a,k)=>a+people[k],0);
 
@@ -632,7 +850,7 @@ function renderMix(perPartner, people){
   const warn = $("distWarn");
   if(sum>0 && Math.abs(sum-target)>0.5){
     warn.style.display="";
-    warn.textContent = `Summe der Verteilung: ${num0.format(sum)}${unit} (statt ${num0.format(target)}${unit}) – wird auf ${num0.format(state.totalPeople)} Personen normiert.`;
+    warn.textContent = t("dist.warn", {sum:num0.format(sum), unit, target:num0.format(target), total:num0.format(state.totalPeople)});
   } else {
     warn.style.display="none";
   }
@@ -664,15 +882,15 @@ function drawChart(rows){
     const hM = (r.match/niceMax)*plotH;
     let yb = yTop;
     // Direkt (unten)
-    g += `<rect x="${x.toFixed(1)}" y="${(yb-hD).toFixed(1)}" width="${barW}" height="${hD.toFixed(1)}" fill="var(--accent)" rx="2"><title>Monat ${r.m} · Direkt ${usd.format(r.direct)}</title></rect>`;
+    g += `<rect x="${x.toFixed(1)}" y="${(yb-hD).toFixed(1)}" width="${barW}" height="${hD.toFixed(1)}" fill="var(--accent)" rx="2"><title>${t("chart.tt.direct",{m:r.m, v:usd.format(r.direct)})}</title></rect>`;
     yb -= hD;
     // Team (mitte)
-    g += `<rect x="${x.toFixed(1)}" y="${(yb-hT).toFixed(1)}" width="${barW}" height="${hT.toFixed(1)}" fill="var(--accent2)" rx="2"><title>Monat ${r.m} · Team ${usd.format(r.team)}</title></rect>`;
+    g += `<rect x="${x.toFixed(1)}" y="${(yb-hT).toFixed(1)}" width="${barW}" height="${hT.toFixed(1)}" fill="var(--accent2)" rx="2"><title>${t("chart.tt.team",{m:r.m, v:usd.format(r.team)})}</title></rect>`;
     yb -= hT;
     // Matching (oben)
-    g += `<rect x="${x.toFixed(1)}" y="${(yb-hM).toFixed(1)}" width="${barW}" height="${hM.toFixed(1)}" fill="var(--gold)" rx="2"><title>Monat ${r.m} · Matching ${usd.format(r.match)}</title></rect>`;
+    g += `<rect x="${x.toFixed(1)}" y="${(yb-hM).toFixed(1)}" width="${barW}" height="${hM.toFixed(1)}" fill="var(--gold)" rx="2"><title>${t("chart.tt.match",{m:r.m, v:usd.format(r.match)})}</title></rect>`;
     // x label
-    g += `<text class="tick" x="${cx.toFixed(1)}" y="${H-padB+18}" text-anchor="middle">M${r.m}</text>`;
+    g += `<text class="tick" x="${cx.toFixed(1)}" y="${H-padB+18}" text-anchor="middle">${t("chart.month",{m:r.m})}</text>`;
   });
 
   $("chart").innerHTML = g;
@@ -688,9 +906,9 @@ function niceCeil(v){
   return nf*base;
 }
 function usdShort(v){
-  if(v>=1000000) return (v/1000000).toLocaleString("de-DE",{maximumFractionDigits:1})+" Mio $";
-  if(v>=1000) return Math.round(v/1000)+"k $";
-  return Math.round(v)+" $";
+  if(v>=1000000) return "$"+(v/1000000).toLocaleString("en-US",{maximumFractionDigits:1})+"M";
+  if(v>=1000) return "$"+Math.round(v/1000)+"k";
+  return "$"+Math.round(v);
 }
 
 /* ============ Inputs / Bindings ============ */
@@ -734,8 +952,8 @@ function applyRank(key){
   $("rank").value = key;
   $("teamRateV").textContent = num.format(r.dtb) + " %";
   $("rankInfo").textContent = r.dtb>0
-    ? `${num.format(r.dtb)} % auf das schwächere Bein · Qualifikation ab ${num0.format(r.bv)} BV Pay-Leg`
-    : "Noch kein Dual-Team-Bonus auf dieser Stufe.";
+    ? t("rank.info", {rate:num.format(r.dtb), bv:num0.format(r.bv)})
+    : t("rank.none");
 }
 
 /* ---- Partner-Parameter: generisches Binding über data-p="pfad.in.state.p" ---- */
@@ -759,45 +977,45 @@ function paramsHTML(k){
   const S = PARTNERS.auvesta.setup;
   switch(k){
     case "aionas": return `
-      <span class="pi">Mix&nbsp;%:</span>
-      <span class="pi">Starter ${pInput("aionas.mStarter",{tiny:true})} à&nbsp;$${pInput("aionas.pStarter",{wide:true})}</span>
-      <span class="pi">Basic ${pInput("aionas.mBasic",{tiny:true})} à&nbsp;$${pInput("aionas.pBasic",{wide:true})}</span>
-      <span class="pi">Pro ${pInput("aionas.mPro",{tiny:true})} à&nbsp;$${pInput("aionas.pPro",{wide:true})}</span>
-      <span class="pi">VIP ${pInput("aionas.mVip",{tiny:true})} à&nbsp;$${pInput("aionas.pVip",{wide:true})}</span>
-      <span class="pi">· Uptime ${pInput("aionas.uptime",{tiny:true})} %</span>
-      <span class="pi">· 10%&nbsp;Direkt + 10%&nbsp;BV instant · Hosting-BV $0,004/kWh über 60&nbsp;Mon.</span>`;
+      <span class="pi">${t("p.mix")}</span>
+      <span class="pi">Starter ${pInput("aionas.mStarter",{tiny:true})} ${t("p.at")}${pInput("aionas.pStarter",{wide:true})}</span>
+      <span class="pi">Basic ${pInput("aionas.mBasic",{tiny:true})} ${t("p.at")}${pInput("aionas.pBasic",{wide:true})}</span>
+      <span class="pi">Pro ${pInput("aionas.mPro",{tiny:true})} ${t("p.at")}${pInput("aionas.pPro",{wide:true})}</span>
+      <span class="pi">VIP ${pInput("aionas.mVip",{tiny:true})} ${t("p.at")}${pInput("aionas.pVip",{wide:true})}</span>
+      <span class="pi">${t("p.uptime")} ${pInput("aionas.uptime",{tiny:true})} %</span>
+      <span class="pi">${t("p.aionas.tail")}</span>`;
     case "tegasfx": return `
-      <span class="pi">Kaufpreis-Mix&nbsp;%:</span>
+      <span class="pi">${t("p.buymix")}</span>
       ${state.p.tegasfx.mix.map((e,i)=>
         `<span class="pi">$${num0.format(e.price)} ${pInput("tegasfx.mix."+i+".share",{tiny:true})}</span>`).join("")}
-      <span class="pi">· Performance ${pInput("tegasfx.perf",{tiny:true,step:0.05})} %/Mon.</span>
-      <span class="pi">· 5%+5%&nbsp;BV auf Sales, Funded&nbsp;=&nbsp;10×, 10% des Profits als BV</span>`;
+      <span class="pi">${t("p.perf")} ${pInput("tegasfx.perf",{tiny:true,step:0.05})} ${t("p.permon")}</span>
+      <span class="pi">${t("p.tegasfx.tail")}</span>`;
+    case "tradingpilot": return `
+      <span class="pi">${t("p.tp.share")} ${pInput("tradingpilot.share",{tiny:true})} %</span>
+      <span class="pi">${t("p.tp.price")}${pInput("tradingpilot.price",{tiny:true})}</span>
+      <span class="pi">${t("p.tp.tail")}</span>`;
     case "auvesta": return `
-      <span class="pi">Paket-Mix&nbsp;%:</span>
+      <span class="pi">${t("p.pkgmix")}</span>
       <span class="pi">VIP ${pInput("auvesta.mVip",{tiny:true})} ($${S.vip})</span>
       <span class="pi">Pro ${pInput("auvesta.mPro",{tiny:true})} ($${S.pro})</span>
       <span class="pi">Starter ${pInput("auvesta.mStarter",{tiny:true})} ($${S.starter})</span>
       <span class="pi">Basic ${pInput("auvesta.mBasic",{tiny:true})} ($${S.basic})</span>
-      <span class="pi">· Goldkäufer ${pInput("auvesta.goldShare",{tiny:true})} %</span>
-      <span class="pi">Ø&nbsp;Gold $${pInput("auvesta.goldAvg",{wide:true,step:500})}</span>
-      <span class="pi">Switches/Jahr ${pInput("auvesta.switches",{tiny:true})}</span>`;
+      <span class="pi">${t("p.goldbuyers")} ${pInput("auvesta.goldShare",{tiny:true})} %</span>
+      <span class="pi">${t("p.avggold")}${pInput("auvesta.goldAvg",{wide:true,step:500})}</span>
+      <span class="pi">${t("p.switches")} ${pInput("auvesta.switches",{tiny:true})}</span>`;
     case "havenbanq": return `
-      <span class="pi">Tier-Mix&nbsp;%:</span>
+      <span class="pi">${t("p.tiermix")}</span>
       <span class="pi">Basic ${pInput("havenbanq.tBasic",{tiny:true})}</span>
       <span class="pi">Pro ${pInput("havenbanq.tPro",{tiny:true})}</span>
       <span class="pi">VIP ${pInput("havenbanq.tVip",{tiny:true})}</span>
-      <span class="pi">· Karten-Prov. $${pInput("havenbanq.cardComm",{tiny:true})} (+gleiche&nbsp;BV)</span>
-      <span class="pi">Abo-Prov./Mon. Pro $${pInput("havenbanq.subProComm",{tiny:true,step:0.5})}</span>
-      <span class="pi">VIP $${pInput("havenbanq.subVipComm",{tiny:true,step:0.5})}</span>
-      <span class="pi">Ø&nbsp;Deposit/Jahr $${pInput("havenbanq.deposit",{wide:true,step:1000})}</span>`;
-    case "tradingpilot": return `
-      <span class="pi">Anteil der tegasFX-Kunden mit Lizenz ${pInput("tradingpilot.share",{tiny:true})} %</span>
-      <span class="pi">· Lizenzpreis $${pInput("tradingpilot.price",{tiny:true})}</span>
-      <span class="pi">· 50% Direkt + 50% BV (bei $199: $99,5 + 99,5 BV), einmalig</span>`;
+      <span class="pi">${t("p.card")}${pInput("havenbanq.cardComm",{tiny:true})} ${t("p.cardSuffix")}</span>
+      <span class="pi">${t("p.subPro")}${pInput("havenbanq.subProComm",{tiny:true,step:0.5})}</span>
+      <span class="pi">${t("p.subVip")}${pInput("havenbanq.subVipComm",{tiny:true,step:0.5})}</span>
+      <span class="pi">${t("p.deposit")}${pInput("havenbanq.deposit",{wide:true,step:1000})}</span>`;
     case "autoship": return `
-      <span class="pi">Anteil Personen ${pInput("autoship.share",{tiny:true})} %</span>
-      <span class="pi">· BV je Person/Monat ${pInput("autoship.bvMon",{tiny:true})}</span>
-      <span class="pi">· $10/30&nbsp;Tage = 10&nbsp;BV · zugleich Active-Qualifikation</span>`;
+      <span class="pi">${t("p.as.share")} ${pInput("autoship.share",{tiny:true})} %</span>
+      <span class="pi">${t("p.as.bv")} ${pInput("autoship.bvMon",{tiny:true})}</span>
+      <span class="pi">${t("p.as.tail")}</span>`;
   }
   return "";
 }
@@ -807,12 +1025,11 @@ function buildMixTable(){
   const body = $("mixBody");
   body.innerHTML = "";
   TABLE_KEYS.forEach(k=>{
-    const meta = EXTRAS[k] || PARTNERS[k];
     const tr = document.createElement("tr");
     tr.id = `row_${k}`;
     tr.innerHTML =
       `<td><input type="checkbox" class="mixchk" ${state.active[k]?"checked":""}></td>`+
-      `<td title="${meta.note}">${meta.name}</td>`+
+      `<td title="${t("partner."+k+".note")}">${t("partner."+k+".name")}</td>`+
       `<td class="r" id="r_${k}_n">–</td>`+
       `<td class="r" id="r_${k}_dg">–</td>`+
       `<td class="r" id="r_${k}_do">–</td>`+
@@ -833,7 +1050,7 @@ function buildMixTable(){
   const tot = document.createElement("tr");
   tot.className = "totrow";
   tot.innerHTML =
-    `<td></td><td>Gesamt (aktiv)</td><td class="r" id="tot_n">–</td>`+
+    `<td></td><td>${t("tot.label")}</td><td class="r" id="tot_n">–</td>`+
     `<td class="r" id="tot_dg">–</td><td class="r" id="tot_do">–</td>`+
     `<td class="r" id="tot_bv">–</td><td class="r" id="tot_tb">–</td><td class="r b" id="tot_g">–</td>`;
   body.appendChild(tot);
@@ -850,7 +1067,21 @@ function buildMixTable(){
 
 /* ============ Init ============ */
 function init(){
-  $("versionFooter").textContent = `Umsatzprognose-Vertriebstool v${VERSION} · Stand ${VERSION_DATE} · Basis: ${PLAN_BASIS}`;
+  // language dropdown
+  const lsel = $("lang");
+  Object.entries(LANGS).forEach(([k,name])=>{
+    const o=document.createElement("option"); o.value=k; o.textContent=name; lsel.appendChild(o);
+  });
+  lsel.value = lang;
+  lsel.addEventListener("change",()=>{
+    lang = lsel.value;
+    try { localStorage.setItem("sgc_lang", lang); } catch(e){}
+    applyLang();
+    applyRank(state.rank);
+    buildMixTable();
+    render();
+  });
+  applyLang();
 
   // rank dropdown
   const rsel = $("rank");
@@ -905,7 +1136,7 @@ function init(){
     });
   });
 
-  // reset
+  // reset (Sprache bleibt erhalten)
   $("reset").addEventListener("click",()=>{
     state = clone(DEFAULTS);
     applyRank(state.rank);
