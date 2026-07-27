@@ -24,8 +24,6 @@ const TELEGRAM = [
   { title: 'SGC - International Official \u{1F30D}', url: 'https://t.me/SGC_international', thumb: 'assets/tg-int.jpg' },
   { title: 'SGC - Español Oficial \u{1F1EA}\u{1F1F8}', url: 'https://t.me/SGC_espanol', thumb: 'assets/tg-es.jpg' },
   { title: 'SGC - DACH Offiziell \u{1F1E9}\u{1F1EA}\u{1F1E6}\u{1F1F9}\u{1F1E8}\u{1F1ED}', url: 'https://t.me/SGC_DACH', thumb: 'assets/tg-dach.jpg' },
-  { title: 'SGC - Japanese Official \u{1F1EF}\u{1F1F5}', url: 'https://t.me/SGC_japanese', thumb: 'assets/tg-jp.jpg' },
-  { title: 'SGC - Italiano Ufficiale \u{1F1EE}\u{1F1F9}', url: 'https://t.me/+-yE3zJcTM1EwNjE6', thumb: 'assets/tg-it.jpg' },
 ];
 
 const ARROW = '<svg class="card__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>';
