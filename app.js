@@ -1,30 +1,28 @@
 /* SALUS GLOBAL CLUB — Wealth Club
    Static rendering of webinar + Telegram cards.
-   Data captured from https://bio.site/salusglobal.club (2026-07-11).
-   Zoom URLs for items 1, 5, 8 corrected from malformed originals
-   (see content-backup.md / content-backup.json). */
+   Deployed via GitHub Pages to bio.salusglobal.club */
 
 const WEBINARS = [
-  { title: 'Business Präsentation GER | TUESDAYS 9.30 CEST | 50 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/webinar-01.jpg', corrected: true },
-  { title: 'Leader Training GER | TUESDAYS 10.30 CEST | 90 min', url: 'https://zoom.us/j/95770825858', thumb: 'assets/webinar-02.jpg' },
-  { title: 'Leader Training ENG | TUESDAYS 12.30 CEST | 90 min', url: 'https://zoom.us/j/95770825858', thumb: 'assets/webinar-03.jpg' },
-  { title: 'Business Presentation ENG | WEDNESDAYS 19.00 CEST | 50 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/webinar-05.jpg', corrected: true },
+  { title: 'Business Präsentation GER | TUESDAYS 9.30 CEST | 50 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-ger.jpg' },
+  { title: 'Leader Training GER | TUESDAYS 10.30 CEST | 90 min', url: 'https://zoom.us/j/95770825858', thumb: 'assets/leader-ger.jpg' },
+  { title: 'Leader Training ENG | TUESDAYS 12.30 CEST | 90 min', url: 'https://zoom.us/j/95770825858', thumb: 'assets/leader-eng.jpg' },
+  { title: 'Business Presentation ENG | WEDNESDAYS 19.00 CEST | 50 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-eng.jpg' },
   { title: 'Auvesta Produktpräsentation und Q&A GER | MONDAY 19:00 CEST | 90 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg' },
   { title: 'tegasFX Produktpräsentation und Q&A GER | TUESDAY 19:00 CEST | 90 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg' },
   { title: 'Aionas21 Produktpräsentation und Q&A GER | WEDNESDAY 19:00 CEST | 90 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg' },
-  { title: 'Business Präsentation und Q&A GER | THURSDAYS 19.00 CEST | 90 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/webinar-06.jpg' },
-  { title: 'Business Presentation ENG - WEBINAR MODE | THURSDAYS 9.30 CEST | 60 Min', url: 'https://zoom.us/j/98916828025', thumb: 'assets/webinar-07.jpg' },
-  { title: 'Business Presentation ESP | THURSDAYS 21.00 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/webinar-08.jpg', corrected: true },
-  { title: 'Starter Training GER | SATURDAYS 10:00 CEST | 90 Min', url: 'https://zoom.us/j/93664485403', thumb: 'assets/webinar-09.jpg' },
-  { title: 'Starter Training ENG | SATURDAYS 12:00 CEST | 90 Min | (Autotranslate in 35 languages)', url: 'https://zoom.us/j/91355320262', thumb: 'assets/webinar-10.jpg' },
+  { title: 'Business Präsentation und Q&A GER | THURSDAYS 19.00 CEST | 90 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/update-call-ger.jpg' },
+  { title: 'Business Presentation ENG - WEBINAR MODE | THURSDAYS 9.30 CEST | 60 Min', url: 'https://zoom.us/j/98916828025', thumb: 'assets/presentation-eng.jpg' },
+  { title: 'Business Presentation ESP | THURSDAYS 21.00 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-esp.jpg' },
+  { title: 'Starter Training GER | SATURDAYS 10:00 CEST | 90 Min', url: 'https://zoom.us/j/93664485403', thumb: 'assets/starter-ger.jpg' },
+  { title: 'Starter Training ENG | SATURDAYS 12:00 CEST | 90 Min | (Autotranslate in 35 languages)', url: 'https://zoom.us/j/91355320262', thumb: 'assets/starter-eng.jpg' },
 ];
 
 const TELEGRAM = [
-  { title: 'SGC - International Official 🌍', url: 'https://t.me/SGC_international', thumb: 'assets/telegram-01.jpg' },
-  { title: 'SGC - Español oficial 🇪🇸', url: 'https://t.me/SGC_espanol', thumb: 'assets/telegram-02.jpg' },
-  { title: 'SGC - DACH Offiziell 🇩🇪🇦🇹🇨🇭', url: 'https://t.me/SGC_DACH', thumb: 'assets/telegram-03.jpg' },
-  { title: 'SGC - Japanese Official 🇯🇵', url: 'https://t.me/SGC_japanese', thumb: 'assets/telegram-04.jpg' },
-  { title: 'SGC - Italiano Ufficiale 🇮🇹', url: 'https://t.me/+-yE3zJcTM1EwNjE6', thumb: 'assets/telegram-05.jpg' },
+  { title: 'SGC - International Official \u{1F30D}', url: 'https://t.me/SGC_international', thumb: 'assets/tg-int.jpg' },
+  { title: 'SGC - Español oficial \u{1F1EA}\u{1F1F8}', url: 'https://t.me/SGC_espanol', thumb: 'assets/tg-es.jpg' },
+  { title: 'SGC - DACH Offiziell \u{1F1E9}\u{1F1EA}\u{1F1E6}\u{1F1F9}\u{1F1E8}\u{1F1ED}', url: 'https://t.me/SGC_DACH', thumb: 'assets/tg-dach.jpg' },
+  { title: 'SGC - Japanese Official \u{1F1EF}\u{1F1F5}', url: 'https://t.me/SGC_japanese', thumb: 'assets/tg-jp.jpg' },
+  { title: 'SGC - Italiano Ufficiale \u{1F1EE}\u{1F1F9}', url: 'https://t.me/+-yE3zJcTM1EwNjE6', thumb: 'assets/tg-it.jpg' },
 ];
 
 const ARROW = '<svg class="card__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>';
@@ -72,7 +70,7 @@ TELEGRAM.forEach((t) => telegramList.appendChild(renderCard(t, 'telegram')));
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
-/* dark / light toggle (no localStorage — sandboxed iframes block it) */
+/* dark / light toggle */
 (function () {
   const t = document.querySelector('[data-theme-toggle]');
   const r = document.documentElement;
