@@ -10,7 +10,7 @@ const WEBINARS = [
   { title: 'Auvesta Produktpräsentation und Q&A GER | MONDAY 19:00 CEST | 90 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg' },
   { title: 'tegasFX Produktpräsentation und Q&A GER | TUESDAY 19:00 CEST | 90 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg' },
   { title: 'Aionas21 Produktpräsentation und Q&A GER | WEDNESDAY 19:00 CEST | 90 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg' },
-  { title: 'Business Präsentation und Q&A GER | THURSDAYS 19.00 CEST | 90 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/update-call-ger.jpg' },
+  { title: 'Business Präsentation und Q&A GER | THURSDAYS 19.00 CEST | 90 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/business-qna-ger.jpg' },
   { title: 'Business Presentation ENG - WEBINAR MODE | THURSDAYS 9.30 CEST | 60 Min', url: 'https://zoom.us/j/98916828025', thumb: 'assets/presentation-eng.jpg' },
   { title: 'Business Presentation ESP | THURSDAYS 21.00 CEST | 60 Min', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-esp.jpg' },
   { title: 'Starter Training GER | SATURDAYS 10:00 CEST | 90 Min', url: 'https://zoom.us/j/93664485403', thumb: 'assets/starter-ger.jpg' },
