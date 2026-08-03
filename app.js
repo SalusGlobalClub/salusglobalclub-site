@@ -17,7 +17,7 @@ const WEBINARS = [
   { title: 'Presentación de Negocio ESP | THURSDAYS 21:00 CEST | 60 Min', lang: 'ESP', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-esp.jpg' },
   { title: 'Business Presentation in Hindi | FRIDAYS 17:00 CEST | 60 Min', lang: 'HIN', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-hin.jpg' },
   { title: 'Starter Training GER | SATURDAYS 10:00 CEST | 2h', lang: 'GER', url: 'https://zoom.us/j/95346205331', thumb: 'assets/starter-ger.jpg' },
-  { title: 'Starter Training ENG | SATURDAYS 10:00 CEST | 90 Min | (Auto translation in 35 languages)', lang: 'ENG', allLanguages: true, url: 'https://zoom.us/j/91355320262', thumb: 'assets/starter-eng.jpg' },
+  { title: 'Starter Training ENG | SATURDAYS 10:00 CEST | 90 Min | (Auto translation in 35 languages)', lang: 'ENG', url: 'https://zoom.us/j/91355320262', thumb: 'assets/starter-eng.jpg' },
 ];
 
 /* Sprachen für Filter-Knöpfe und Gruppen-Überschriften.
@@ -53,10 +53,6 @@ const FLAGS = {
      + '<circle cx="10.5" cy="7.5" r="1.8" fill="none" stroke="#008" stroke-width="0.55"/><circle cx="10.5" cy="7.5" r="0.45" fill="#008"/></svg>',
 };
 
-/* Globus für Termine mit Live-Übersetzung — erbt die Textfarbe der Überschrift */
-const GLOBE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">'
-  + '<circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4"/><ellipse cx="12" cy="12" rx="4.2" ry="9.2"/></svg>';
-
 const ARROW = '<svg class="card__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>';
 
 function renderCard(item, kind) {
@@ -85,12 +81,6 @@ function renderCard(item, kind) {
   const meta = document.createElement('span');
   meta.className = 'card__meta';
   meta.textContent = kind === 'zoom' ? 'Join on Zoom' : 'Open on Telegram';
-  if (item.allLanguages) {
-    const badge = document.createElement('span');
-    badge.className = 'card__badge';
-    badge.textContent = '🌍 35 languages';
-    meta.appendChild(badge);
-  }
   body.appendChild(meta);
 
   a.appendChild(img);
@@ -114,8 +104,8 @@ function renderCard(item, kind) {
 
   function plural(n) { return n === 1 ? '1 session' : n + ' sessions'; }
 
-  /* kleines Bild-Kästchen (Flagge oder Globus) — rein dekorativ, die
-     Bedeutung trägt der Text daneben */
+  /* kleines Flaggen-Kästchen — rein dekorativ, die Bedeutung trägt der
+     Text daneben. Fehlt zu einer Sprache die Flagge, bleibt der Platz leer. */
   function makeIcon(svg, cls) {
     const s = document.createElement('span');
     s.className = cls;
@@ -124,19 +114,16 @@ function renderCard(item, kind) {
     return s;
   }
 
-  function makeHeading(icon, text, count) {
+  function makeHeading(lang, count) {
     const h = document.createElement('h3');
     h.className = 'group__title';
+    if (FLAGS[lang.code]) h.appendChild(makeIcon(FLAGS[lang.code], 'group__flag'));
     const t = document.createElement('span');
-    t.textContent = text;
-    if (icon) h.appendChild(icon);
-    h.appendChild(t);
-    if (count != null) {
-      const c = document.createElement('span');
-      c.className = 'group__count';
-      c.textContent = plural(count);
-      h.appendChild(c);
-    }
+    t.textContent = lang.heading;
+    const c = document.createElement('span');
+    c.className = 'group__count';
+    c.textContent = plural(count);
+    h.append(t, c);
     return h;
   }
 
@@ -156,28 +143,20 @@ function renderCard(item, kind) {
     list.textContent = '';
 
     if (active === ALL) {
+      let shown = 0;
       langs.forEach((l) => {
         const items = WEBINARS.filter((w) => w.lang === l.code);
-        const icon = FLAGS[l.code] ? makeIcon(FLAGS[l.code], 'group__flag') : null;
-        list.appendChild(makeGroup(makeHeading(icon, l.heading, items.length), items));
+        list.appendChild(makeGroup(makeHeading(l, items.length), items));
+        shown += items.length;
       });
-      status.textContent = plural(WEBINARS.length) + ' in all languages';
+      status.textContent = plural(shown) + ' in all languages';
       return;
     }
 
     const lang = langs.find((l) => l.code === active);
     const items = WEBINARS.filter((w) => w.lang === active);
     list.appendChild(makeGroup(null, items));
-
-    /* Termine mit Live-Übersetzung stehen jeder Sprache offen */
-    const translated = WEBINARS.filter((w) => w.allLanguages && w.lang !== active);
-    if (translated.length) {
-      list.appendChild(makeGroup(
-        makeHeading(makeIcon(GLOBE, 'group__globe'), 'Also in your language', null),
-        translated
-      ));
-    }
-    status.textContent = plural(items.length + translated.length) + ' in ' + lang.heading;
+    status.textContent = plural(items.length) + ' in ' + lang.heading;
   }
 
   function makeChip(code, label, description) {

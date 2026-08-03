@@ -59,8 +59,7 @@ Jede Zeile in `WEBINARS` hat ein Feld `lang` — danach richtet sich der Sprachf
   `FLAGS` darunter — dafür bitte Claude fragen, das ist gezeichnetes SVG.
   **Warum kein Flaggen-Emoji?** Windows liefert keine Flaggen-Emoji mit; dort stünde
   sonst nur „DE" statt einer Flagge. Gezeichnete Flaggen sehen auf jedem Gerät gleich aus.
-- Ein Termin, der live in viele Sprachen übersetzt wird, bekommt zusätzlich
-  `allLanguages: true` — er taucht dann in jeder Sprachauswahl auf.
+- Jeder Termin erscheint in genau einer Sprachgruppe — der aus seinem `lang`-Feld.
 
 ## Was man NICHT anfassen darf
 
