@@ -43,6 +43,25 @@ Eigener GitHub-Account, der als **Collaborator** in diesem Repository eingeladen
 2. In `app.js` in der passenden Liste eine Zeile nach dem Muster der vorhandenen ergänzen:
    `{ title: 'SGC - Hindi Official', url: 'https://…', thumb: 'assets/tg-hindi.jpg' },`
 
+### Webinare: Sprache festlegen
+
+Jede Zeile in `WEBINARS` hat ein Feld `lang` — danach richtet sich der Sprachfilter
+(die Flaggen-Knöpfe unter dem YouTube-Symbol) und die Gruppierung der Liste:
+
+`{ title: 'Business Präsentation GER | …', lang: 'GER', url: 'https://…', thumb: 'assets/…' },`
+
+- Mögliche Werte: `'GER'`, `'ENG'`, `'ESP'`, `'HIN'`.
+- **Ohne `lang` erscheint der Termin in keiner Gruppe und ist auf der Seite unsichtbar** —
+  das Feld also nie vergessen.
+- Neue Sprache aufnehmen: in `app.js` in der Tabelle `LANGUAGES` (direkt unter den Listen)
+  eine Zeile mit Kürzel und Sprachnamen ergänzen. Die Reihenfolge dort bestimmt die
+  Reihenfolge der Knöpfe und der Gruppen. Die passende Flagge kommt in die Tabelle
+  `FLAGS` darunter — dafür bitte Claude fragen, das ist gezeichnetes SVG.
+  **Warum kein Flaggen-Emoji?** Windows liefert keine Flaggen-Emoji mit; dort stünde
+  sonst nur „DE" statt einer Flagge. Gezeichnete Flaggen sehen auf jedem Gerät gleich aus.
+- Ein Termin, der live in viele Sprachen übersetzt wird, bekommt zusätzlich
+  `allLanguages: true` — er taucht dann in jeder Sprachauswahl auf.
+
 ## Was man NICHT anfassen darf
 
 - Datei **`CNAME`** — verbindet die Domain. Löschen = Seite verliert ihre Adresse.
