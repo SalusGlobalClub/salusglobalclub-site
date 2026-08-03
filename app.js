@@ -4,13 +4,13 @@
 
 const WEBINARS = [
   { title: 'Business Presentation ENG | MONDAYS 17:30 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-eng.jpg' },
-  { title: 'Auvesta Produktpräsentation und Q&A GER | MONDAYS 19:00 CEST | 90 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.png' },
+  { title: 'Auvesta Produktpräsentation und Q&A GER | MONDAYS 19:00 CEST | 90 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg' },
   { title: 'Business Präsentation GER | TUESDAYS 9:30 CEST | 50 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-ger.jpg' },
   { title: 'Leader Training GER | TUESDAYS 10:30 CEST | 2h', lang: 'GER', url: 'https://zoom.us/j/95770825858', thumb: 'assets/leader-ger.jpg' },
   { title: 'Compensation Plan Training ENG | TUESDAYS 17:30 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-eng.jpg' },
-  { title: 'tegasFX Produktpräsentation und Q&A GER | TUESDAYS 19:00 CEST | 90 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.png' },
+  { title: 'tegasFX Produktpräsentation und Q&A GER | TUESDAYS 19:00 CEST | 90 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg' },
   { title: 'Business Presentation ENG | WEDNESDAYS 17:30 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-eng.jpg' },
-  { title: 'Aionas21 Produktpräsentation und Q&A GER | WEDNESDAYS 19:00 CEST | 90 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.png' },
+  { title: 'Aionas21 Produktpräsentation und Q&A GER | WEDNESDAYS 19:00 CEST | 90 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg' },
   { title: 'Business Presentation ENG – Privacy Mode | THURSDAYS 9:30 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/98916828025', thumb: 'assets/presentation-eng.jpg' },
   { title: 'Compensation Plan Training ENG | THURSDAYS 17:30 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-eng.jpg' },
   { title: 'Business Präsentation und Q&A GER | THURSDAYS 19:00 CEST | 90 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/business-qna-ger.jpg' },
@@ -20,14 +20,15 @@ const WEBINARS = [
   { title: 'Starter Training ENG | SATURDAYS 10:00 CEST | 90 Min | (Auto translation in 35 languages)', lang: 'ENG', allLanguages: true, url: 'https://zoom.us/j/91355320262', thumb: 'assets/starter-eng.jpg' },
 ];
 
-/* Sprachen für Filter-Chips und Gruppen-Überschriften.
-   Die Reihenfolge hier bestimmt die Reihenfolge der Chips UND der Gruppen.
-   Ein Chip erscheint nur, wenn es zu der Sprache auch Webinare gibt. */
+/* Sprachen für Filter-Knöpfe und Gruppen-Überschriften.
+   Die Reihenfolge hier bestimmt die Reihenfolge der Knöpfe UND der Gruppen.
+   Ein Knopf erscheint nur, wenn es zu der Sprache auch Webinare gibt.
+   Die zugehörige Flagge steht unten in FLAGS. */
 const LANGUAGES = [
-  { code: 'GER', flag: '🇩🇪', heading: 'Deutsch' },
-  { code: 'ENG', flag: '🇬🇧', heading: 'English' },
-  { code: 'ESP', flag: '🇪🇸', heading: 'Español' },
-  { code: 'HIN', flag: '🇮🇳', heading: 'हिन्दी · Hindi' },
+  { code: 'GER', heading: 'Deutsch' },
+  { code: 'ENG', heading: 'English' },
+  { code: 'ESP', heading: 'Español' },
+  { code: 'HIN', heading: 'हिन्दी · Hindi' },
 ];
 
 const TELEGRAM = [
@@ -35,6 +36,26 @@ const TELEGRAM = [
   { title: 'SGC - Español Oficial \u{1F1EA}\u{1F1F8}', url: 'https://t.me/SGC_espanol', thumb: 'assets/tg-es.jpg' },
   { title: 'SGC - DACH Offiziell \u{1F1E9}\u{1F1EA}\u{1F1E6}\u{1F1F9}\u{1F1E8}\u{1F1ED}', url: 'https://t.me/SGC_DACH', thumb: 'assets/tg-dach.jpg' },
 ];
+
+/* Flaggen bewusst als gezeichnetes SVG, NICHT als Emoji (🇩🇪 …):
+   Windows liefert keine Flaggen-Emoji mit — dort erschiene nur „DE" oder gar nichts.
+   So sehen Handy, Mac und Windows dieselben Flaggen. Neue Sprache = hier eine
+   Flagge unter dem Kürzel aus LANGUAGES ergänzen (Seitenverhältnis 21 × 15). */
+const FLAGS = {
+  GER: '<svg viewBox="0 0 21 15"><rect width="21" height="15" fill="#ffce00"/><rect width="21" height="10" fill="#d00"/><rect width="21" height="5"/></svg>',
+  ENG: '<svg viewBox="0 0 21 15"><rect width="21" height="15" fill="#012169"/>'
+     + '<path d="M0 0 21 15M21 0 0 15" stroke="#fff" stroke-width="3"/>'
+     + '<path d="M0 0 21 15M21 0 0 15" stroke="#c8102e" stroke-width="1.8"/>'
+     + '<path d="M10.5 0V15M0 7.5H21" stroke="#fff" stroke-width="5"/>'
+     + '<path d="M10.5 0V15M0 7.5H21" stroke="#c8102e" stroke-width="3"/></svg>',
+  ESP: '<svg viewBox="0 0 21 15"><rect width="21" height="15" fill="#aa151b"/><rect y="3.75" width="21" height="7.5" fill="#f1bf00"/></svg>',
+  HIN: '<svg viewBox="0 0 21 15"><rect width="21" height="15" fill="#138808"/><rect width="21" height="10" fill="#fff"/><rect width="21" height="5" fill="#f93"/>'
+     + '<circle cx="10.5" cy="7.5" r="1.8" fill="none" stroke="#008" stroke-width="0.55"/><circle cx="10.5" cy="7.5" r="0.45" fill="#008"/></svg>',
+};
+
+/* Globus für Termine mit Live-Übersetzung — erbt die Textfarbe der Überschrift */
+const GLOBE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">'
+  + '<circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4"/><ellipse cx="12" cy="12" rx="4.2" ry="9.2"/></svg>';
 
 const ARROW = '<svg class="card__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>';
 
@@ -93,16 +114,23 @@ function renderCard(item, kind) {
 
   function plural(n) { return n === 1 ? '1 session' : n + ' sessions'; }
 
-  function makeHeading(flag, text, count) {
+  /* kleines Bild-Kästchen (Flagge oder Globus) — rein dekorativ, die
+     Bedeutung trägt der Text daneben */
+  function makeIcon(svg, cls) {
+    const s = document.createElement('span');
+    s.className = cls;
+    s.setAttribute('aria-hidden', 'true');
+    s.innerHTML = svg;
+    return s;
+  }
+
+  function makeHeading(icon, text, count) {
     const h = document.createElement('h3');
     h.className = 'group__title';
-    const f = document.createElement('span');
-    f.className = 'group__flag';
-    f.setAttribute('aria-hidden', 'true');
-    f.textContent = flag;
     const t = document.createElement('span');
     t.textContent = text;
-    h.append(f, t);
+    if (icon) h.appendChild(icon);
+    h.appendChild(t);
     if (count != null) {
       const c = document.createElement('span');
       c.className = 'group__count';
@@ -130,7 +158,8 @@ function renderCard(item, kind) {
     if (active === ALL) {
       langs.forEach((l) => {
         const items = WEBINARS.filter((w) => w.lang === l.code);
-        list.appendChild(makeGroup(makeHeading(l.flag, l.heading, items.length), items));
+        const icon = FLAGS[l.code] ? makeIcon(FLAGS[l.code], 'group__flag') : null;
+        list.appendChild(makeGroup(makeHeading(icon, l.heading, items.length), items));
       });
       status.textContent = plural(WEBINARS.length) + ' in all languages';
       return;
@@ -144,34 +173,28 @@ function renderCard(item, kind) {
     const translated = WEBINARS.filter((w) => w.allLanguages && w.lang !== active);
     if (translated.length) {
       list.appendChild(makeGroup(
-        makeHeading('🌍', 'Also in your language', null),
+        makeHeading(makeIcon(GLOBE, 'group__globe'), 'Also in your language', null),
         translated
       ));
     }
     status.textContent = plural(items.length + translated.length) + ' in ' + lang.heading;
   }
 
-  function makeChip(code, flag, label, description) {
+  function makeChip(code, label, description) {
     const b = document.createElement('button');
     b.type = 'button';
     b.className = 'langbar__chip';
     b.dataset.lang = code;
     b.setAttribute('aria-label', description);
-    if (flag) {
-      const f = document.createElement('span');
-      f.className = 'langbar__flag';
-      f.setAttribute('aria-hidden', 'true');
-      f.textContent = flag;
-      b.appendChild(f);
-    }
+    if (FLAGS[code]) b.appendChild(makeIcon(FLAGS[code], 'langbar__flag'));
     const t = document.createElement('span');
     t.textContent = label;
     b.appendChild(t);
     return b;
   }
 
-  bar.appendChild(makeChip(ALL, '', 'ALL', 'Show sessions in all languages'));
-  langs.forEach((l) => bar.appendChild(makeChip(l.code, l.flag, l.code, 'Show ' + l.heading + ' sessions')));
+  bar.appendChild(makeChip(ALL, 'ALL', 'Show sessions in all languages'));
+  langs.forEach((l) => bar.appendChild(makeChip(l.code, l.code, 'Show ' + l.heading + ' sessions')));
 
   function syncChips() {
     bar.querySelectorAll('.langbar__chip').forEach((c) => {

@@ -186,7 +186,16 @@ main { max-width: var(--content); margin: 0 auto; padding: 0 var(--space-4) var(
   background: var(--color-gold); border-color: var(--color-gold);
   color: var(--color-navy);
 }
-.langbar__flag { font-size: 1.1em; line-height: 1; }
+/* Flaggen sind gezeichnete SVG (siehe FLAGS in app.js), keine Emoji —
+   Windows liefert keine Flaggen-Emoji mit. Der dünne Ring hebt die
+   schwarzen und weißen Streifen vom Kartenhintergrund ab. */
+.langbar__flag, .group__flag {
+  flex: 0 0 auto; overflow: hidden; border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(128, 138, 160, 0.45);
+}
+.langbar__flag { width: 18px; height: 13px; }
+.group__flag { width: 21px; height: 15px; }
+.langbar__flag svg, .group__flag svg { display: block; width: 100%; height: 100%; }
 .langbar__status {
   position: relative; z-index: 1;
   margin-top: var(--space-3); text-align: center;
@@ -218,7 +227,8 @@ main { max-width: var(--content); margin: 0 auto; padding: 0 var(--space-4) var(
   color: var(--color-text-muted);
 }
 .group:first-child .group__title { margin-top: var(--space-6); }
-.group__flag { font-size: 1.2em; line-height: 1; }
+.group__globe { flex: 0 0 auto; width: 15px; height: 15px; }
+.group__globe svg { display: block; width: 100%; height: 100%; }
 .group__count {
   margin-left: auto;
   font-family: var(--font-body); font-weight: 400; letter-spacing: 0.02em;
