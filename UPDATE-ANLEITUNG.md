@@ -61,6 +61,20 @@ Jede Zeile in `WEBINARS` hat ein Feld `lang` — danach richtet sich der Sprachf
   sonst nur „DE" statt einer Flagge. Gezeichnete Flaggen sehen auf jedem Gerät gleich aus.
 - Jeder Termin erscheint in genau einer Sprachgruppe — der aus seinem `lang`-Feld.
 
+### Beschreibungstext ändern
+
+Über den Webinar-Karten steht eine Überschrift und ein Begrüßungsabsatz. Beides gibt es
+in zwei Fassungen:
+
+- **Englisch** (Standard, wird fast immer angezeigt): in `index.html`, die Zeilen mit
+  `section__title` und `section__desc`.
+- **Deutsch** (erscheint nur, solange der Besucher den Knopf 🇩🇪 GER gewählt hat):
+  in `app.js` in der Tabelle `TEXTS` unter `GER`.
+
+**Wichtig:** Wer den englischen Text ändert, sollte den deutschen mitziehen — sonst steht
+je nach Knopf etwas anderes auf der Seite. Alle anderen Sprachen (ENG, ESP, HIN) und der
+Telegram-Bereich bleiben immer englisch.
+
 ## Was man NICHT anfassen darf
 
 - Datei **`CNAME`** — verbindet die Domain. Löschen = Seite verliert ihre Adresse.
