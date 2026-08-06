@@ -13,7 +13,8 @@ Live: https://bio.salusglobal.club
 | Flaggen des Sprachfilters | `app.js`, Tabelle `FLAGS` — gezeichnetes SVG, KEINE Emoji (Windows liefert keine Flaggen-Emoji mit) |
 | Telegram-Kanäle | `app.js`, Array `TELEGRAM` |
 | Vorschaubilder | `assets/*.jpg` — quadratisch, 240×240 JPEG, ≤ ~50 KB |
-| Beschreibungstext, Social-Links, Logo, Footer | `index.html` |
+| Beschreibungstext (englisch), Social-Links, Logo, Footer | `index.html` |
+| Deutsche Fassung von Überschrift, Beschreibungstext und „Per Zoom teilnehmen" (erscheint nur bei aktivem GER-Filter) | `app.js`, Tabelle `TEXTS` — englischer Text steht weiterhin in `index.html` und wird von dort gelesen |
 | Farben / Fonts / Design | `style.css` (alles über CSS-Variablen im `:root`-Block; je ein Block Dark/Light) |
 | Umsatzprognose-Tool (unverlinkt) | `tools/prognose/salus-prognose-v<VERSION>.html` — Quelle: `Documents\#Claude\SGC-Berechnungstool\Umsatzprognose-Vertriebstool.html`; Update = Datei neu herüberkopieren (inkl. `noindex`-Meta), Dateiname trägt IMMER die aktuelle Version; alte Versions-Datei per `git rm` entfernen, sonst bleibt der alte Link erreichbar |
 

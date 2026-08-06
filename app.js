@@ -31,6 +31,28 @@ const LANGUAGES = [
   { code: 'HIN', heading: 'हिन्दी · Hindi' },
 ];
 
+/* Übersetzung des Webinar-Bereichs. Nur Sprachen, die hier stehen, schalten um —
+   alles andere (ALL, ENG, ESP, HIN) bleibt automatisch englisch.
+   ACHTUNG: Der englische Text steht NICHT hier, sondern in index.html; er wird von
+   dort gelesen. Wer den englischen Absatz dort ändert, sollte den deutschen hier
+   mitziehen, sonst sagen die beiden Fassungen etwas Unterschiedliches.
+   Telegram-Block und Fußzeile bleiben immer englisch. */
+const TEXTS = {
+  GER: {
+    htmlLang: 'de',
+    title: 'Webinare & Kanäle',
+    desc: 'Willkommen. Wissen ist der Schlüssel zu deinem Erfolg. Nimm an unseren wöchentlichen '
+        + 'Webinaren und Live-Trainings teil, um dein Geschäft aufzubauen, dein Team zu entwickeln '
+        + 'und neue Interessenten souverän einzuladen. Sei regelmäßig dabei – und erlebe, wie die '
+        + 'Dynamik wächst. Verpasse keine wichtigen Updates, Neuigkeiten oder Ankündigungen vom '
+        + 'Salus Global Club. Folge unseren Telegram-Kanälen und bleib informiert, wo immer du '
+        + 'bist. Schnell, direkt und immer aktuell.',
+    join: 'Per Zoom teilnehmen',
+    inWord: 'auf',                                        /* „7 Termine auf Deutsch" */
+    sessions: (n) => (n === 1 ? '1 Termin' : n + ' Termine'),
+  },
+};
+
 const TELEGRAM = [
   { title: 'SGC - International Official \u{1F30D}', url: 'https://t.me/SGC_international', thumb: 'assets/tg-int.jpg' },
   { title: 'SGC - Español Oficial \u{1F1EA}\u{1F1F8}', url: 'https://t.me/SGC_espanol', thumb: 'assets/tg-es.jpg' },
@@ -55,7 +77,7 @@ const FLAGS = {
 
 const ARROW = '<svg class="card__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>';
 
-function renderCard(item, kind) {
+function renderCard(item, kind, zoomLabel) {
   const li = document.createElement('li');
   const a = document.createElement('a');
   a.className = 'card';
@@ -80,7 +102,7 @@ function renderCard(item, kind) {
 
   const meta = document.createElement('span');
   meta.className = 'card__meta';
-  meta.textContent = kind === 'zoom' ? 'Join on Zoom' : 'Open on Telegram';
+  meta.textContent = kind === 'zoom' ? (zoomLabel || 'Join on Zoom') : 'Open on Telegram';
   body.appendChild(meta);
 
   a.appendChild(img);
@@ -97,12 +119,23 @@ function renderCard(item, kind) {
   const bar = document.getElementById('lang-filter');
   const status = document.getElementById('lang-status');
   const anchor = document.getElementById('webinars-title');
+  const descEl = document.getElementById('webinars-desc');
+  const section = anchor.closest('.section');
+
+  /* Englisch ist der Standard. Überschrift und Absatz kommen aus index.html —
+     dort werden sie gepflegt, deshalb hier nur einmal beim Start ablesen. */
+  const DEFAULT = {
+    htmlLang: 'en',
+    title: anchor.textContent,
+    desc: descEl.textContent,
+    join: 'Join on Zoom',
+    inWord: 'in',
+    sessions: (n) => (n === 1 ? '1 session' : n + ' sessions'),
+  };
 
   /* nur Sprachen anbieten, zu denen es tatsächlich Webinare gibt */
   const langs = LANGUAGES.filter((l) => WEBINARS.some((w) => w.lang === l.code));
   let active = ALL;
-
-  function plural(n) { return n === 1 ? '1 session' : n + ' sessions'; }
 
   /* kleines Flaggen-Kästchen — rein dekorativ, die Bedeutung trägt der
      Text daneben. Fehlt zu einer Sprache die Flagge, bleibt der Platz leer. */
@@ -114,49 +147,55 @@ function renderCard(item, kind) {
     return s;
   }
 
-  function makeHeading(lang, count) {
+  function makeHeading(lang, count, t) {
     const h = document.createElement('h3');
     h.className = 'group__title';
     if (FLAGS[lang.code]) h.appendChild(makeIcon(FLAGS[lang.code], 'group__flag'));
-    const t = document.createElement('span');
-    t.textContent = lang.heading;
+    const s = document.createElement('span');
+    s.textContent = lang.heading;
     const c = document.createElement('span');
     c.className = 'group__count';
-    c.textContent = plural(count);
-    h.append(t, c);
+    c.textContent = t.sessions(count);
+    h.append(s, c);
     return h;
   }
 
-  function makeGroup(heading, items) {
+  function makeGroup(heading, items, t) {
     const g = document.createElement('div');
     g.className = 'group';
     if (heading) g.appendChild(heading);
     const ul = document.createElement('ul');
     ul.className = 'cards';
     ul.setAttribute('role', 'list');
-    items.forEach((w) => ul.appendChild(renderCard(w, 'zoom')));
+    items.forEach((w) => ul.appendChild(renderCard(w, 'zoom', t.join)));
     g.appendChild(ul);
     return g;
   }
 
   function render() {
+    /* Sprachen ohne eigenen TEXTS-Eintrag bleiben englisch */
+    const t = TEXTS[active] || DEFAULT;
+    anchor.textContent = t.title;
+    descEl.textContent = t.desc;
+    section.lang = t.htmlLang;
+
     list.textContent = '';
 
     if (active === ALL) {
       let shown = 0;
       langs.forEach((l) => {
         const items = WEBINARS.filter((w) => w.lang === l.code);
-        list.appendChild(makeGroup(makeHeading(l, items.length), items));
+        list.appendChild(makeGroup(makeHeading(l, items.length, t), items, t));
         shown += items.length;
       });
-      status.textContent = plural(shown) + ' in all languages';
+      status.textContent = t.sessions(shown) + ' in all languages';
       return;
     }
 
     const lang = langs.find((l) => l.code === active);
     const items = WEBINARS.filter((w) => w.lang === active);
-    list.appendChild(makeGroup(null, items));
-    status.textContent = plural(items.length) + ' in ' + lang.heading;
+    list.appendChild(makeGroup(null, items, t));
+    status.textContent = t.sessions(items.length) + ' ' + t.inWord + ' ' + lang.heading;
   }
 
   function makeChip(code, label, description) {
