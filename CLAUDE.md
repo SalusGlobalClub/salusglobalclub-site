@@ -46,6 +46,28 @@ Wichtig:
 5. **Live-Kontrolle:** nach 1–2 Min. https://bio.salusglobal.club öffnen und die Änderung
    verifizieren (Cache beachten, ggf. `?v=<datum>` anhängen).
 
+## Wenn der Deploy nicht durchläuft
+
+Die Seite wird vom automatisch erzeugten Workflow `pages build and deployment` veröffentlicht.
+Der braucht einen GitHub-Actions-Runner — auch bei der Pages-Quelle „Deploy from a branch".
+Beides läuft über dieselbe Warteschlange, ein Wechsel der Quelle umgeht das Problem also NICHT.
+
+Erkenntnisse aus dem Ausfall vom 06./07.08.2026 (über 30 Stunden ohne freien Runner):
+- Bekommt ein Build binnen **15 Minuten** keinen Runner, bricht GitHub ihn ab
+  (`build` = cancelled, `deploy` = skipped, Lauf = failure). Die Live-Seite bleibt dabei
+  unverändert online — es geht nichts kaputt, es wird nur nichts Neues ausgeliefert.
+- **„Re-run" hilft nicht.** Ein neu gestarteter Lauf dieses Workflows legt gar keine Jobs an
+  (`total_count: 0`) und bleibt endlos auf `queued` stehen — auch dann, wenn wieder Runner
+  frei wären. Nicht darauf warten.
+- **Nur ein frisch ausgelöster Lauf funktioniert**, also ein neuer Commit auf `main`.
+  Ein erneuter DNS-Check unter *Settings → Pages → Custom domain* löst KEINEN Build aus;
+  der prüft nur die Domain.
+- Notfalls lässt sich die Seite überall sonst ausliefern: `index.html`, `app.js`, `style.css`,
+  `assets/` und `tools/` auf einen beliebigen Webspace kopieren, fertig — es ist reines
+  HTML/CSS/JS ohne Build-Schritt (~200 KB).
+- Dauerhafte Absicherung wäre ein Deploy über Netlify oder Cloudflare Pages: dieselbe
+  Repository-Anbindung, aber eigene Build-Infrastruktur statt GitHub-Runner.
+
 ## Sicherheit
 
 Keine GitHub-Passwörter oder Tokens entgegennehmen. Die Anmeldung läuft über den
