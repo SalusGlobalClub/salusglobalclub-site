@@ -34,6 +34,8 @@ Eigener GitHub-Account, der als **Collaborator** in diesem Repository eingeladen
 
 1. Ordner **`assets`** öffnen und den Dateinamen des alten Bildes merken (z. B. `webinar-ger.jpg`).
 2. Neues Bild auf dem eigenen Rechner **exakt gleich benennen** (quadratisch, idealerweise 240×240 Pixel).
+   Der **Hintergrund muss schwarz sein** — kein Blau, kein Weiß. Die Karten stehen auf dunklem
+   Untergrund, ein andersfarbiger Hintergrund fällt als heller Kasten sofort auf.
 3. Im Ordner `assets`: **„Add file" → „Upload files"** → Datei hineinziehen → „Commit changes".
    Gleicher Dateiname = das alte Bild wird ersetzt, sonst ist keine Änderung nötig.
 

@@ -12,7 +12,7 @@ Live: https://bio.salusglobal.club
 | Sprachfilter: Kürzel, Sprachname, Reihenfolge der Gruppen | `app.js`, Tabelle `LANGUAGES` |
 | Flaggen des Sprachfilters | `app.js`, Tabelle `FLAGS` — gezeichnetes SVG, KEINE Emoji (Windows liefert keine Flaggen-Emoji mit) |
 | Telegram-Kanäle | `app.js`, Array `TELEGRAM` |
-| Vorschaubilder | `assets/*.jpg` — quadratisch, 240×240 JPEG, ≤ ~50 KB |
+| Vorschaubilder | `assets/*.jpg` — quadratisch, 240×240 JPEG, ≤ ~50 KB, **schwarzer Hintergrund** |
 | Beschreibungstext (englisch), Social-Links, Logo, Footer | `index.html` |
 | Deutsche Fassung von Überschrift, Beschreibungstext und „Per Zoom teilnehmen" (erscheint nur bei aktivem GER-Filter) | `app.js`, Tabelle `TEXTS` — englischer Text steht weiterhin in `index.html` und wird von dort gelesen |
 | Farben / Fonts / Design | `style.css` (alles über CSS-Variablen im `:root`-Block; je ein Block Dark/Light) |
@@ -32,7 +32,29 @@ Wichtig:
   geteilten Link automatisch bei jedem Versions-Bump. Bei jedem Update: alte Versions-Datei per
   `git rm` löschen, neue mit aktueller Version anlegen, neuen Link intern teilen.
 - Neue Bilder: quadratisch zuschneiden, auf 240×240 verkleinern, als JPEG (~85 % Qualität) speichern.
+  **Der Hintergrund muss schwarz sein** — kein Blau, kein Weiß. Die Karten stehen auf dunklem
+  Navy; ein abweichender Hintergrund fällt als heller Kasten sofort auf. Am 03.08.2026 wurden
+  deshalb ein Bild mit blauem Hintergrund entfernt und `produktpraesentation` von 1254×1254 /
+  1,4 MB auf 240×240 / 8 KB gebracht (dasselbe Bild sitzt auf drei Karten).
+- `assets/profile-logo.png` ist **nicht nur das Logo auf der Seite**, sondern via `og:image`
+  und `apple-touch-icon` auch das Vorschaubild beim Teilen des Links (WhatsApp, Telegram).
+  Auf der Seite wird es rund beschnitten, in der Link-Vorschau nicht. Es hat deshalb seit
+  03.08.2026 einen deckenden schwarzen Hintergrund (`#0d0d0d`, die Farbe des Kreisinneren)
+  und **keinen Alpha-Kanal** — Transparenz würde von Messengern auf Weiß gelegt, dann wären
+  die weißen Ecken zurück. Also nicht „aufhübschen" und transparent machen.
 - Design-Referenz ist die Hauptseite https://salusglobal.club (fast-schwarzes Navy, Montserrat).
+
+Entscheidungen zum Sprachfilter (03.08. / 06.08.2026) — bitte nicht unbemerkt zurückdrehen:
+- **Der Filter filtert, er springt nicht.** Ursprünglich war ein Sprung zur jeweiligen
+  Sprachgruppe angedacht. Bewusst anders gelöst: Ein Klick blendet nur die gewählte Sprache
+  ein (Spanisch schrumpft so von 15 Karten auf 1), ein erneuter Klick zeigt wieder alles.
+  In der ALL-Ansicht bleiben alle Termine sichtbar, nur nach Sprache gruppiert — es geht
+  also nichts verloren. Am Handy ist das der spürbare Unterschied zu einem reinen Sprung.
+- **Das Starter Training am Samstag gehört nur unter English.** Es wird live in 35 Sprachen
+  übersetzt und erschien deshalb zwischenzeitlich in jeder Sprachauswahl, mit eigenem Block
+  und Globus-Symbol. Auf ausdrücklichen Wunsch am 03.08.2026 zurückgenommen: Jeder Termin
+  erscheint in genau einer Sprachgruppe, der aus seinem `lang`-Feld. Nicht gut gemeint
+  wieder einbauen.
 
 ## Ablauf bei jeder Aktualisierung
 
