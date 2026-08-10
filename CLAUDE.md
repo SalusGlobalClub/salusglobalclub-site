@@ -14,7 +14,7 @@ Live: https://bio.salusglobal.club
 | Telegram-Kanäle | `app.js`, Array `TELEGRAM` |
 | Vorschaubilder | `assets/*.jpg` — quadratisch, 240×240 JPEG, ≤ ~50 KB, **schwarzer Hintergrund** |
 | Beschreibungstext (englisch), Social-Links, Logo, Footer | `index.html` |
-| Deutsche Fassung von Überschrift und Beschreibungstext (erscheint nur bei aktivem GER-Filter) | `app.js`, Tabelle `TEXTS` — englischer Text steht weiterhin in `index.html` und wird von dort gelesen |
+| Deutsche und spanische Fassung von Überschrift und Beschreibungstext (erscheint nur bei aktivem GER- bzw. ESP-Filter) | `app.js`, Tabelle `TEXTS` — englischer Text steht weiterhin in `index.html` und wird von dort gelesen; ENG und HIN fallen automatisch darauf zurück |
 | Beschriftung unter dem Kartentitel („Join on Zoom" / „Per Zoom teilnehmen" / „Unirse por Zoom") | `app.js`, Tabelle `JOIN` — richtet sich nach dem `lang`-Feld des Termins, NICHT nach dem Filter; Sprachen ohne Eintrag (ENG, HIN) bekommen `JOIN_DEFAULT` auf Englisch |
 | Farben / Fonts / Design | `style.css` (alles über CSS-Variablen im `:root`-Block; je ein Block Dark/Light) |
 | Umsatzprognose-Tool (unverlinkt) | `tools/prognose/salus-prognose-v<VERSION>.html` — Quelle: `Documents\#Claude\SGC-Berechnungstool\Umsatzprognose-Vertriebstool.html`; Update = Datei neu herüberkopieren (inkl. `noindex`-Meta), Dateiname trägt IMMER die aktuelle Version; alte Versions-Datei per `git rm` entfernen, sonst bleibt der alte Link erreichbar |

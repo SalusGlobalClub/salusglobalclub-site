@@ -30,10 +30,10 @@ const LANGUAGES = [
 ];
 
 /* Übersetzung des Webinar-Bereichs. Nur Sprachen, die hier stehen, schalten um —
-   alles andere (ALL, ENG, ESP, HIN) bleibt automatisch englisch.
+   alles andere (ALL, ENG, HIN) bleibt automatisch englisch.
    ACHTUNG: Der englische Text steht NICHT hier, sondern in index.html; er wird von
-   dort gelesen. Wer den englischen Absatz dort ändert, sollte den deutschen hier
-   mitziehen, sonst sagen die beiden Fassungen etwas Unterschiedliches.
+   dort gelesen. Wer den englischen Absatz dort ändert, sollte die Übersetzungen hier
+   mitziehen, sonst sagen die Fassungen etwas Unterschiedliches.
    Telegram-Block und Fußzeile bleiben immer englisch. */
 const TEXTS = {
   GER: {
@@ -47,6 +47,18 @@ const TEXTS = {
         + 'bist. Schnell, direkt und immer aktuell.',
     inWord: 'auf',                                        /* „7 Termine auf Deutsch" */
     sessions: (n) => (n === 1 ? '1 Termin' : n + ' Termine'),
+  },
+  ESP: {
+    htmlLang: 'es',
+    title: 'Webinars y Canales',
+    desc: 'Te damos la bienvenida. El conocimiento es la clave de tu éxito. Participa en '
+        + 'nuestros webinars semanales y entrenamientos en vivo para hacer crecer tu negocio, '
+        + 'desarrollar tu equipo e invitar a nuevos prospectos con seguridad. Asiste con '
+        + 'constancia y verás cómo crece el impulso. No te pierdas ninguna actualización, '
+        + 'novedad o anuncio del Salus Global Club. Sigue nuestros canales de Telegram y '
+        + 'mantente al tanto, estés donde estés. Rápido, directo y siempre actualizado.',
+    inWord: 'en',                                         /* „1 sesión en Español" */
+    sessions: (n) => (n === 1 ? '1 sesión' : n + ' sesiones'),
   },
 };
 
