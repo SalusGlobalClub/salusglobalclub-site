@@ -45,10 +45,19 @@ const TEXTS = {
         + 'Dynamik wächst. Verpasse keine wichtigen Updates, Neuigkeiten oder Ankündigungen vom '
         + 'Salus Global Club. Folge unseren Telegram-Kanälen und bleib informiert, wo immer du '
         + 'bist. Schnell, direkt und immer aktuell.',
-    join: 'Per Zoom teilnehmen',
     inWord: 'auf',                                        /* „7 Termine auf Deutsch" */
     sessions: (n) => (n === 1 ? '1 Termin' : n + ' Termine'),
   },
+};
+
+/* Beschriftung unter dem Kartentitel. Sie richtet sich nach der Sprache des
+   Termins (Feld `lang`), NICHT nach dem gewählten Filter — sonst stünde in der
+   ALL-Ansicht über einer spanischen Karte eine englische Zeile. Sprachen ohne
+   Eintrag bekommen den englischen Standard, so auch Hindi. */
+const JOIN_DEFAULT = 'Join on Zoom';
+const JOIN = {
+  GER: 'Per Zoom teilnehmen',
+  ESP: 'Unirse por Zoom',
 };
 
 const TELEGRAM = [
@@ -75,7 +84,7 @@ const FLAGS = {
 
 const ARROW = '<svg class="card__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>';
 
-function renderCard(item, kind, zoomLabel) {
+function renderCard(item, kind) {
   const li = document.createElement('li');
   const a = document.createElement('a');
   a.className = 'card';
@@ -115,7 +124,7 @@ function renderCard(item, kind, zoomLabel) {
 
   const meta = document.createElement('span');
   meta.className = 'card__meta';
-  meta.textContent = kind === 'zoom' ? (zoomLabel || 'Join on Zoom') : 'Open on Telegram';
+  meta.textContent = kind === 'zoom' ? (JOIN[item.lang] || JOIN_DEFAULT) : 'Open on Telegram';
   body.appendChild(meta);
 
   a.appendChild(img);
@@ -141,7 +150,6 @@ function renderCard(item, kind, zoomLabel) {
     htmlLang: 'en',
     title: anchor.textContent,
     desc: descEl.textContent,
-    join: 'Join on Zoom',
     inWord: 'in',
     sessions: (n) => (n === 1 ? '1 session' : n + ' sessions'),
   };
@@ -173,14 +181,14 @@ function renderCard(item, kind, zoomLabel) {
     return h;
   }
 
-  function makeGroup(heading, items, t) {
+  function makeGroup(heading, items) {
     const g = document.createElement('div');
     g.className = 'group';
     if (heading) g.appendChild(heading);
     const ul = document.createElement('ul');
     ul.className = 'cards';
     ul.setAttribute('role', 'list');
-    items.forEach((w) => ul.appendChild(renderCard(w, 'zoom', t.join)));
+    items.forEach((w) => ul.appendChild(renderCard(w, 'zoom')));
     g.appendChild(ul);
     return g;
   }
@@ -198,7 +206,7 @@ function renderCard(item, kind, zoomLabel) {
       let shown = 0;
       langs.forEach((l) => {
         const items = WEBINARS.filter((w) => w.lang === l.code);
-        list.appendChild(makeGroup(makeHeading(l, items.length, t), items, t));
+        list.appendChild(makeGroup(makeHeading(l, items.length, t), items));
         shown += items.length;
       });
       status.textContent = t.sessions(shown) + ' in all languages';
@@ -207,7 +215,7 @@ function renderCard(item, kind, zoomLabel) {
 
     const lang = langs.find((l) => l.code === active);
     const items = WEBINARS.filter((w) => w.lang === active);
-    list.appendChild(makeGroup(null, items, t));
+    list.appendChild(makeGroup(null, items));
     status.textContent = t.sessions(items.length) + ' ' + t.inWord + ' ' + lang.heading;
   }
 
