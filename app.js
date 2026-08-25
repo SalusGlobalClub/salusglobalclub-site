@@ -9,7 +9,7 @@ const WEBINARS = [
   { title: 'Business Präsentation | DIENSTAGS 9:30 CEST | 50 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-ger.jpg' },
   { title: 'Leader Training | DIENSTAGS 10:30 CEST | 2h', lang: 'GER', url: 'https://zoom.us/j/95770825858', thumb: 'assets/leader-ger.jpg' },
   { title: 'tegasFX Produktpräsentation und Q&A | DIENSTAGS 19:00 CEST | 90 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg' },
-  { title: 'Business Presentation | WEDNESDAYS 9:30 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-eng.jpg' },
+  { title: 'Business Presentation | WEDNESDAYS 10:30 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-eng.jpg' },
   { title: 'Aionas21 Produktpräsentation und Q&A | MITTWOCHS 19:00 CEST | 90 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg' },
   { title: 'Business Presentation | WEDNESDAYS 20:00 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-eng.jpg' },
   { title: 'Backoffice Training | WEDNESDAYS 21:00 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/starter-eng.jpg' },
@@ -18,6 +18,7 @@ const WEBINARS = [
   { title: 'Business Presentation in Hindi | FRIDAYS 17:00 CEST | 60 Min', lang: 'HIN', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-hin.jpg' },
   { title: 'Starter Training | SAMSTAGS 10:00 CEST | 2h', lang: 'GER', url: 'https://zoom.us/j/95346205331', thumb: 'assets/starter-ger.jpg' },
   { title: 'Starter Training | SATURDAYS 10:00 CEST | 90 Min | (Auto translation in 35 languages)', lang: 'ENG', url: 'https://zoom.us/j/91355320262', thumb: 'assets/starter-eng.jpg' },
+  { title: 'Starter Training | SATURDAYS 13:00 CEST | 2h', lang: 'ENG', url: 'https://zoom.us/j/97676390953', thumb: 'assets/starter-eng.jpg' },
 ];
 
 /* Sprachen für Filter-Knöpfe und Gruppen-Überschriften.
