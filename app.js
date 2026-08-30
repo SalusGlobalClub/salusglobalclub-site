@@ -17,6 +17,7 @@ const WEBINARS = [
   { title: 'Presentación de Negocio | JUEVES 21:00 CEST | 60 Min', lang: 'ESP', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-esp.jpg' },
   { title: 'Business Presentation in Hindi | FRIDAYS 17:00 CEST | 60 Min', lang: 'HIN', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-hin.jpg' },
   { title: 'Starter Training | SAMSTAGS 10:00 CEST | 2h', lang: 'GER', url: 'https://zoom.us/j/95346205331', thumb: 'assets/starter-ger.jpg' },
+  { title: 'Leader Aktiv Workshop | SAMSTAGS 10:00 CEST | 2h', lang: 'GER', url: 'https://us06web.zoom.us/j/82021096104', thumb: 'assets/leader-ger.jpg' },
   { title: 'Starter Training | SATURDAYS 10:00 CEST | 90 Min | (Auto translation in 35 languages)', lang: 'ENG', url: 'https://zoom.us/j/91355320262', thumb: 'assets/starter-eng.jpg' },
   { title: 'Starter Training | SATURDAYS 13:00 CEST | 2h', lang: 'ENG', url: 'https://zoom.us/j/97676390953', thumb: 'assets/starter-eng.jpg' },
 ];
