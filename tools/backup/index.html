@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>rclone SGC Backup — Salus Global Club</title>
+  <meta name="description" content="Interne Sicherungsanwendung für Projektdaten des Salus Global Club in Google Drive." />
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700&display=swap" />
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --surface: #161616;
+      --border: #374151;
+      --text: #ffffff;
+      --muted: #b6bcc7;
+      --faint: #7d8494;
+      --gold: #c8a84b;
+      --gold-bright: #e2c872;
+      --font-body: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+      --font-display: 'Montserrat', 'Helvetica Neue', system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 42rem; margin: 0 auto; padding: clamp(2.5rem, 8vw, 5rem) 1.5rem 5rem; }
+    .brand {
+      font-family: var(--font-display);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin: 0 0 1.6rem;
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 5vw, 2.35rem);
+      font-weight: 700;
+      line-height: 1.16;
+      letter-spacing: -.01em;
+      margin: 0 0 .8rem;
+      text-wrap: balance;
+    }
+    .lede { color: var(--muted); font-size: 1.05rem; margin: 0 0 2.5rem; }
+    h2 {
+      font-family: var(--font-display);
+      font-size: 1.02rem;
+      font-weight: 600;
+      letter-spacing: .01em;
+      margin: 2.6rem 0 .7rem;
+      padding-bottom: .45rem;
+      border-bottom: 1px solid var(--border);
+    }
+    p { margin: 0 0 1rem; color: var(--muted); }
+    ul { margin: 0 0 1rem; padding-left: 1.2rem; color: var(--muted); }
+    li { margin-bottom: .45rem; }
+    li::marker { color: var(--gold); }
+    strong { color: var(--text); font-weight: 600; }
+    a { color: var(--gold); text-underline-offset: 2px; }
+    a:hover { color: var(--gold-bright); }
+    a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--gold);
+      padding: 1.1rem 1.25rem;
+      margin: 1.6rem 0;
+    }
+    .panel > :last-child { margin-bottom: 0; }
+    address {
+      font-style: normal;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--gold);
+      padding: 1rem 1.2rem;
+      margin: 1.2rem 0;
+      line-height: 1.75;
+    }
+    address .translit { color: var(--faint); font-size: .88em; }
+    dl { margin: 1.2rem 0; display: grid; grid-template-columns: minmax(8rem, auto) 1fr; gap: .55rem 1.4rem; }
+    dt { font-size: .78rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); }
+    dd { margin: 0; color: var(--muted); overflow-wrap: anywhere; }
+    footer {
+      margin-top: 3.5rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border);
+      font-size: .82rem;
+      color: var(--faint);
+    }
+    footer a { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="brand">Salus Global Club</p>
+    <h1>rclone SGC Backup</h1>
+    <p class="lede">Interne Sicherungsanwendung. Sie kopiert den Projektordner des Salus Global Club innerhalb von Google Drive in einen geschützten Sicherungsordner desselben Kontos.</p>
+
+    <div class="panel">
+      <p><strong>Nicht öffentlich nutzbar.</strong> Diese Anwendung wird ausschließlich intern betrieben. Es gibt keine Anmeldung, keine Registrierung und kein Nutzerkonto. Diese Seite existiert, weil Google für OAuth-Anwendungen eine erreichbare Startseite verlangt.</p>
+    </div>
+
+    <h2>Was die Anwendung tut</h2>
+    <p>Der freigegebene Projektordner in Google Drive wird täglich in einen nicht freigegebenen Sicherungsordner desselben Google-Kontos gespiegelt. Ersetzte und gelöschte Dateien wandern in ein datiertes Versionsarchiv, statt verloren zu gehen.</p>
+    <ul>
+      <li>Der Kopiervorgang läuft serverseitig bei Google. Dateiinhalte verlassen Google Drive nicht.</li>
+      <li>Es werden keine Daten an Server des Betreibers oder an Dritte übertragen.</li>
+      <li>Die Anwendung schreibt ausschließlich in den Sicherungsordner. Der Projektordner selbst wird nur gelesen.</li>
+    </ul>
+
+    <h2>Technische Grundlage</h2>
+    <dl>
+      <dt>Software</dt><dd><a href="https://rclone.org" target="_blank" rel="noopener noreferrer">rclone</a>, quelloffen, MIT-Lizenz</dd>
+      <dt>Schnittstelle</dt><dd>Google Drive API</dd>
+      <dt>Berechtigung</dt><dd>https://www.googleapis.com/auth/drive</dd>
+      <dt>Ausführung</dt><dd>Geplante Aufgabe auf einem Arbeitsplatzrechner des Betreibers</dd>
+    </dl>
+
+    <h2>Betreiber</h2>
+    <address>
+      ДИДЖИТАЛ ИНТЕРНЕШЪНЪЛ КОНСУЛТИНГ – ЕООД<br />
+      <span class="translit">Digital International Consulting EOOD</span><br />
+      Тодор Бояджиев №3, етаж 1, ап./оф. 1<br />
+      9000 Варна, България<br />
+      USt-IdNr.: BG206697120<br />
+      E-Mail: <a href="mailto:digintcon@gmail.com">digintcon@gmail.com</a>
+    </address>
+
+    <footer>
+      <p><a href="datenschutz.html">Datenschutzerklärung</a> &middot; <a href="https://bio.salusglobal.club">Salus Global Club</a></p>
+    </footer>
+  </div>
+</body>
+</html>
