@@ -17,7 +17,6 @@ Live: https://bio.salusglobal.club
 | Deutsche und spanische Fassung von Überschrift und Beschreibungstext (erscheint nur bei aktivem GER- bzw. ESP-Filter) | `app.js`, Tabelle `TEXTS` — englischer Text steht weiterhin in `index.html` und wird von dort gelesen; ENG und HIN fallen automatisch darauf zurück |
 | Beschriftung unter dem Kartentitel („Join on Zoom" / „Per Zoom teilnehmen" / „Unirse por Zoom") | `app.js`, Tabelle `JOIN` — richtet sich nach dem `lang`-Feld des Termins, NICHT nach dem Filter; Sprachen ohne Eintrag (ENG, HIN) bekommen `JOIN_DEFAULT` auf Englisch |
 | Farben / Fonts / Design | `style.css` (alles über CSS-Variablen im `:root`-Block; je ein Block Dark/Light) |
-| Umsatzprognose-Tool (unverlinkt) | `tools/prognose/salus-prognose-v<VERSION>.html` — Quelle: `Documents\#Claude\SGC-Berechnungstool\Umsatzprognose-Vertriebstool.html`; Update = Datei neu herüberkopieren (inkl. `noindex`-Meta), Dateiname trägt IMMER die aktuelle Version; alte Versions-Datei per `git rm` entfernen, sonst bleibt der alte Link erreichbar |
 
 Wichtig:
 - Die Telegram-Karten verlinken DIREKT auf t.me — NICHT auf die Redirect-Subdomains
@@ -25,13 +24,10 @@ Wichtig:
   iOS einfrieren (Kanal lässt sich nicht mehr schließen, Bug vom 13.07.2026).
   Die Subdomains bleiben nur für bio.site und gedruckte Flyer in Gebrauch.
 - `CNAME` (Inhalt: `bio.salusglobal.club`) niemals löschen — sonst verliert die Seite ihre Domain.
-- `tools/prognose/` ist ein **bewusst unverlinktes** internes Tool („Unlisted", Entscheidung 22.07.2026):
-  NICHT auf der Bio-Seite verlinken, NICHT als verwaist aufräumen. Der Link wird nur intern
-  (Telegram) geteilt; `noindex` ist gesetzt. Dateiname seit 22.07.2026 versioniert
-  (`salus-prognose-v<VERSION>.html` statt `index.html`) — erschwert zufälliges Aufrufen über
-  den nackten Ordnerpfad (kein Directory-Listing + kein Default-Index mehr) und veraltet den
-  geteilten Link automatisch bei jedem Versions-Bump. Bei jedem Update: alte Versions-Datei per
-  `git rm` löschen, neue mit aktueller Version anlegen, neuen Link intern teilen.
+- Das Umsatzprognose-/Einkommensrechner-Tool wird **NICHT mehr über dieses Repo deployed**
+  (Entscheidung 10.09.2026, löst den bisherigen `tools/prognose/`-Weg ab 22.07.2026 ab). Es wird
+  nur noch intern über das Backoffice angezeigt. Quelle bleibt `Documents\#Claude\SGC-Berechnungstool\`
+  (aktuell `salus-prognose-v3.0.0.html`, Unilevel-Modell) — dort pflegen, hier nichts mehr anlegen.
 - Neue Bilder: quadratisch zuschneiden, auf 240×240 verkleinern, als JPEG (~85 % Qualität) speichern.
   **Der Hintergrund muss schwarz sein** — kein Blau, kein Weiß. Die Karten stehen auf dunklem
   Navy; ein abweichender Hintergrund fällt als heller Kasten sofort auf. Am 03.08.2026 wurden
