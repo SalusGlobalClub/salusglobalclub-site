@@ -3,7 +3,6 @@
    Deployed via GitHub Pages to bio.salusglobal.club */
 
 const WEBINARS = [
-  { title: 'Business Presentation | MONDAYS 17:30 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-eng.jpg' },
   { title: 'Auvesta Produktpräsentation und Q&A | MONTAGS 19:00 CEST | 90 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg' },
   { title: 'Business Presentation | MONDAYS 19:30 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/99111066317', thumb: 'assets/presentation-eng.jpg' },
   { title: 'Business Präsentation | DIENSTAGS 9:30 CEST | 50 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-ger.jpg' },
@@ -15,9 +14,7 @@ const WEBINARS = [
   { title: 'Backoffice Training | WEDNESDAYS 21:00 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/starter-eng.jpg' },
   { title: 'Business Präsentation und Q&A | DONNERSTAGS 19:00 CEST | 90 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/business-qna-ger.jpg' },
   { title: 'Presentación de Negocio | JUEVES 21:00 CEST | 60 Min', lang: 'ESP', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-esp.jpg' },
-  { title: 'Business Presentation in Hindi | FRIDAYS 17:00 CEST | 60 Min', lang: 'HIN', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-hin.jpg' },
-  { title: 'Starter Training | SAMSTAGS 10:00 CEST | 2h', lang: 'GER', url: 'https://zoom.us/j/95346205331', thumb: 'assets/starter-ger.jpg' },
-  { title: 'Starter Training | SATURDAYS 10:00 CEST | 90 Min | (Auto translation in 35 languages)', lang: 'ENG', url: 'https://zoom.us/j/91355320262', thumb: 'assets/starter-eng.jpg' },
+  { title: 'Starter Training | SAMSTAGS 10:00 CEST | 55 Min', lang: 'GER', url: 'https://zoom.us/j/95346205331', thumb: 'assets/starter-ger.jpg' },
   { title: 'Starter Training | SATURDAYS 12:00 CEST | 55 Min', lang: 'ENG', url: 'https://zoom.us/j/97676390953', thumb: 'assets/starter-eng.jpg' },
 ];
 
