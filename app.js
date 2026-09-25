@@ -4,7 +4,7 @@
 
 const WEBINARS = [
   { title: 'Auvesta Produktpräsentation und Q&A | MONTAGS 19:00 CEST | 90 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg' },
-  { title: 'Business Presentation | MONDAYS 19:30 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/99111066317', thumb: 'assets/presentation-eng.jpg' },
+  { title: 'Business Presentation | MONDAYS 19:30 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/4363761606', thumb: 'assets/presentation-eng.jpg' },
   { title: 'Business Präsentation | DIENSTAGS 9:30 CEST | 50 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-ger.jpg' },
   { title: 'Leader Training | DIENSTAGS 10:30 CEST | 2h', lang: 'GER', url: 'https://zoom.us/j/95770825858', thumb: 'assets/leader-ger.jpg' },
   { title: 'tegasFX Produktpräsentation und Q&A | DIENSTAGS 19:00 CEST | 90 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg' },
