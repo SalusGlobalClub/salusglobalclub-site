@@ -11,7 +11,6 @@ const WEBINARS = [
   { title: 'Business Presentation | WEDNESDAYS 10:30 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-eng.jpg' },
   { title: 'Aionas21 Produktpräsentation und Q&A | MITTWOCHS 19:00 CEST | 90 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg' },
   { title: 'Business Presentation | WEDNESDAYS 20:00 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-eng.jpg' },
-  { title: 'Backoffice Training | WEDNESDAYS 21:00 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/starter-eng.jpg' },
   { title: 'Business Präsentation und Q&A | DONNERSTAGS 19:00 CEST | 90 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/business-qna-ger.jpg' },
   { title: 'Presentación de Negocio | JUEVES 21:00 CEST | 60 Min', lang: 'ESP', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-esp.jpg' },
   { title: 'Starter Training | SAMSTAGS 10:00 CEST | 55 Min', lang: 'GER', url: 'https://zoom.us/j/95346205331', thumb: 'assets/starter-ger.jpg' },
