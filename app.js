@@ -3,17 +3,22 @@
    Deployed via GitHub Pages to bio.salusglobal.club */
 
 const WEBINARS = [
-  { title: 'Auvesta Produktpräsentation und Q&A | MONTAGS 19:00 CEST | 90 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg' },
-  { title: 'Business Presentation | MONDAYS 19:30 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/4363761606', thumb: 'assets/presentation-eng.jpg' },
-  { title: 'Business Präsentation | DIENSTAGS 9:30 CEST | 50 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-ger.jpg' },
-  { title: 'Leader Training | DIENSTAGS 10:30 CEST | 2h', lang: 'GER', url: 'https://zoom.us/j/95770825858', thumb: 'assets/leader-ger.jpg' },
-  { title: 'tegasFX Produktpräsentation und Q&A | DIENSTAGS 19:00 CEST | 90 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg' },
-  { title: 'Business Presentation | WEDNESDAYS 10:30 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-eng.jpg' },
-  { title: 'Aionas21 Produktpräsentation und Q&A | MITTWOCHS 19:00 CEST | 90 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg' },
-  { title: 'Business Presentation | WEDNESDAYS 20:00 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-eng.jpg' },
-  { title: 'Business Präsentation und Q&A | DONNERSTAGS 19:00 CEST | 90 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/business-qna-ger.jpg' },
-  { title: 'Presentación de Negocio | JUEVES 21:00 CEST | 60 Min', lang: 'ESP', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-esp.jpg' },
-  { title: 'Starter Training | SAMSTAGS 10:00 CEST | 55 Min', lang: 'GER', url: 'https://zoom.us/j/95346205331', thumb: 'assets/starter-ger.jpg' },
+  { title: 'Auvesta Produktpräsentation und Q&A | MONTAGS 19:00 DE-Zeit | 60 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg' },
+  { title: 'Auvesta Product Presentation, Q&A and onboarding support | MONDAYS 20:00 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation-eng.jpg' },
+  { title: 'Business Präsentation | DIENSTAGS 9:30 DE-Zeit | 50 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-ger.jpg' },
+  { title: 'Leader Training | DIENSTAGS 10:30 DE-Zeit | 2h', lang: 'GER', url: 'https://zoom.us/j/95770825858', thumb: 'assets/leader-ger.jpg' },
+  { title: 'tegasFX Produktpräsentation und Q&A | DIENSTAGS 19:00 DE-Zeit | 60 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg' },
+  { title: 'tegasFX Product Presentation, Q&A and onboarding support | TUESDAYS 20:00 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation-eng.jpg' },
+  { title: 'Leader Training | WEDNESDAYS 10:30 CEST | 2h', lang: 'ENG', url: 'https://zoom.us/j/95770825858', thumb: 'assets/leader-eng.jpg' },
+  { title: 'Aionas21 Produktpräsentation und Q&A | MITTWOCHS 19:00 DE-Zeit | 60 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg' },
+  { title: 'Aionas21 Product Presentation, Q&A and onboarding support | WEDNESDAYS 20:00 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation-eng.jpg' },
+  { title: 'Salus Global Club Prezentáció | SZERDÁNKÉNT 20:00 CEST | 60 perc', lang: 'HUN', url: 'https://zoom.us/j/4363761606', thumb: 'assets/presentation-hun.jpg' },
+  { title: 'Business Präsentation und Q&A | DONNERSTAGS 19:00 DE-Zeit | 90 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/business-qna-ger.jpg' },
+  { title: 'Business Presentation | THURSDAYS 20:00 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/4363761606', thumb: 'assets/presentation-eng.jpg' },
+  { title: 'Presentación de negocio | JUEVES 21:00 CEST | 60 Min', lang: 'ESP', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-esp.jpg' },
+  { title: 'Community Call | FREITAGS 16:00 DE-Zeit | 90 Min', lang: 'GER', url: 'https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWHIL6N7r.1', thumb: 'assets/update-call-ger.jpg' },
+  { title: 'Community Call | FRIDAYS 17:30 CEST | 90 Min', lang: 'ENG', url: 'https://us06web.zoom.us/j/86751323217?pwd=twdahDFW5ol51WpHHQ0l80CNb9WstO.1', thumb: 'assets/update-call-eng.jpg' },
+  { title: 'Starter Training | SAMSTAGS 10:00 DE-Zeit | 55 Min', lang: 'GER', url: 'https://zoom.us/j/97676390953', thumb: 'assets/starter-ger.jpg' },
   { title: 'Starter Training | SATURDAYS 12:00 CEST | 55 Min', lang: 'ENG', url: 'https://zoom.us/j/97676390953', thumb: 'assets/starter-eng.jpg' },
 ];
 
@@ -25,6 +30,7 @@ const LANGUAGES = [
   { code: 'GER', heading: 'Deutsch' },
   { code: 'ENG', heading: 'English' },
   { code: 'ESP', heading: 'Español' },
+  { code: 'HUN', heading: 'Magyar' },
   { code: 'HIN', heading: 'हिन्दी · Hindi' },
 ];
 
@@ -89,6 +95,7 @@ const FLAGS = {
      + '<path d="M10.5 0V15M0 7.5H21" stroke="#fff" stroke-width="5"/>'
      + '<path d="M10.5 0V15M0 7.5H21" stroke="#c8102e" stroke-width="3"/></svg>',
   ESP: '<svg viewBox="0 0 21 15"><rect width="21" height="15" fill="#aa151b"/><rect y="3.75" width="21" height="7.5" fill="#f1bf00"/></svg>',
+  HUN: '<svg viewBox="0 0 21 15"><rect width="21" height="15" fill="#477050"/><rect width="21" height="10" fill="#fff"/><rect width="21" height="5" fill="#ce2939"/></svg>',
   HIN: '<svg viewBox="0 0 21 15"><rect width="21" height="15" fill="#138808"/><rect width="21" height="10" fill="#fff"/><rect width="21" height="5" fill="#f93"/>'
      + '<circle cx="10.5" cy="7.5" r="1.8" fill="none" stroke="#008" stroke-width="0.55"/><circle cx="10.5" cy="7.5" r="0.45" fill="#008"/></svg>',
 };

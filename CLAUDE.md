@@ -8,7 +8,7 @@ Live: https://bio.salusglobal.club
 
 | Was ändert sich | Wo |
 |---|---|
-| Webinar-Links, -Titel, -Zeiten, Sprache | `app.js`, Array `WEBINARS` (Feld `lang`: `GER`/`ENG`/`ESP`/`HIN`) |
+| Webinar-Links, -Titel, -Zeiten, Sprache | `app.js`, Array `WEBINARS` (Feld `lang`: `GER`/`ENG`/`ESP`/`HUN`/`HIN`) |
 | Sprachfilter: Kürzel, Sprachname, Reihenfolge der Gruppen | `app.js`, Tabelle `LANGUAGES` |
 | Flaggen des Sprachfilters | `app.js`, Tabelle `FLAGS` — gezeichnetes SVG, KEINE Emoji (Windows liefert keine Flaggen-Emoji mit) |
 | Telegram-Kanäle | `app.js`, Array `TELEGRAM` |
