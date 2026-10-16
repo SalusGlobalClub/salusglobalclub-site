@@ -18,7 +18,7 @@ const WEBINARS = [
   { title: 'Presentación de negocio | JUEVES 21:00 CEST | 60 Min', lang: 'ESP', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-esp.jpg' },
   { title: 'Community Call | FREITAGS 16:00 DE-Zeit | 90 Min', lang: 'GER', url: 'https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWHIL6N7r.1', thumb: 'assets/update-call-ger.jpg' },
   { title: 'Community Call | FRIDAYS 17:30 CEST | 90 Min', lang: 'ENG', url: 'https://us06web.zoom.us/j/86751323217?pwd=twdahDFW5ol51WpHHQ0l80CNb9WstO.1', thumb: 'assets/update-call-eng.jpg' },
-  { title: 'Starter Training | SAMSTAGS 10:00 DE-Zeit | 55 Min', lang: 'GER', url: 'https://zoom.us/j/97676390953', thumb: 'assets/starter-ger.jpg' },
+  { title: 'Starter Training | SAMSTAGS 10:00 DE-Zeit | 55 Min', lang: 'GER', url: 'https://zoom.us/j/95346205331', thumb: 'assets/starter-ger.jpg' },
   { title: 'Starter Training | SATURDAYS 12:00 CEST | 55 Min', lang: 'ENG', url: 'https://zoom.us/j/97676390953', thumb: 'assets/starter-eng.jpg' },
 ];
 
