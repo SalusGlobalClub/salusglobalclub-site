@@ -50,6 +50,10 @@ Abonnierbare Kalender (19.10.2026, Wunsch Claudio):
   Produktpräsentationen = Kunden; Business-Präsentationen, Leader und Starter Training = Influencer;
   Community Call = beide. Kalender ohne Termine werden weder erzeugt noch als Knopf gezeigt.
 - Statische `.ics`-Dateien, bewusst KEINE GitHub Action (Runner-Engpass, siehe unten).
+- **Dateinamen in `kalender/` (z. B. `kunden-ger.ics`) NIE ändern.** Abonnenten hängen an dieser
+  Adresse; nur so bekommen sie neue Termine, Zeiten und Zoom-Links automatisch. Eine neue Adresse
+  hieße: alle müssten neu abonnieren. Fällt ein Termin weg, verschwindet er bei den Abonnenten
+  von selbst (die ganze Serie, auch vergangene Termine).
 - Knöpfe: Apple-Geräte bekommen `webcal://` (Abo-Dialog), alle anderen den Google-Kalender-Link.
 - Abonnenten sehen Änderungen nicht sofort: Apple holt etwa alle paar Stunden neu, Google teils
   erst nach 12 bis 24 Stunden. Kurzfristige Änderungen also zusätzlich über Telegram ankündigen.
