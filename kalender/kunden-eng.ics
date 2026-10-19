@@ -60,18 +60,4 @@ URL:https://zoom.us/j/94836921010
 DESCRIPTION:Join on Zoom: https://zoom.us/j/94836921010\n\nhttps://bio.salu
  sglobal.club
 END:VEVENT
-BEGIN:VEVENT
-UID:e2e97c01d9974d99@bio.salusglobal.club
-DTSTAMP:20261019T000000Z
-DTSTART;TZID=Europe/Berlin:20261023T173000
-DURATION:PT90M
-RRULE:FREQ=WEEKLY;BYDAY=FR
-SUMMARY:Community Call
-LOCATION:https://us06web.zoom.us/j/86751323217?pwd=twdahDFW5ol51WpHHQ0l80CN
- b9WstO.1
-URL:https://us06web.zoom.us/j/86751323217?pwd=twdahDFW5ol51WpHHQ0l80CNb9Wst
- O.1
-DESCRIPTION:Join on Zoom: https://us06web.zoom.us/j/86751323217?pwd=twdahDF
- W5ol51WpHHQ0l80CNb9WstO.1\n\nhttps://bio.salusglobal.club
-END:VEVENT
 END:VCALENDAR
