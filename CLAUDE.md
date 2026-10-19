@@ -47,8 +47,9 @@ Wichtig:
 
 Abonnierbare Kalender (19.10.2026, Wunsch Claudio):
 - Je Sprache ein Kalender für **Kunden** und einer für **Influencer**. Zuordnung über `cal` in `WEBINARS`:
-  Produktpräsentationen = Kunden; Business-Präsentationen, Leader und Starter Training = Influencer;
-  Community Call = beide. Kalender ohne Termine werden weder erzeugt noch als Knopf gezeigt.
+  Produktpräsentationen = Kunden; Business Präsentation Dienstag 9:30 (GER) = beide;
+  übrige Business-Präsentationen, Leader und Starter Training, Community Call = Influencer
+  (Community Call seit 19.10.2026 nicht mehr bei Kunden). Kalender ohne Termine werden weder erzeugt noch als Knopf gezeigt.
 - Statische `.ics`-Dateien, bewusst KEINE GitHub Action (Runner-Engpass, siehe unten).
 - **Dateinamen in `kalender/` (z. B. `kunden-ger.ics`) NIE ändern.** Abonnenten hängen an dieser
   Adresse; nur so bekommen sie neue Termine, Zeiten und Zoom-Links automatisch. Eine neue Adresse
