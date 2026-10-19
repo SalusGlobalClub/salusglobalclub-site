@@ -1,0 +1,2 @@
+# Kalenderdateien brauchen CRLF-Zeilenenden (RFC 5545), Git soll sie nicht umwandeln
+kalender/*.ics -text

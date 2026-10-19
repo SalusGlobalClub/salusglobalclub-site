@@ -2,24 +2,47 @@
    Static rendering of webinar + Telegram cards.
    Deployed via GitHub Pages to bio.salusglobal.club */
 
+/* Zweite Zeile je Termin = Daten für die abonnierbaren Kalender (Ordner kalender/):
+   day  = Wochentag MO TU WE TH FR SA SU
+   time = Beginn in deutscher Zeit (Europe/Berlin), auch bei englischen Titeln mit „CEST"
+   min  = Dauer in Minuten
+   cal  = in welche Kalender der Termin kommt: 'kunden' und/oder 'influencer'
+   Nach JEDER Änderung hier: python kalender/erzeugen.py — sonst zeigen die Kalender den alten Stand. */
 const WEBINARS = [
-  { title: 'Auvesta Produktpräsentation und Q&A | MONTAGS 19:00 DE-Zeit | 60 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg' },
-  { title: 'Auvesta Product Presentation, Q&A and onboarding support | MONDAYS 20:00 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation-eng.jpg' },
-  { title: 'Business Präsentation | DIENSTAGS 9:30 DE-Zeit | 50 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-ger.jpg' },
-  { title: 'Leader Training | DIENSTAGS 10:30 DE-Zeit | 2h', lang: 'GER', url: 'https://zoom.us/j/95770825858', thumb: 'assets/leader-ger.jpg' },
-  { title: 'tegasFX Produktpräsentation und Q&A | DIENSTAGS 19:00 DE-Zeit | 60 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg' },
-  { title: 'tegasFX Product Presentation, Q&A and onboarding support | TUESDAYS 20:00 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation-eng.jpg' },
-  { title: 'Leader Training | WEDNESDAYS 10:30 CEST | 2h', lang: 'ENG', url: 'https://zoom.us/j/95770825858', thumb: 'assets/leader-eng.jpg' },
-  { title: 'Aionas21 Produktpräsentation und Q&A | MITTWOCHS 19:00 DE-Zeit | 60 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg' },
-  { title: 'Aionas21 Product Presentation, Q&A and onboarding support | WEDNESDAYS 20:00 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation-eng.jpg' },
-  { title: 'Salus Global Club Prezentáció | SZERDÁNKÉNT 20:00 CEST | 60 perc', lang: 'HUN', url: 'https://zoom.us/j/4363761606', thumb: 'assets/presentation-hun.jpg' },
-  { title: 'Business Präsentation und Q&A | DONNERSTAGS 19:00 DE-Zeit | 90 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/business-qna-ger.jpg' },
-  { title: 'Business Presentation | THURSDAYS 20:00 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/4363761606', thumb: 'assets/presentation-eng.jpg' },
-  { title: 'Presentación de negocio | JUEVES 21:00 CEST | 60 Min', lang: 'ESP', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-esp.jpg' },
-  { title: 'Community Call | FREITAGS 16:00 DE-Zeit | 90 Min', lang: 'GER', url: 'https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWHIL6N7r.1', thumb: 'assets/update-call-ger.jpg' },
-  { title: 'Community Call | FRIDAYS 17:30 CEST | 90 Min', lang: 'ENG', url: 'https://us06web.zoom.us/j/86751323217?pwd=twdahDFW5ol51WpHHQ0l80CNb9WstO.1', thumb: 'assets/update-call-eng.jpg' },
-  { title: 'Starter Training | SAMSTAGS 10:00 DE-Zeit | 55 Min', lang: 'GER', url: 'https://zoom.us/j/95346205331', thumb: 'assets/starter-ger.jpg' },
-  { title: 'Starter Training | SATURDAYS 12:00 CEST | 55 Min', lang: 'ENG', url: 'https://zoom.us/j/97676390953', thumb: 'assets/starter-eng.jpg' },
+  { title: 'Auvesta Produktpräsentation und Q&A | MONTAGS 19:00 DE-Zeit | 60 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg',
+    day: 'MO', time: '19:00', min: 60, cal: ['kunden'] },
+  { title: 'Auvesta Product Presentation, Q&A and onboarding support | MONDAYS 20:00 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation-eng.jpg',
+    day: 'MO', time: '20:00', min: 60, cal: ['kunden'] },
+  { title: 'Business Präsentation | DIENSTAGS 9:30 DE-Zeit | 50 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-ger.jpg',
+    day: 'TU', time: '09:30', min: 50, cal: ['influencer'] },
+  { title: 'Leader Training | DIENSTAGS 10:30 DE-Zeit | 2h', lang: 'GER', url: 'https://zoom.us/j/95770825858', thumb: 'assets/leader-ger.jpg',
+    day: 'TU', time: '10:30', min: 120, cal: ['influencer'] },
+  { title: 'tegasFX Produktpräsentation und Q&A | DIENSTAGS 19:00 DE-Zeit | 60 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg',
+    day: 'TU', time: '19:00', min: 60, cal: ['kunden'] },
+  { title: 'tegasFX Product Presentation, Q&A and onboarding support | TUESDAYS 20:00 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation-eng.jpg',
+    day: 'TU', time: '20:00', min: 60, cal: ['kunden'] },
+  { title: 'Leader Training | WEDNESDAYS 10:30 CEST | 2h', lang: 'ENG', url: 'https://zoom.us/j/95770825858', thumb: 'assets/leader-eng.jpg',
+    day: 'WE', time: '10:30', min: 120, cal: ['influencer'] },
+  { title: 'Aionas21 Produktpräsentation und Q&A | MITTWOCHS 19:00 DE-Zeit | 60 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg',
+    day: 'WE', time: '19:00', min: 60, cal: ['kunden'] },
+  { title: 'Aionas21 Product Presentation, Q&A and onboarding support | WEDNESDAYS 20:00 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation-eng.jpg',
+    day: 'WE', time: '20:00', min: 60, cal: ['kunden'] },
+  { title: 'Salus Global Club Prezentáció | SZERDÁNKÉNT 20:00 CEST | 60 perc', lang: 'HUN', url: 'https://zoom.us/j/4363761606', thumb: 'assets/presentation-hun.jpg',
+    day: 'WE', time: '20:00', min: 60, cal: ['influencer'] },
+  { title: 'Business Präsentation und Q&A | DONNERSTAGS 19:00 DE-Zeit | 90 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/business-qna-ger.jpg',
+    day: 'TH', time: '19:00', min: 90, cal: ['influencer'] },
+  { title: 'Business Presentation | THURSDAYS 20:00 CEST | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/4363761606', thumb: 'assets/presentation-eng.jpg',
+    day: 'TH', time: '20:00', min: 60, cal: ['influencer'] },
+  { title: 'Presentación de negocio | JUEVES 21:00 CEST | 60 Min', lang: 'ESP', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-esp.jpg',
+    day: 'TH', time: '21:00', min: 60, cal: ['influencer'] },
+  { title: 'Community Call | FREITAGS 16:00 DE-Zeit | 90 Min', lang: 'GER', url: 'https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWHIL6N7r.1', thumb: 'assets/update-call-ger.jpg',
+    day: 'FR', time: '16:00', min: 90, cal: ['kunden', 'influencer'] },
+  { title: 'Community Call | FRIDAYS 17:30 CEST | 90 Min', lang: 'ENG', url: 'https://us06web.zoom.us/j/86751323217?pwd=twdahDFW5ol51WpHHQ0l80CNb9WstO.1', thumb: 'assets/update-call-eng.jpg',
+    day: 'FR', time: '17:30', min: 90, cal: ['kunden', 'influencer'] },
+  { title: 'Starter Training | SAMSTAGS 10:00 DE-Zeit | 55 Min', lang: 'GER', url: 'https://zoom.us/j/95346205331', thumb: 'assets/starter-ger.jpg',
+    day: 'SA', time: '10:00', min: 55, cal: ['influencer'] },
+  { title: 'Starter Training | SATURDAYS 12:00 CEST | 55 Min', lang: 'ENG', url: 'https://zoom.us/j/97676390953', thumb: 'assets/starter-eng.jpg',
+    day: 'SA', time: '12:00', min: 55, cal: ['influencer'] },
 ];
 
 /* Sprachen für Filter-Knöpfe und Gruppen-Überschriften.
@@ -52,6 +75,11 @@ const TEXTS = {
         + 'bist. Schnell, direkt und immer aktuell.',
     inWord: 'auf',                                        /* „7 Termine auf Deutsch" */
     sessions: (n) => (n === 1 ? '1 Termin' : n + ' Termine'),
+    calTitle: 'Termine in deinen Kalender',
+    cal: { kunden: 'Kalender für Kunden', influencer: 'Kalender für Influencer' },
+    calShort: { kunden: 'Kunden', influencer: 'Influencer' },
+    calCopy: 'Link kopieren (Outlook & andere)',
+    calCopied: 'Link kopiert',
   },
   ESP: {
     htmlLang: 'es',
@@ -64,6 +92,11 @@ const TEXTS = {
         + 'mantente al tanto, estés donde estés. Rápido, directo y siempre actualizado.',
     inWord: 'en',                                         /* „1 sesión en Español" */
     sessions: (n) => (n === 1 ? '1 sesión' : n + ' sesiones'),
+    calTitle: 'Las sesiones en tu calendario',
+    cal: { kunden: 'Calendario para clientes', influencer: 'Calendario para influencers' },
+    calShort: { kunden: 'Clientes', influencer: 'Influencers' },
+    calCopy: 'Copiar enlace (Outlook y otros)',
+    calCopied: 'Enlace copiado',
   },
 };
 
@@ -76,6 +109,14 @@ const JOIN = {
   GER: 'Per Zoom teilnehmen',
   ESP: 'Unirse por Zoom',
 };
+
+/* Abonnierbare Kalender: je Sprache einer pro Zielgruppe (Feld `cal` in WEBINARS).
+   Die Dateien in kalender/ erzeugt `python kalender/erzeugen.py`, dort stehen auch
+   die Kalendernamen („Salus Global Deutsch" / „Salus Deutsch" …). Ein Knopf erscheint
+   nur, wenn es für Sprache und Zielgruppe Termine gibt, genau wie die Datei. */
+const CAL_BASE = 'bio.salusglobal.club/kalender/';
+const CAL_AUDIENCES = ['kunden', 'influencer'];
+const CAL_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>';
 
 const TELEGRAM = [
   { title: 'SGC - International Official \u{1F30D}', url: 'https://t.me/SGC_international', thumb: 'assets/tg-int.jpg' },
@@ -170,7 +211,71 @@ function renderCard(item, kind) {
     desc: descEl.textContent,
     inWord: 'in',
     sessions: (n) => (n === 1 ? '1 session' : n + ' sessions'),
+    calTitle: 'Add the sessions to your calendar',
+    cal: { kunden: 'Calendar for customers', influencer: 'Calendar for influencers' },
+    /* ALL-Ansicht: Flagge + zwei Knöpfe je Zeile, lange Texte passen am Handy nicht */
+    calShort: { kunden: 'Customers', influencer: 'Influencers' },
+    calCopy: 'Copy link (Outlook & others)',
+    calCopied: 'Link copied',
   };
+
+  /* Apple-Geräte öffnen webcal:// direkt im Kalender mit Abo-Dialog,
+     alle anderen landen bei Google Kalender („Kalender hinzufügen"). */
+  const APPLE = /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent);
+  const calBox = document.getElementById('calendar-subscribe');
+
+  function calLinks(code, t, labels) {
+    return CAL_AUDIENCES
+      .filter((aud) => WEBINARS.some((w) => w.lang === code && w.cal && w.cal.includes(aud)))
+      .map((aud) => {
+        const file = CAL_BASE + aud + '-' + code.toLowerCase() + '.ics';
+        const a = document.createElement('a');
+        a.className = 'calbtn';
+        a.href = APPLE ? 'webcal://' + file
+          : 'https://calendar.google.com/calendar/render?cid=' + encodeURIComponent('webcal://' + file);
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.dataset.https = 'https://' + file;
+        a.insertAdjacentHTML('afterbegin', CAL_ICON);
+        const s = document.createElement('span');
+        s.textContent = labels[aud];
+        a.appendChild(s);
+        return a;
+      });
+  }
+
+  function renderCalendars(t) {
+    calBox.textContent = '';
+    const codes = active === ALL ? langs.map((l) => l.code) : [active];
+    const rows = codes.map((code) => {
+      const links = calLinks(code, t, active === ALL ? t.calShort : t.cal);
+      if (!links.length) return null;
+      const row = document.createElement('div');
+      row.className = 'calrow';
+      /* in der ALL-Ansicht zeigt die Flagge, welche Sprache die Knöpfe meinen */
+      if (active === ALL && FLAGS[code]) row.appendChild(makeIcon(FLAGS[code], 'group__flag calrow__flag'));
+      row.append(...links);
+      return row;
+    }).filter(Boolean);
+    if (!rows.length) return;
+
+    const h = document.createElement('p');
+    h.className = 'calbox__title';
+    h.textContent = t.calTitle;
+    const copy = document.createElement('button');
+    copy.type = 'button';
+    copy.className = 'calbox__copy';
+    copy.textContent = t.calCopy;
+    /* für Outlook & Co.: kopiert die https-Adressen aller gerade sichtbaren Kalender
+       (dort unter „Kalender hinzufügen > Aus dem Internet" einfügen) */
+    copy.addEventListener('click', () => {
+      const urls = [...calBox.querySelectorAll('.calbtn')].map((a) => a.dataset.https);
+      const done = () => { copy.textContent = t.calCopied; };
+      if (navigator.clipboard) navigator.clipboard.writeText(urls.join('\n')).then(done, () => prompt('', urls.join(' ')));
+      else prompt('', urls.join(' '));
+    });
+    calBox.append(h, ...rows, copy);
+  }
 
   /* nur Sprachen anbieten, zu denen es tatsächlich Webinare gibt */
   const langs = LANGUAGES.filter((l) => WEBINARS.some((w) => w.lang === l.code));
@@ -219,6 +324,7 @@ function renderCard(item, kind) {
     section.lang = t.htmlLang;
 
     list.textContent = '';
+    renderCalendars(t);
 
     if (active === ALL) {
       let shown = 0;
