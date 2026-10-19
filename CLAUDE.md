@@ -20,6 +20,7 @@ Live: https://bio.salusglobal.club
 | Deutsche und spanische Fassung von Überschrift und Beschreibungstext (erscheint nur bei aktivem GER- bzw. ESP-Filter) | `app.js`, Tabelle `TEXTS` — englischer Text steht weiterhin in `index.html` und wird von dort gelesen; ENG und HIN fallen automatisch darauf zurück |
 | Beschriftung unter dem Kartentitel („Join on Zoom" / „Per Zoom teilnehmen" / „Unirse por Zoom") | `app.js`, Tabelle `JOIN` — richtet sich nach dem `lang`-Feld des Termins, NICHT nach dem Filter; Sprachen ohne Eintrag (ENG, HIN) bekommen `JOIN_DEFAULT` auf Englisch |
 | Farben / Fonts / Design | `style.css` (alles über CSS-Variablen im `:root`-Block; je ein Block Dark/Light) |
+| Standard-Design hell/dunkel | `index.html` (`data-theme` am `<html>`) und `app.js` (`let d` im Theme-Schalter). Seit 19.10.2026 startet die Seite **immer hell**, auch bei dunkel eingestelltem Gerät; dunkel nur per Schalter |
 
 Wichtig:
 - Die Telegram-Karten verlinken DIREKT auf t.me — NICHT auf die Redirect-Subdomains
