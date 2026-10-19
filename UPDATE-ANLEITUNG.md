@@ -63,6 +63,20 @@ Jede Zeile in `WEBINARS` hat ein Feld `lang` — danach richtet sich der Sprachf
   sonst nur „DE" statt einer Flagge. Gezeichnete Flaggen sehen auf jedem Gerät gleich aus.
 - Jeder Termin erscheint in genau einer Sprachgruppe — der aus seinem `lang`-Feld.
 
+### Webinare: Kalender
+
+Jeder Termin in `WEBINARS` hat eine zweite Zeile, z. B.
+`day: 'MO', time: '19:00', min: 60, cal: ['kunden'] },`
+
+- `day` = Wochentag: `MO` `TU` `WE` `TH` `FR` `SA` `SU`
+- `time` = Beginn in **deutscher** Zeit, `min` = Dauer in Minuten
+- `cal` = in welchen Kalender der Termin kommt: `['kunden']`, `['influencer']` oder `['kunden', 'influencer']`
+
+Daraus entstehen die Kalender zum Abonnieren (Ordner `kalender/`, Knöpfe über den Webinar-Karten).
+**Wichtig:** Diese Kalender aktualisieren sich NICHT von selbst, wenn man `app.js` auf github.com
+ändert. Danach muss einmal `python kalender/erzeugen.py` laufen, am einfachsten Claude bitten:
+„Erzeuge die Kalender der Bio-Seite neu."
+
 ### Beschreibungstext ändern
 
 Über den Webinar-Karten steht eine Überschrift und ein Begrüßungsabsatz. Beides gibt es
