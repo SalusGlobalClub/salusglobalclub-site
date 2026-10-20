@@ -8,7 +8,7 @@ Live: https://bio.salusglobal.club
 
 | Was ändert sich | Wo |
 |---|---|
-| Webinar-Links, -Titel, -Zeiten, Sprache | `app.js`, Array `WEBINARS` (Feld `lang`: `GER`/`ENG`/`ESP`/`HUN`/`HIN`) |
+| Webinar-Links, -Titel, -Zeiten, Sprache | `app.js`, Array `WEBINARS` (Feld `lang`: `GER`/`ENG`/`ESP`/`HUN`/`HIN`). Zeit im Titel ohne Zeitzonenkürzel (kein CEST/CET, das stimmt nur halbjährlich), sondern „DE-Zeit" / „German time" / „hora alemana" / „német idő" (seit 20.10.2026) |
 | Sprachfilter: Kürzel, Sprachname, Reihenfolge der Gruppen | `app.js`, Tabelle `LANGUAGES` |
 | Flaggen des Sprachfilters | `app.js`, Tabelle `FLAGS` — gezeichnetes SVG, KEINE Emoji (Windows liefert keine Flaggen-Emoji mit) |
 | Kalender-Daten je Termin (Wochentag, Uhrzeit, Dauer, Kunden/Influencer) | `app.js`, Array `WEBINARS`, zweite Zeile je Eintrag (`day`, `time`, `min`, `cal`) |
