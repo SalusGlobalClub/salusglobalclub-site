@@ -61,11 +61,137 @@ DESCRIPTION:Per Zoom teilnehmen: https://zoom.us/j/94836921010\n\nhttps://b
  io.salusglobal.club
 END:VEVENT
 BEGIN:VEVENT
-UID:75d89b5f2144fd53@bio.salusglobal.club
+UID:4c6183d14c31d7ac@bio.salusglobal.club
+DTSTAMP:20261019T000000Z
+DTSTART;TZID=Europe/Berlin:20261030T190000
+DURATION:PT60M
+RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=FR;COUNT=5
+SUMMARY:Community Call
+LOCATION:https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWH
+ IL6N7r.1
+URL:https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWHIL6N7
+ r.1
+DESCRIPTION:Per Zoom teilnehmen: https://us06web.zoom.us/j/85377006655?pwd=
+ OZdDRC0xbWdBJqxbYhLa1JWHIL6N7r.1\n\nhttps://bio.salusglobal.club
+END:VEVENT
+BEGIN:VEVENT
+UID:d65ad7988666a161@bio.salusglobal.club
+DTSTAMP:20261019T000000Z
+DTSTART;TZID=Europe/Berlin:20270115T190000
+DURATION:PT60M
+RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=FR;COUNT=156
+SUMMARY:Community Call
+LOCATION:https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWH
+ IL6N7r.1
+URL:https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWHIL6N7
+ r.1
+DESCRIPTION:Per Zoom teilnehmen: https://us06web.zoom.us/j/85377006655?pwd=
+ OZdDRC0xbWdBJqxbYhLa1JWHIL6N7r.1\n\nhttps://bio.salusglobal.club
+END:VEVENT
+BEGIN:VEVENT
+UID:079e9d620516c64d@bio.salusglobal.club
+DTSTAMP:20261019T000000Z
+DTSTART;TZID=Europe/Berlin:20330114T190000
+DURATION:PT60M
+RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=FR;COUNT=130
+SUMMARY:Community Call
+LOCATION:https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWH
+ IL6N7r.1
+URL:https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWHIL6N7
+ r.1
+DESCRIPTION:Per Zoom teilnehmen: https://us06web.zoom.us/j/85377006655?pwd=
+ OZdDRC0xbWdBJqxbYhLa1JWHIL6N7r.1\n\nhttps://bio.salusglobal.club
+END:VEVENT
+BEGIN:VEVENT
+UID:ba229784b596d8a8@bio.salusglobal.club
+DTSTAMP:20261019T000000Z
+DTSTART;TZID=Europe/Berlin:20380115T190000
+DURATION:PT60M
+RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=FR;COUNT=156
+SUMMARY:Community Call
+LOCATION:https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWH
+ IL6N7r.1
+URL:https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWHIL6N7
+ r.1
+DESCRIPTION:Per Zoom teilnehmen: https://us06web.zoom.us/j/85377006655?pwd=
+ OZdDRC0xbWdBJqxbYhLa1JWHIL6N7r.1\n\nhttps://bio.salusglobal.club
+END:VEVENT
+BEGIN:VEVENT
+UID:1e1ea51f8c568c81@bio.salusglobal.club
+DTSTAMP:20261019T000000Z
+DTSTART;TZID=Europe/Berlin:20440115T190000
+DURATION:PT60M
+RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=FR
+SUMMARY:Community Call
+LOCATION:https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWH
+ IL6N7r.1
+URL:https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWHIL6N7
+ r.1
+DESCRIPTION:Per Zoom teilnehmen: https://us06web.zoom.us/j/85377006655?pwd=
+ OZdDRC0xbWdBJqxbYhLa1JWHIL6N7r.1\n\nhttps://bio.salusglobal.club
+END:VEVENT
+BEGIN:VEVENT
+UID:208f0be5eed2b89f@bio.salusglobal.club
 DTSTAMP:20261019T000000Z
 DTSTART;TZID=Europe/Berlin:20261023T160000
-DURATION:PT90M
-RRULE:FREQ=WEEKLY;BYDAY=FR
+DURATION:PT60M
+RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=FR;COUNT=6
+SUMMARY:Community Call
+LOCATION:https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWH
+ IL6N7r.1
+URL:https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWHIL6N7
+ r.1
+DESCRIPTION:Per Zoom teilnehmen: https://us06web.zoom.us/j/85377006655?pwd=
+ OZdDRC0xbWdBJqxbYhLa1JWHIL6N7r.1\n\nhttps://bio.salusglobal.club
+END:VEVENT
+BEGIN:VEVENT
+UID:d6eb0e4baffeec2a@bio.salusglobal.club
+DTSTAMP:20261019T000000Z
+DTSTART;TZID=Europe/Berlin:20270108T160000
+DURATION:PT60M
+RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=FR;COUNT=157
+SUMMARY:Community Call
+LOCATION:https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWH
+ IL6N7r.1
+URL:https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWHIL6N7
+ r.1
+DESCRIPTION:Per Zoom teilnehmen: https://us06web.zoom.us/j/85377006655?pwd=
+ OZdDRC0xbWdBJqxbYhLa1JWHIL6N7r.1\n\nhttps://bio.salusglobal.club
+END:VEVENT
+BEGIN:VEVENT
+UID:4f98cd6b7bad549a@bio.salusglobal.club
+DTSTAMP:20261019T000000Z
+DTSTART;TZID=Europe/Berlin:20330107T160000
+DURATION:PT60M
+RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=FR;COUNT=131
+SUMMARY:Community Call
+LOCATION:https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWH
+ IL6N7r.1
+URL:https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWHIL6N7
+ r.1
+DESCRIPTION:Per Zoom teilnehmen: https://us06web.zoom.us/j/85377006655?pwd=
+ OZdDRC0xbWdBJqxbYhLa1JWHIL6N7r.1\n\nhttps://bio.salusglobal.club
+END:VEVENT
+BEGIN:VEVENT
+UID:fd0946385fd6a3ae@bio.salusglobal.club
+DTSTAMP:20261019T000000Z
+DTSTART;TZID=Europe/Berlin:20380108T160000
+DURATION:PT60M
+RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=FR;COUNT=157
+SUMMARY:Community Call
+LOCATION:https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWH
+ IL6N7r.1
+URL:https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWHIL6N7
+ r.1
+DESCRIPTION:Per Zoom teilnehmen: https://us06web.zoom.us/j/85377006655?pwd=
+ OZdDRC0xbWdBJqxbYhLa1JWHIL6N7r.1\n\nhttps://bio.salusglobal.club
+END:VEVENT
+BEGIN:VEVENT
+UID:2f2fa2d190761143@bio.salusglobal.club
+DTSTAMP:20261019T000000Z
+DTSTART;TZID=Europe/Berlin:20440108T160000
+DURATION:PT60M
+RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=FR
 SUMMARY:Community Call
 LOCATION:https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWH
  IL6N7r.1
