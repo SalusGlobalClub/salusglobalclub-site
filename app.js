@@ -5,6 +5,8 @@
 /* Zweite Zeile je Termin = Daten für die abonnierbaren Kalender (Ordner kalender/):
    day  = Wochentag MO TU WE TH FR SA SU
    time = Beginn in deutscher Zeit (Europe/Berlin), wie im Titel („DE-Zeit" / „German time")
+   timeOdd = nur bei Wochenwechsel: dann gilt `time` in geraden, `timeOdd` in ungeraden
+             Kalenderwochen (ISO-KW, wie im Kalender; auch am Jahreswechsel streng nach KW)
    min  = Dauer in Minuten
    cal  = in welche Kalender der Termin kommt: 'kunden' und/oder 'influencer'
    Nach JEDER Änderung hier: python kalender/erzeugen.py — sonst zeigen die Kalender den alten Stand. */
@@ -27,16 +29,16 @@ const WEBINARS = [
     day: 'WE', time: '19:00', min: 60, cal: ['kunden'] },
   { title: 'Aionas21 Product Presentation, Q&A and onboarding support | WEDNESDAYS 20:00 German time | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation-eng.jpg',
     day: 'WE', time: '20:00', min: 60, cal: ['kunden'] },
-  { title: 'Salus Global Club Prezentáció | SZERDÁNKÉNT 20:00 német idő | 60 perc', lang: 'HUN', url: 'https://zoom.us/j/4363761606', thumb: 'assets/presentation-hun.jpg',
-    day: 'WE', time: '20:00', min: 60, cal: ['influencer'] },
+  { title: 'Salus Global Club Prezentáció | SZERDÁNKÉNT 19:00 német idő | 60 perc', lang: 'HUN', url: 'https://zoom.us/j/4363761606', thumb: 'assets/presentation-hun.jpg',
+    day: 'WE', time: '19:00', min: 60, cal: ['influencer'] },
   { title: 'Business Präsentation und Q&A | DONNERSTAGS 19:00 DE-Zeit | 90 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/business-qna-ger.jpg',
     day: 'TH', time: '19:00', min: 90, cal: ['influencer'] },
   { title: 'Business Presentation | THURSDAYS 20:00 German time | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/4363761606', thumb: 'assets/presentation-eng.jpg',
     day: 'TH', time: '20:00', min: 60, cal: ['influencer'] },
   { title: 'Presentación de negocio | JUEVES 21:00 hora alemana | 60 Min', lang: 'ESP', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-esp.jpg',
     day: 'TH', time: '21:00', min: 60, cal: ['influencer'] },
-  { title: 'Community Call | FREITAGS 16:00 DE-Zeit | 90 Min', lang: 'GER', url: 'https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWHIL6N7r.1', thumb: 'assets/update-call-ger.jpg',
-    day: 'FR', time: '16:00', min: 90, cal: ['influencer'] },
+  { title: 'Community Call | FREITAGS 19:00 DE-Zeit (gerade KW) | 16:00 DE-Zeit (ungerade KW) | 60 Min', lang: 'GER', url: 'https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWHIL6N7r.1', thumb: 'assets/update-call-ger.jpg',
+    day: 'FR', time: '19:00', timeOdd: '16:00', min: 60, cal: ['influencer'] },
   { title: 'Community Call | FRIDAYS 17:30 German time | 90 Min', lang: 'ENG', url: 'https://us06web.zoom.us/j/86751323217?pwd=twdahDFW5ol51WpHHQ0l80CNb9WstO.1', thumb: 'assets/update-call-eng.jpg',
     day: 'FR', time: '17:30', min: 90, cal: ['influencer'] },
   { title: 'Starter Training | SAMSTAGS 10:00 DE-Zeit | 55 Min', lang: 'GER', url: 'https://zoom.us/j/95346205331', thumb: 'assets/starter-ger.jpg',

@@ -38,6 +38,9 @@ DAYS = ['MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU']
 # Fester Startpunkt der Serien (ein Montag). Bewusst NICHT „heute": so bleibt die
 # Datei bei unveränderten Terminen identisch und erzeugt keine Schein-Änderungen.
 ANCHOR = datetime.date(2026, 10, 19)
+# Bis wann Termine im Wochenwechsel (timeOdd) einzeln durchgerechnet werden.
+# Danach läuft die letzte Serie einfach alle 14 Tage weiter.
+HORIZON = datetime.date(2045, 12, 31)
 STAMP = '20261019T000000Z'
 
 FIELD = {
@@ -93,6 +96,8 @@ def read_webinars():
                 fail(f'Feld „{key}" fehlt bei: {e.strip()[:80]}')
             w[key] = f.group(1)
         w['title'] = w['title'].replace("\\'", "'")
+        odd = re.search(r"timeOdd:\s*'(\d{1,2}:\d{2})'", e)
+        w['timeOdd'] = odd.group(1) if odd else None
         w['min'] = int(w['min'])
         w['cal'] = re.findall(r"'([a-z]+)'", w['cal'])
         if w['day'] not in DAYS:
@@ -125,20 +130,51 @@ def fold(line):
     return '\r\n '.join(out)
 
 
+def alternating_runs(first, parity):
+    """Alle Termine einer KW-Parität (0 = gerade, 1 = ungerade) als Läufe mit genau
+    14 Tagen Abstand. Ein Lauf reißt nur in Jahren mit 53 KW (z. B. 2026), wo zwei
+    ungerade Wochen aufeinander folgen. Liefert (Startdatum, Anzahl), Anzahl None = offen."""
+    dates = []
+    d = first
+    while d <= HORIZON:
+        if d.isocalendar()[1] % 2 == parity:
+            dates.append(d)
+        d += datetime.timedelta(days=7)
+    runs = []
+    for d in dates:
+        if runs and (d - runs[-1][-1]).days == 14:
+            runs[-1].append(d)
+        else:
+            runs.append([d])
+    return [(r[0], len(r) if i < len(runs) - 1 else None) for i, r in enumerate(runs)]
+
+
 def event(w):
+    """VEVENTs eines Termins: eine Wochen-Serie, bei timeOdd je KW-Parität mehrere."""
     first = ANCHOR + datetime.timedelta(days=DAYS.index(w['day']))
-    hh, mm = (int(x) for x in w['time'].split(':'))
     summary = w['title'].split('|')[0].strip()
+    base = '|'.join([w['lang'], w['day'], w['time'], summary])
+    if not w['timeOdd']:
+        return vevent(w, summary, base, first, w['time'], f'FREQ=WEEKLY;BYDAY={w["day"]}')
+    lines = []
+    for parity, time in ((0, w['time']), (1, w['timeOdd'])):
+        for i, (start, count) in enumerate(alternating_runs(first, parity)):
+            rule = f'FREQ=WEEKLY;INTERVAL=2;BYDAY={w["day"]}' + (f';COUNT={count}' if count else '')
+            lines += vevent(w, summary, f'{base}|kw{parity}|{i}', start, time, rule)
+    return lines
+
+
+def vevent(w, summary, uid_src, start, time, rule):
+    hh, mm = (int(x) for x in time.split(':'))
     join = JOIN.get(w['lang'], JOIN_DEFAULT)
-    uid_src = '|'.join([w['lang'], w['day'], w['time'], summary])
     uid = hashlib.sha1(uid_src.encode('utf-8')).hexdigest()[:16]
     return [
         'BEGIN:VEVENT',
         f'UID:{uid}@bio.salusglobal.club',
         f'DTSTAMP:{STAMP}',
-        f'DTSTART;TZID=Europe/Berlin:{first:%Y%m%d}T{hh:02d}{mm:02d}00',
+        f'DTSTART;TZID=Europe/Berlin:{start:%Y%m%d}T{hh:02d}{mm:02d}00',
         f'DURATION:PT{w["min"]}M',
-        f'RRULE:FREQ=WEEKLY;BYDAY={w["day"]}',
+        f'RRULE:{rule}',
         f'SUMMARY:{esc(summary)}',
         f'LOCATION:{esc(w["url"])}',
         f'URL:{w["url"]}',

@@ -11,7 +11,7 @@ Live: https://bio.salusglobal.club
 | Webinar-Links, -Titel, -Zeiten, Sprache | `app.js`, Array `WEBINARS` (Feld `lang`: `GER`/`ENG`/`ESP`/`HUN`/`HIN`). Zeit im Titel ohne Zeitzonenkürzel (kein CEST/CET, das stimmt nur halbjährlich), sondern „DE-Zeit" / „German time" / „hora alemana" / „német idő" (seit 20.10.2026) |
 | Sprachfilter: Kürzel, Sprachname, Reihenfolge der Gruppen | `app.js`, Tabelle `LANGUAGES` |
 | Flaggen des Sprachfilters | `app.js`, Tabelle `FLAGS` — gezeichnetes SVG, KEINE Emoji (Windows liefert keine Flaggen-Emoji mit) |
-| Kalender-Daten je Termin (Wochentag, Uhrzeit, Dauer, Kunden/Influencer) | `app.js`, Array `WEBINARS`, zweite Zeile je Eintrag (`day`, `time`, `min`, `cal`) |
+| Kalender-Daten je Termin (Wochentag, Uhrzeit, Dauer, Kunden/Influencer) | `app.js`, Array `WEBINARS`, zweite Zeile je Eintrag (`day`, `time`, `min`, `cal`). Wochenwechsel (seit 27.10.2026 deutscher Community Call): zusätzlich `timeOdd`, dann gilt `time` in geraden und `timeOdd` in ungeraden ISO-KW, auch am Jahreswechsel streng nach KW (01.01. und 08.01.2027 beide ungerade) |
 | Abonnierbare Kalender (`.ics`) | `kalender/` – NICHT von Hand bearbeiten, sondern `python kalender/erzeugen.py` ausführen. Kalendernamen („Salus Global Deutsch" = Kunden, „Salus Deutsch" = Influencer) stehen im Skript |
 | Beschriftung der Kalender-Knöpfe | `app.js`, Felder `calTitle`/`cal`/`calShort`/`calCopy` in `TEXTS` (GER, ESP) bzw. im englischen `DEFAULT` |
 | Telegram-Kanäle | `app.js`, Array `TELEGRAM` |
