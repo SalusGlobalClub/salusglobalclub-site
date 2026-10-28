@@ -27,11 +27,12 @@ LANG_NAMES = {
     'GER': 'Deutsch',
     'ENG': 'English',
     'ESP': 'Español',
+    'POR': 'Português',
     'HUN': 'Magyar',
     'HIN': 'Hindi',
 }
 # gleiche Texte wie JOIN / JOIN_DEFAULT in app.js
-JOIN = {'GER': 'Per Zoom teilnehmen', 'ESP': 'Unirse por Zoom'}
+JOIN = {'GER': 'Per Zoom teilnehmen', 'ESP': 'Unirse por Zoom', 'POR': 'Participar via Zoom'}
 JOIN_DEFAULT = 'Join on Zoom'
 
 DAYS = ['MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU']

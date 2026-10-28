@@ -8,17 +8,17 @@ Live: https://bio.salusglobal.club
 
 | Was ändert sich | Wo |
 |---|---|
-| Webinar-Links, -Titel, -Zeiten, Sprache | `app.js`, Array `WEBINARS` (Feld `lang`: `GER`/`ENG`/`ESP`/`HUN`/`HIN`). Zeit im Titel ohne Zeitzonenkürzel (kein CEST/CET, das stimmt nur halbjährlich), sondern „DE-Zeit" / „German time" / „hora alemana" / „német idő" (seit 20.10.2026) |
+| Webinar-Links, -Titel, -Zeiten, Sprache | `app.js`, Array `WEBINARS` (Feld `lang`: `GER`/`ENG`/`ESP`/`POR`/`HUN`/`HIN`). Zeit im Titel ohne Zeitzonenkürzel (kein CEST/CET, das stimmt nur halbjährlich), sondern „DE-Zeit" / „German time" / „hora alemana" / „német idő" (seit 20.10.2026). **Ausnahme Portugiesisch:** Titel in Portugal-Zeit („hora de Portugal", immer 1 h hinter DE), Feld `time` trotzdem in DE-Zeit (Titel 19:00 → `time: '20:00'`) |
 | Sprachfilter: Kürzel, Sprachname, Reihenfolge der Gruppen | `app.js`, Tabelle `LANGUAGES` |
 | Flaggen des Sprachfilters | `app.js`, Tabelle `FLAGS` — gezeichnetes SVG, KEINE Emoji (Windows liefert keine Flaggen-Emoji mit) |
 | Kalender-Daten je Termin (Wochentag, Uhrzeit, Dauer, Kunden/Influencer) | `app.js`, Array `WEBINARS`, zweite Zeile je Eintrag (`day`, `time`, `min`, `cal`). Wochenwechsel (derzeit von keinem Termin genutzt; der deutsche Community Call hatte ihn nur 27./28.10.2026 und ist seitdem wieder fest Fr 19:00): zusätzlich `timeOdd`, dann gilt `time` in geraden und `timeOdd` in ungeraden ISO-KW, auch am Jahreswechsel streng nach KW (01.01. und 08.01.2027 beide ungerade) |
 | Abonnierbare Kalender (`.ics`) | `kalender/` – NICHT von Hand bearbeiten, sondern `python kalender/erzeugen.py` ausführen. Kalendernamen („Salus Global Deutsch" = Kunden, „Salus Deutsch" = Influencer) stehen im Skript |
-| Beschriftung der Kalender-Knöpfe | `app.js`, Felder `calTitle`/`cal`/`calShort`/`calCopy` in `TEXTS` (GER, ESP) bzw. im englischen `DEFAULT` |
+| Beschriftung der Kalender-Knöpfe | `app.js`, Felder `calTitle`/`cal`/`calShort`/`calCopy` in `TEXTS` (GER, ESP, POR) bzw. im englischen `DEFAULT` |
 | Telegram-Kanäle | `app.js`, Array `TELEGRAM` |
 | Vorschaubilder | `assets/*.jpg` — quadratisch, 240×240 JPEG, ≤ ~50 KB, **schwarzer Hintergrund** |
 | Beschreibungstext (englisch), Social-Links, Logo, Footer | `index.html` |
-| Deutsche und spanische Fassung von Überschrift und Beschreibungstext (erscheint nur bei aktivem GER- bzw. ESP-Filter) | `app.js`, Tabelle `TEXTS` — englischer Text steht weiterhin in `index.html` und wird von dort gelesen; ENG und HIN fallen automatisch darauf zurück |
-| Beschriftung unter dem Kartentitel („Join on Zoom" / „Per Zoom teilnehmen" / „Unirse por Zoom") | `app.js`, Tabelle `JOIN` — richtet sich nach dem `lang`-Feld des Termins, NICHT nach dem Filter; Sprachen ohne Eintrag (ENG, HIN) bekommen `JOIN_DEFAULT` auf Englisch |
+| Deutsche, spanische und portugiesische Fassung von Überschrift und Beschreibungstext (erscheint nur bei aktivem GER-, ESP- bzw. POR-Filter) | `app.js`, Tabelle `TEXTS` — englischer Text steht weiterhin in `index.html` und wird von dort gelesen; ENG und HIN fallen automatisch darauf zurück |
+| Beschriftung unter dem Kartentitel („Join on Zoom" / „Per Zoom teilnehmen" / „Unirse por Zoom" / „Participar via Zoom") | `app.js`, Tabelle `JOIN` — richtet sich nach dem `lang`-Feld des Termins, NICHT nach dem Filter; Sprachen ohne Eintrag (ENG, HIN) bekommen `JOIN_DEFAULT` auf Englisch |
 | Farben / Fonts / Design | `style.css` (alles über CSS-Variablen im `:root`-Block; je ein Block Dark/Light) |
 | Standard-Design hell/dunkel | `index.html` (`data-theme` am `<html>`) und `app.js` (`let d` im Theme-Schalter). Seit 19.10.2026 startet die Seite **immer hell**, auch bei dunkel eingestelltem Gerät; dunkel nur per Schalter |
 
