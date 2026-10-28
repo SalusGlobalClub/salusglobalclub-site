@@ -51,6 +51,9 @@ Abonnierbare Kalender (19.10.2026, Wunsch Claudio):
   übrige Business-Präsentationen, Leader und Starter Training, Community Call = Influencer
   (Community Call seit 19.10.2026 nicht mehr bei Kunden). Kalender ohne Termine werden weder erzeugt noch als Knopf gezeigt.
 - Statische `.ics`-Dateien, bewusst KEINE GitHub Action (Runner-Engpass, siehe unten).
+- **Alle Serien enden am 31.12.2026** (`END` in `kalender/erzeugen.py`, Entscheidung 28.10.2026):
+  Die Termine für 2027 werden über die Feiertage neu abgestimmt. Danach `END` weiterschieben,
+  `WEBINARS` anpassen, Skript ausführen. Die Seite selbst zeigt die Karten unabhängig davon weiter an.
 - **Dateinamen in `kalender/` (z. B. `kunden-ger.ics`) NIE ändern.** Abonnenten hängen an dieser
   Adresse; nur so bekommen sie neue Termine, Zeiten und Zoom-Links automatisch. Eine neue Adresse
   hieße: alle müssten neu abonnieren. Fällt ein Termin weg, verschwindet er bei den Abonnenten

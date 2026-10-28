@@ -38,9 +38,13 @@ DAYS = ['MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU']
 # Fester Startpunkt der Serien (ein Montag). Bewusst NICHT „heute": so bleibt die
 # Datei bei unveränderten Terminen identisch und erzeugt keine Schein-Änderungen.
 ANCHOR = datetime.date(2026, 10, 19)
-# Bis wann Termine im Wochenwechsel (timeOdd) einzeln durchgerechnet werden.
-# Danach läuft die letzte Serie einfach alle 14 Tage weiter.
-HORIZON = datetime.date(2045, 12, 31)
+# Letzter Tag, bis zu dem die Serien in den Kalendern stehen. Die Termine für 2027
+# werden über die Feiertage neu abgestimmt (Entscheidung 28.10.2026). Sobald sie
+# feststehen: Datum hier weiterschieben, Termine anpassen, Skript neu ausführen.
+END = datetime.date(2026, 12, 31)
+# UNTIL muss bei Serien mit TZID in UTC stehen: 31.12. 23:59:59 deutscher Zeit (Winterzeit, UTC+1)
+UNTIL = (datetime.datetime.combine(END, datetime.time(23, 59, 59))
+         - datetime.timedelta(hours=1)).strftime('%Y%m%dT%H%M%SZ')
 STAMP = '20261019T000000Z'
 
 FIELD = {
@@ -133,10 +137,10 @@ def fold(line):
 def alternating_runs(first, parity):
     """Alle Termine einer KW-Parität (0 = gerade, 1 = ungerade) als Läufe mit genau
     14 Tagen Abstand. Ein Lauf reißt nur in Jahren mit 53 KW (z. B. 2026), wo zwei
-    ungerade Wochen aufeinander folgen. Liefert (Startdatum, Anzahl), Anzahl None = offen."""
+    ungerade Wochen aufeinander folgen. Liefert (Startdatum, Anzahl) bis END."""
     dates = []
     d = first
-    while d <= HORIZON:
+    while d <= END:
         if d.isocalendar()[1] % 2 == parity:
             dates.append(d)
         d += datetime.timedelta(days=7)
@@ -146,7 +150,7 @@ def alternating_runs(first, parity):
             runs[-1].append(d)
         else:
             runs.append([d])
-    return [(r[0], len(r) if i < len(runs) - 1 else None) for i, r in enumerate(runs)]
+    return [(r[0], len(r)) for r in runs]
 
 
 def event(w):
@@ -155,11 +159,11 @@ def event(w):
     summary = w['title'].split('|')[0].strip()
     base = '|'.join([w['lang'], w['day'], w['time'], summary])
     if not w['timeOdd']:
-        return vevent(w, summary, base, first, w['time'], f'FREQ=WEEKLY;BYDAY={w["day"]}')
+        return vevent(w, summary, base, first, w['time'], f'FREQ=WEEKLY;BYDAY={w["day"]};UNTIL={UNTIL}')
     lines = []
     for parity, time in ((0, w['time']), (1, w['timeOdd'])):
         for i, (start, count) in enumerate(alternating_runs(first, parity)):
-            rule = f'FREQ=WEEKLY;INTERVAL=2;BYDAY={w["day"]}' + (f';COUNT={count}' if count else '')
+            rule = f'FREQ=WEEKLY;INTERVAL=2;BYDAY={w["day"]};COUNT={count}'
             lines += vevent(w, summary, f'{base}|kw{parity}|{i}', start, time, rule)
     return lines
 
