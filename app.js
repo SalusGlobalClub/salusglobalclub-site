@@ -8,6 +8,8 @@
    timeOdd = nur bei Wochenwechsel: dann gilt `time` in geraden, `timeOdd` in ungeraden
              Kalenderwochen (ISO-KW, wie im Kalender; auch am Jahreswechsel streng nach KW)
    min  = Dauer in Minuten
+   POR: im Titel steht die Zeit in Portugal (hora de Portugal = immer 1 Stunde hinter DE),
+        `time` trotzdem in deutscher Zeit, also Titel 19:00 → time '20:00'
    cal  = in welche Kalender der Termin kommt: 'kunden' und/oder 'influencer'
    Nach JEDER Änderung hier: python kalender/erzeugen.py — sonst zeigen die Kalender den alten Stand. */
 const WEBINARS = [
@@ -45,6 +47,18 @@ const WEBINARS = [
     day: 'SA', time: '10:00', min: 55, cal: ['influencer'] },
   { title: 'Starter Training | SATURDAYS 12:00 German time | 55 Min', lang: 'ENG', url: 'https://zoom.us/j/97676390953', thumb: 'assets/starter-eng.jpg',
     day: 'SA', time: '12:00', min: 55, cal: ['influencer'] },
+  { title: 'Primeiro Olhar | SEGUNDAS-FEIRAS 19:00 hora de Portugal | 30 Min', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/presentation-por.jpg',
+    day: 'MO', time: '20:00', min: 30, cal: ['influencer'] },
+  { title: 'Entender o Produto | QUARTAS-FEIRAS 19:00 hora de Portugal | 60 Min', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/produktpraesentation-por.jpg',
+    day: 'WE', time: '20:00', min: 60, cal: ['kunden', 'influencer'] },
+  { title: 'Começar Bem | QUARTAS-FEIRAS 20:15 hora de Portugal | 45 Min', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/starter-por.jpg',
+    day: 'WE', time: '21:15', min: 45, cal: ['kunden', 'influencer'] },
+  { title: 'Primeiro Olhar | SEXTAS-FEIRAS 19:00 hora de Portugal | 30 Min', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/presentation-por.jpg',
+    day: 'FR', time: '20:00', min: 30, cal: ['influencer'] },
+  { title: 'Entender o Produto | DOMINGOS 19:00 hora de Portugal | 60 Min', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/produktpraesentation-por.jpg',
+    day: 'SU', time: '20:00', min: 60, cal: ['kunden', 'influencer'] },
+  { title: 'Começar Bem | DOMINGOS 20:15 hora de Portugal | 45 Min', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/starter-por.jpg',
+    day: 'SU', time: '21:15', min: 45, cal: ['kunden', 'influencer'] },
 ];
 
 /* Sprachen für Filter-Knöpfe und Gruppen-Überschriften.
@@ -55,6 +69,7 @@ const LANGUAGES = [
   { code: 'GER', heading: 'Deutsch' },
   { code: 'ENG', heading: 'English' },
   { code: 'ESP', heading: 'Español' },
+  { code: 'POR', heading: 'Português' },
   { code: 'HUN', heading: 'Magyar' },
   { code: 'HIN', heading: 'हिन्दी · Hindi' },
 ];
@@ -100,6 +115,23 @@ const TEXTS = {
     calCopy: 'Copiar enlace (Outlook y otros)',
     calCopied: 'Enlace copiado',
   },
+  POR: {
+    htmlLang: 'pt',
+    title: 'Webinars e Canais',
+    desc: 'Damos-te as boas-vindas. O conhecimento é a chave do teu sucesso. Participa nos '
+        + 'nossos webinars semanais e formações em direto para fazeres crescer o teu negócio, '
+        + 'desenvolveres a tua equipa e convidares novos interessados com confiança. Participa '
+        + 'com regularidade e vê o impulso a crescer. Não percas nenhuma atualização, novidade '
+        + 'ou anúncio do Salus Global Club. Segue os nossos canais de Telegram e mantém-te '
+        + 'informado, onde quer que estejas. Rápido, direto e sempre atualizado.',
+    inWord: 'em',                                         /* „6 sessões em Português" */
+    sessions: (n) => (n === 1 ? '1 sessão' : n + ' sessões'),
+    calTitle: 'As sessões no teu calendário',
+    cal: { kunden: 'Calendário para clientes', influencer: 'Calendário para influencers' },
+    calShort: { kunden: 'Clientes', influencer: 'Influencers' },
+    calCopy: 'Copiar link (Outlook e outros)',
+    calCopied: 'Link copiado',
+  },
 };
 
 /* Beschriftung unter dem Kartentitel. Sie richtet sich nach der Sprache des
@@ -110,6 +142,7 @@ const JOIN_DEFAULT = 'Join on Zoom';
 const JOIN = {
   GER: 'Per Zoom teilnehmen',
   ESP: 'Unirse por Zoom',
+  POR: 'Participar via Zoom',
 };
 
 /* Abonnierbare Kalender: je Sprache einer pro Zielgruppe (Feld `cal` in WEBINARS).
@@ -123,6 +156,7 @@ const CAL_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" st
 const TELEGRAM = [
   { title: 'SGC - International Official \u{1F30D}', url: 'https://t.me/SGC_international', thumb: 'assets/tg-int.jpg' },
   { title: 'SGC - Español Oficial \u{1F1EA}\u{1F1F8}', url: 'https://t.me/SGC_espanol', thumb: 'assets/tg-es.jpg' },
+  { title: 'SGC - Português Oficial \u{1F1F5}\u{1F1F9}', url: 'https://t.me/SGC_portugues', thumb: 'assets/tg-pt.jpg' },
   { title: 'SGC - DACH Offiziell \u{1F1E9}\u{1F1EA}\u{1F1E6}\u{1F1F9}\u{1F1E8}\u{1F1ED}', url: 'https://t.me/SGC_DACH', thumb: 'assets/tg-dach.jpg' },
 ];
 
@@ -138,6 +172,8 @@ const FLAGS = {
      + '<path d="M10.5 0V15M0 7.5H21" stroke="#fff" stroke-width="5"/>'
      + '<path d="M10.5 0V15M0 7.5H21" stroke="#c8102e" stroke-width="3"/></svg>',
   ESP: '<svg viewBox="0 0 21 15"><rect width="21" height="15" fill="#aa151b"/><rect y="3.75" width="21" height="7.5" fill="#f1bf00"/></svg>',
+  POR: '<svg viewBox="0 0 21 15"><rect width="21" height="15" fill="#da291c"/><rect width="8.4" height="15" fill="#046a38"/>'
+     + '<circle cx="8.4" cy="7.5" r="3.2" fill="#ffe900"/><path d="M6.7 5.7h3.4v2.6a1.7 1.7 0 0 1-3.4 0z" fill="#fff" stroke="#da291c" stroke-width="0.7"/></svg>',
   HUN: '<svg viewBox="0 0 21 15"><rect width="21" height="15" fill="#477050"/><rect width="21" height="10" fill="#fff"/><rect width="21" height="5" fill="#ce2939"/></svg>',
   HIN: '<svg viewBox="0 0 21 15"><rect width="21" height="15" fill="#138808"/><rect width="21" height="10" fill="#fff"/><rect width="21" height="5" fill="#f93"/>'
      + '<circle cx="10.5" cy="7.5" r="1.8" fill="none" stroke="#008" stroke-width="0.55"/><circle cx="10.5" cy="7.5" r="0.45" fill="#008"/></svg>',
