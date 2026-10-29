@@ -25,36 +25,36 @@ RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
 END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
-UID:b70d1668aca19d12@bio.salusglobal.club
+UID:ee55c9488c8444a8@bio.salusglobal.club
 DTSTAMP:20261019T000000Z
 DTSTART;TZID=Europe/Berlin:20261019T200000
 DURATION:PT60M
 RRULE:FREQ=WEEKLY;BYDAY=MO;UNTIL=20261231T225959Z
-SUMMARY:Auvesta Product Presentation\, Q&A and onboarding support
+SUMMARY:Auvesta Product Presentation and Q&A
 LOCATION:https://zoom.us/j/94836921010
 URL:https://zoom.us/j/94836921010
 DESCRIPTION:Join on Zoom: https://zoom.us/j/94836921010\n\nhttps://bio.salu
  sglobal.club
 END:VEVENT
 BEGIN:VEVENT
-UID:ba5a6f3c92588bb2@bio.salusglobal.club
+UID:c30e8b0b3db31c9b@bio.salusglobal.club
 DTSTAMP:20261019T000000Z
 DTSTART;TZID=Europe/Berlin:20261020T200000
 DURATION:PT60M
 RRULE:FREQ=WEEKLY;BYDAY=TU;UNTIL=20261231T225959Z
-SUMMARY:tegasFX Product Presentation\, Q&A and onboarding support
+SUMMARY:tegasFX Product Presentation and Q&A
 LOCATION:https://zoom.us/j/94836921010
 URL:https://zoom.us/j/94836921010
 DESCRIPTION:Join on Zoom: https://zoom.us/j/94836921010\n\nhttps://bio.salu
  sglobal.club
 END:VEVENT
 BEGIN:VEVENT
-UID:dfe45b53ca9a1e53@bio.salusglobal.club
+UID:36bad16773ae0b27@bio.salusglobal.club
 DTSTAMP:20261019T000000Z
 DTSTART;TZID=Europe/Berlin:20261021T200000
 DURATION:PT60M
 RRULE:FREQ=WEEKLY;BYDAY=WE;UNTIL=20261231T225959Z
-SUMMARY:Aionas21 Product Presentation\, Q&A and onboarding support
+SUMMARY:Aionas21 Product Presentation and Q&A
 LOCATION:https://zoom.us/j/94836921010
 URL:https://zoom.us/j/94836921010
 DESCRIPTION:Join on Zoom: https://zoom.us/j/94836921010\n\nhttps://bio.salu
