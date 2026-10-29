@@ -37,12 +37,12 @@ DESCRIPTION:Join on Zoom: https://zoom.us/j/95770825858\n\nhttps://bio.salu
  sglobal.club
 END:VEVENT
 BEGIN:VEVENT
-UID:eae736fe0c561d7a@bio.salusglobal.club
+UID:8f074bc1cf33fd58@bio.salusglobal.club
 DTSTAMP:20261019T000000Z
 DTSTART;TZID=Europe/Berlin:20261022T200000
 DURATION:PT60M
 RRULE:FREQ=WEEKLY;BYDAY=TH;UNTIL=20261231T225959Z
-SUMMARY:Business Presentation
+SUMMARY:Business Presentation and Q&A
 LOCATION:https://zoom.us/j/4363761606
 URL:https://zoom.us/j/4363761606
 DESCRIPTION:Join on Zoom: https://zoom.us/j/4363761606\n\nhttps://bio.salus
@@ -52,7 +52,7 @@ BEGIN:VEVENT
 UID:e2e97c01d9974d99@bio.salusglobal.club
 DTSTAMP:20261019T000000Z
 DTSTART;TZID=Europe/Berlin:20261023T173000
-DURATION:PT90M
+DURATION:PT60M
 RRULE:FREQ=WEEKLY;BYDAY=FR;UNTIL=20261231T225959Z
 SUMMARY:Community Call
 LOCATION:https://us06web.zoom.us/j/86751323217?pwd=twdahDFW5ol51WpHHQ0l80CN
