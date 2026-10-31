@@ -32,7 +32,7 @@ LANG_NAMES = {
     'HIN': 'Hindi',
 }
 # gleiche Texte wie JOIN / JOIN_DEFAULT in app.js
-JOIN = {'GER': 'Per Zoom teilnehmen', 'ESP': 'Unirse por Zoom', 'POR': 'Participar via Zoom'}
+JOIN = {'GER': 'Per Zoom teilnehmen', 'ESP': 'Unirse por Zoom', 'POR': 'Entrar no Zoom'}
 JOIN_DEFAULT = 'Join on Zoom'
 
 DAYS = ['MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU']
@@ -43,7 +43,8 @@ ANCHOR = datetime.date(2026, 10, 19)
 # werden über die Feiertage neu abgestimmt (Entscheidung 28.10.2026). Sobald sie
 # feststehen: Datum hier weiterschieben, Termine anpassen, Skript neu ausführen.
 END = datetime.date(2026, 12, 31)
-# UNTIL muss bei Serien mit TZID in UTC stehen: 31.12. 23:59:59 deutscher Zeit (Winterzeit, UTC+1)
+# UNTIL muss bei Serien mit TZID in UTC stehen: 31.12. 23:59:59 deutscher Zeit (Winterzeit, UTC+1).
+# Gilt auch für Lissabon-Termine: die letzten liegen dort vor 22:59 Ortszeit.
 UNTIL = (datetime.datetime.combine(END, datetime.time(23, 59, 59))
          - datetime.timedelta(hours=1)).strftime('%Y%m%dT%H%M%SZ')
 STAMP = '20261019T000000Z'
@@ -56,6 +57,23 @@ FIELD = {
     'time': r"time:\s*'(\d{1,2}:\d{2})'",
     'min': r"min:\s*(\d+)",
     'cal': r"cal:\s*\[([^\]]*)\]",
+}
+
+# Zeitzonen, die in WEBINARS vorkommen dürfen (Feld tz, Standard Europe/Berlin).
+# Beide stellen gleichzeitig um (EU-Regel), nur der Abstand zu UTC unterscheidet sich.
+def vtimezone(tzid, std, dst, std_name, dst_name, spring_local, autumn_local):
+    return [
+        'BEGIN:VTIMEZONE', f'TZID:{tzid}',
+        'BEGIN:DAYLIGHT', f'TZOFFSETFROM:{std}', f'TZOFFSETTO:{dst}', f'TZNAME:{dst_name}',
+        f'DTSTART:19700329T{spring_local}', 'RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU', 'END:DAYLIGHT',
+        'BEGIN:STANDARD', f'TZOFFSETFROM:{dst}', f'TZOFFSETTO:{std}', f'TZNAME:{std_name}',
+        f'DTSTART:19701025T{autumn_local}', 'RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU', 'END:STANDARD',
+        'END:VTIMEZONE',
+    ]
+
+
+TIMEZONES = {
+    'Europe/Lisbon': vtimezone('Europe/Lisbon', '+0000', '+0100', 'WET', 'WEST', '010000', '020000'),
 }
 
 VTIMEZONE = [
@@ -103,6 +121,13 @@ def read_webinars():
         w['title'] = w['title'].replace("\\'", "'")
         odd = re.search(r"timeOdd:\s*'(\d{1,2}:\d{2})'", e)
         w['timeOdd'] = odd.group(1) if odd else None
+        tz = re.search(r"tz:\s*'([^']+)'", e)
+        w['tz'] = tz.group(1) if tz else 'Europe/Berlin'
+        if w['tz'] != 'Europe/Berlin' and w['tz'] not in TIMEZONES:
+            fail(f'Zeitzone „{w["tz"]}" fehlt in TIMEZONES (erzeugen.py).')
+        for key in ('sub', 'desc'):
+            f = re.search(key + r":\s*'((?:[^'\\]|\\.)*)'", e)
+            w[key] = f.group(1).replace("\\'", "'") if f else None
         w['min'] = int(w['min'])
         w['cal'] = re.findall(r"'([a-z]+)'", w['cal'])
         if w['day'] not in DAYS:
@@ -177,15 +202,22 @@ def vevent(w, summary, uid_src, start, time, rule):
         'BEGIN:VEVENT',
         f'UID:{uid}@bio.salusglobal.club',
         f'DTSTAMP:{STAMP}',
-        f'DTSTART;TZID=Europe/Berlin:{start:%Y%m%d}T{hh:02d}{mm:02d}00',
+        f'DTSTART;TZID={w["tz"]}:{start:%Y%m%d}T{hh:02d}{mm:02d}00',
         f'DURATION:PT{w["min"]}M',
         f'RRULE:{rule}',
         f'SUMMARY:{esc(summary)}',
         f'LOCATION:{esc(w["url"])}',
         f'URL:{w["url"]}',
-        f'DESCRIPTION:{esc(join + ": " + w["url"] + chr(10) + chr(10) + "https://bio.salusglobal.club")}',
+        f'DESCRIPTION:{esc(description(w, join))}',
         'END:VEVENT',
     ]
+
+
+def description(w, join):
+    """Untertitel, Beschreibung und Zusatzzeilen des Titels (z. B. Referent), dann Zoom-Link."""
+    extra = [p.strip() for p in w['title'].split('|')[3:] if p.strip()]
+    head = [x for x in (w['sub'], w['desc'], *extra) if x]
+    return '\n\n'.join(head + [f'{join}: {w["url"]}', 'https://bio.salusglobal.club'])
 
 
 def calendar(name, items):
@@ -200,6 +232,7 @@ def calendar(name, items):
         'REFRESH-INTERVAL;VALUE=DURATION:PT12H',
         'X-PUBLISHED-TTL:PT12H',
         *VTIMEZONE,
+        *[l for tz in sorted({w['tz'] for w in items}) if tz in TIMEZONES for l in TIMEZONES[tz]],
     ]
     for w in items:
         lines += event(w)

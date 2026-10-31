@@ -24,10 +24,27 @@ DTSTART:19701025T030000
 RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
 END:STANDARD
 END:VTIMEZONE
+BEGIN:VTIMEZONE
+TZID:Europe/Lisbon
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0000
+TZOFFSETTO:+0100
+TZNAME:WEST
+DTSTART:19700329T010000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0000
+TZNAME:WET
+DTSTART:19701025T020000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
 BEGIN:VEVENT
-UID:9cf5a8de13d91811@bio.salusglobal.club
+UID:e8588303c1f386ad@bio.salusglobal.club
 DTSTAMP:20261019T000000Z
-DTSTART;TZID=Europe/Berlin:20261019T200000
+DTSTART;TZID=Europe/Lisbon:20261019T190000
 DURATION:PT30M
 RRULE:FREQ=WEEKLY;BYDAY=MO;UNTIL=20261231T225959Z
 SUMMARY:Primeiro Olhar
@@ -35,13 +52,16 @@ LOCATION:https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJ
  KxyfS4.1
 URL:https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS
  4.1
-DESCRIPTION:Participar via Zoom: https://us06web.zoom.us/j/82338597067?pwd=
+DESCRIPTION:Introdução ao SALUS GLOBAL CLUB\n\nDescobre o SALUS GLOBAL CL
+ UB\, o nosso conceito internacional e as oportunidades disponíveis. Uma a
+ presentação introdutória de 30 minutos para novos convidados.\n\ncom Ca
+ rlos Repolho\n\nEntrar no Zoom: https://us06web.zoom.us/j/82338597067?pwd=
  UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1\n\nhttps://bio.salusglobal.club
 END:VEVENT
 BEGIN:VEVENT
-UID:254364197b9b142d@bio.salusglobal.club
+UID:fed33f45aa1b755d@bio.salusglobal.club
 DTSTAMP:20261019T000000Z
-DTSTART;TZID=Europe/Berlin:20261021T200000
+DTSTART;TZID=Europe/Lisbon:20261021T190000
 DURATION:PT60M
 RRULE:FREQ=WEEKLY;BYDAY=WE;UNTIL=20261231T225959Z
 SUMMARY:Entender o Produto
@@ -49,13 +69,16 @@ LOCATION:https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJ
  KxyfS4.1
 URL:https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS
  4.1
-DESCRIPTION:Participar via Zoom: https://us06web.zoom.us/j/82338597067?pwd=
- UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1\n\nhttps://bio.salusglobal.club
+DESCRIPTION:Formação de Produto ao Vivo\n\nConhece melhor os produtos e s
+ erviços do nosso ecossistema. Formação interativa com diferentes temas\
+ , explicações práticas e perguntas e respostas.\n\ncom Carlos Repolho\n
+ \nEntrar no Zoom: https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb
+ 61gGQbE9nJKxyfS4.1\n\nhttps://bio.salusglobal.club
 END:VEVENT
 BEGIN:VEVENT
-UID:4af637c99cb50bae@bio.salusglobal.club
+UID:a78cbd427f96d9f2@bio.salusglobal.club
 DTSTAMP:20261019T000000Z
-DTSTART;TZID=Europe/Berlin:20261021T211500
+DTSTART;TZID=Europe/Lisbon:20261021T201500
 DURATION:PT45M
 RRULE:FREQ=WEEKLY;BYDAY=WE;UNTIL=20261231T225959Z
 SUMMARY:Começar Bem
@@ -63,13 +86,17 @@ LOCATION:https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJ
  KxyfS4.1
 URL:https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS
  4.1
-DESCRIPTION:Participar via Zoom: https://us06web.zoom.us/j/82338597067?pwd=
- UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1\n\nhttps://bio.salusglobal.club
+DESCRIPTION:Educação ao Vivo – Tudo o que precisas para começar\n\nApr
+ ende a utilizar o Backoffice\, o ClubPilot AI e as ferramentas do SALUS GL
+ OBAL CLUB. Descobre como ativar os produtos e dar os primeiros passos no d
+ esenvolvimento do teu negócio.\n\ncom Carlos Repolho\n\nEntrar no Zoom: h
+ ttps://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1\
+ n\nhttps://bio.salusglobal.club
 END:VEVENT
 BEGIN:VEVENT
-UID:8e07d1339e15cd2a@bio.salusglobal.club
+UID:ec9c242ed79fef5a@bio.salusglobal.club
 DTSTAMP:20261019T000000Z
-DTSTART;TZID=Europe/Berlin:20261023T200000
+DTSTART;TZID=Europe/Lisbon:20261023T190000
 DURATION:PT30M
 RRULE:FREQ=WEEKLY;BYDAY=FR;UNTIL=20261231T225959Z
 SUMMARY:Primeiro Olhar
@@ -77,13 +104,16 @@ LOCATION:https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJ
  KxyfS4.1
 URL:https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS
  4.1
-DESCRIPTION:Participar via Zoom: https://us06web.zoom.us/j/82338597067?pwd=
+DESCRIPTION:Introdução ao SALUS GLOBAL CLUB\n\nDescobre o SALUS GLOBAL CL
+ UB\, o nosso conceito internacional e as oportunidades disponíveis. Uma a
+ presentação introdutória de 30 minutos para novos convidados.\n\ncom Ca
+ rlos Repolho\n\nEntrar no Zoom: https://us06web.zoom.us/j/82338597067?pwd=
  UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1\n\nhttps://bio.salusglobal.club
 END:VEVENT
 BEGIN:VEVENT
-UID:8184d3307aecfb22@bio.salusglobal.club
+UID:90947f8fcda2a1ff@bio.salusglobal.club
 DTSTAMP:20261019T000000Z
-DTSTART;TZID=Europe/Berlin:20261025T200000
+DTSTART;TZID=Europe/Lisbon:20261025T190000
 DURATION:PT60M
 RRULE:FREQ=WEEKLY;BYDAY=SU;UNTIL=20261231T225959Z
 SUMMARY:Entender o Produto
@@ -91,13 +121,16 @@ LOCATION:https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJ
  KxyfS4.1
 URL:https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS
  4.1
-DESCRIPTION:Participar via Zoom: https://us06web.zoom.us/j/82338597067?pwd=
- UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1\n\nhttps://bio.salusglobal.club
+DESCRIPTION:Formação de Produto ao Vivo\n\nConhece melhor os produtos e s
+ erviços do nosso ecossistema. Formação interativa com diferentes temas\
+ , explicações práticas e perguntas e respostas.\n\ncom Carlos Repolho\n
+ \nEntrar no Zoom: https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb
+ 61gGQbE9nJKxyfS4.1\n\nhttps://bio.salusglobal.club
 END:VEVENT
 BEGIN:VEVENT
-UID:b50a733f8e55d4d1@bio.salusglobal.club
+UID:348f4c1d2a723fd2@bio.salusglobal.club
 DTSTAMP:20261019T000000Z
-DTSTART;TZID=Europe/Berlin:20261025T211500
+DTSTART;TZID=Europe/Lisbon:20261025T201500
 DURATION:PT45M
 RRULE:FREQ=WEEKLY;BYDAY=SU;UNTIL=20261231T225959Z
 SUMMARY:Começar Bem
@@ -105,7 +138,11 @@ LOCATION:https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJ
  KxyfS4.1
 URL:https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS
  4.1
-DESCRIPTION:Participar via Zoom: https://us06web.zoom.us/j/82338597067?pwd=
- UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1\n\nhttps://bio.salusglobal.club
+DESCRIPTION:Educação ao Vivo – Tudo o que precisas para começar\n\nApr
+ ende a utilizar o Backoffice\, o ClubPilot AI e as ferramentas do SALUS GL
+ OBAL CLUB. Descobre como ativar os produtos e dar os primeiros passos no d
+ esenvolvimento do teu negócio.\n\ncom Carlos Repolho\n\nEntrar no Zoom: h
+ ttps://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1\
+ n\nhttps://bio.salusglobal.club
 END:VEVENT
 END:VCALENDAR

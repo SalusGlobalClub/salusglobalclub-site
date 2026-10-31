@@ -8,8 +8,9 @@
    timeOdd = nur bei Wochenwechsel: dann gilt `time` in geraden, `timeOdd` in ungeraden
              Kalenderwochen (ISO-KW, wie im Kalender; auch am Jahreswechsel streng nach KW)
    min  = Dauer in Minuten
-   POR: im Titel steht die Zeit in Portugal (hora de Portugal = immer 1 Stunde hinter DE),
-        `time` trotzdem in deutscher Zeit, also Titel 19:00 → time '20:00'
+   tz   = nur wenn die Zeit NICHT deutsche Zeit ist, z. B. 'Europe/Lisbon' (Portugiesisch):
+          dann steht `time` in dieser Zeitzone, genau wie im Titel („hora de Portugal")
+   sub, desc = optional: Untertitel und Beschreibung, erscheinen auf der Karte und im Kalender
    cal  = in welche Kalender der Termin kommt: 'kunden' und/oder 'influencer'
    Nach JEDER Änderung hier: python kalender/erzeugen.py — sonst zeigen die Kalender den alten Stand. */
 const WEBINARS = [
@@ -47,18 +48,30 @@ const WEBINARS = [
     day: 'SA', time: '10:00', min: 55, cal: ['influencer'] },
   { title: 'Starter Training | SATURDAYS 12:00 German time | 55 Min', lang: 'ENG', url: 'https://zoom.us/j/97676390953', thumb: 'assets/starter-eng.jpg',
     day: 'SA', time: '12:00', min: 55, cal: ['influencer'] },
-  { title: 'Primeiro Olhar | SEGUNDAS-FEIRAS 19:00 hora de Portugal | 30 Min', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/presentation-por.jpg',
-    day: 'MO', time: '20:00', min: 30, cal: ['influencer'] },
-  { title: 'Entender o Produto | QUARTAS-FEIRAS 19:00 hora de Portugal | 60 Min', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/produktpraesentation-por.jpg',
-    day: 'WE', time: '20:00', min: 60, cal: ['kunden', 'influencer'] },
-  { title: 'Começar Bem | QUARTAS-FEIRAS 20:15 hora de Portugal | 45 Min', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/starter-por.jpg',
-    day: 'WE', time: '21:15', min: 45, cal: ['kunden', 'influencer'] },
-  { title: 'Primeiro Olhar | SEXTAS-FEIRAS 19:00 hora de Portugal | 30 Min', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/presentation-por.jpg',
-    day: 'FR', time: '20:00', min: 30, cal: ['influencer'] },
-  { title: 'Entender o Produto | DOMINGOS 19:00 hora de Portugal | 60 Min', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/produktpraesentation-por.jpg',
-    day: 'SU', time: '20:00', min: 60, cal: ['kunden', 'influencer'] },
-  { title: 'Começar Bem | DOMINGOS 20:15 hora de Portugal | 45 Min', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/starter-por.jpg',
-    day: 'SU', time: '21:15', min: 45, cal: ['kunden', 'influencer'] },
+  { title: 'Primeiro Olhar | SEGUNDAS-FEIRAS 19:00 hora de Portugal | 30 Min | com Carlos Repolho', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/presentation-por.jpg',
+    sub: 'Introdução ao SALUS GLOBAL CLUB',
+    desc: 'Descobre o SALUS GLOBAL CLUB, o nosso conceito internacional e as oportunidades disponíveis. Uma apresentação introdutória de 30 minutos para novos convidados.',
+    day: 'MO', time: '19:00', tz: 'Europe/Lisbon', min: 30, cal: ['influencer'] },
+  { title: 'Entender o Produto | QUARTAS-FEIRAS 19:00 hora de Portugal | 60 Min | com Carlos Repolho', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/produktpraesentation-por.jpg',
+    sub: 'Formação de Produto ao Vivo',
+    desc: 'Conhece melhor os produtos e serviços do nosso ecossistema. Formação interativa com diferentes temas, explicações práticas e perguntas e respostas.',
+    day: 'WE', time: '19:00', tz: 'Europe/Lisbon', min: 60, cal: ['kunden', 'influencer'] },
+  { title: 'Começar Bem | QUARTAS-FEIRAS 20:15 hora de Portugal | 45 Min | com Carlos Repolho', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/starter-por.jpg',
+    sub: 'Educação ao Vivo – Tudo o que precisas para começar',
+    desc: 'Aprende a utilizar o Backoffice, o ClubPilot AI e as ferramentas do SALUS GLOBAL CLUB. Descobre como ativar os produtos e dar os primeiros passos no desenvolvimento do teu negócio.',
+    day: 'WE', time: '20:15', tz: 'Europe/Lisbon', min: 45, cal: ['kunden', 'influencer'] },
+  { title: 'Primeiro Olhar | SEXTAS-FEIRAS 19:00 hora de Portugal | 30 Min | com Carlos Repolho', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/presentation-por.jpg',
+    sub: 'Introdução ao SALUS GLOBAL CLUB',
+    desc: 'Descobre o SALUS GLOBAL CLUB, o nosso conceito internacional e as oportunidades disponíveis. Uma apresentação introdutória de 30 minutos para novos convidados.',
+    day: 'FR', time: '19:00', tz: 'Europe/Lisbon', min: 30, cal: ['influencer'] },
+  { title: 'Entender o Produto | DOMINGOS 19:00 hora de Portugal | 60 Min | com Carlos Repolho', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/produktpraesentation-por.jpg',
+    sub: 'Formação de Produto ao Vivo',
+    desc: 'Conhece melhor os produtos e serviços do nosso ecossistema. Formação interativa com diferentes temas, explicações práticas e perguntas e respostas.',
+    day: 'SU', time: '19:00', tz: 'Europe/Lisbon', min: 60, cal: ['kunden', 'influencer'] },
+  { title: 'Começar Bem | DOMINGOS 20:15 hora de Portugal | 45 Min | com Carlos Repolho', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/starter-por.jpg',
+    sub: 'Educação ao Vivo – Tudo o que precisas para começar',
+    desc: 'Aprende a utilizar o Backoffice, o ClubPilot AI e as ferramentas do SALUS GLOBAL CLUB. Descobre como ativar os produtos e dar os primeiros passos no desenvolvimento do teu negócio.',
+    day: 'SU', time: '20:15', tz: 'Europe/Lisbon', min: 45, cal: ['kunden', 'influencer'] },
 ];
 
 /* Sprachen für Filter-Knöpfe und Gruppen-Überschriften.
@@ -142,7 +155,7 @@ const JOIN_DEFAULT = 'Join on Zoom';
 const JOIN = {
   GER: 'Per Zoom teilnehmen',
   ESP: 'Unirse por Zoom',
-  POR: 'Participar via Zoom',
+  POR: 'Entrar no Zoom',
 };
 
 /* Abonnierbare Kalender: je Sprache einer pro Zielgruppe (Feld `cal` in WEBINARS).
@@ -217,6 +230,20 @@ function renderCard(item, kind) {
       when.appendChild(document.createTextNode(line));
     });
     body.appendChild(when);
+  }
+
+  /* optionaler Untertitel (fett) und Beschreibung, bisher nur bei Portugiesisch */
+  if (item.sub || item.desc) {
+    const d = document.createElement('p');
+    d.className = 'card__desc';
+    if (item.sub) {
+      const strong = document.createElement('strong');
+      strong.textContent = item.sub;
+      d.appendChild(strong);
+      if (item.desc) d.appendChild(document.createElement('br'));
+    }
+    if (item.desc) d.appendChild(document.createTextNode(item.desc));
+    body.appendChild(d);
   }
 
   const meta = document.createElement('span');
