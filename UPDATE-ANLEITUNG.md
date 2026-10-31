@@ -52,7 +52,7 @@ Jede Zeile in `WEBINARS` hat ein Feld `lang` — danach richtet sich der Sprachf
 
 `{ title: 'Business Präsentation GER | …', lang: 'GER', url: 'https://…', thumb: 'assets/…' },`
 
-- Mögliche Werte: `'GER'`, `'ENG'`, `'ESP'`, `'HUN'`, `'HIN'`.
+- Mögliche Werte: `'GER'`, `'ENG'`, `'ESP'`, `'POR'`, `'HUN'`, `'HIN'`.
 - **Ohne `lang` erscheint der Termin in keiner Gruppe und ist auf der Seite unsichtbar** —
   das Feld also nie vergessen.
 - Neue Sprache aufnehmen: in `app.js` in der Tabelle `LANGUAGES` (direkt unter den Listen)
