@@ -171,6 +171,10 @@ const TELEGRAM = [
   { title: 'SGC - Español Oficial \u{1F1EA}\u{1F1F8}', url: 'https://t.me/SGC_espanol', thumb: 'assets/tg-es.jpg' },
   { title: 'SGC - Português Oficial \u{1F1F5}\u{1F1F9}', url: 'https://t.me/SGC_portugues', thumb: 'assets/tg-pt.jpg' },
   { title: 'SGC - DACH Offiziell \u{1F1E9}\u{1F1EA}\u{1F1E6}\u{1F1F9}\u{1F1E8}\u{1F1ED}', url: 'https://t.me/SGC_DACH', thumb: 'assets/tg-dach.jpg' },
+  { title: 'SGC - Nederlands Officieel \u{1F1F3}\u{1F1F1}', url: 'https://t.me/sgc_nederlands', thumb: 'assets/tg-nl.jpg' },
+  { title: 'SGC - Magyar Hivatalos \u{1F1ED}\u{1F1FA}', url: 'https://t.me/sgc_hungarian', thumb: 'assets/tg-hu.jpg' },
+  { title: 'SGC - Македонски Официјален \u{1F1F2}\u{1F1F0}', url: 'https://t.me/sgc_macedonian', thumb: 'assets/tg-mk.jpg' },
+  { title: 'SGC - Shqip Zyrtar \u{1F1E6}\u{1F1F1}', url: 'https://t.me/sgc_albanian', thumb: 'assets/tg-al.jpg' },
 ];
 
 /* Flaggen bewusst als gezeichnetes SVG, NICHT als Emoji (🇩🇪 …):
