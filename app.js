@@ -4,7 +4,7 @@
 
 /* Zweite Zeile je Termin = Daten für die abonnierbaren Kalender (Ordner kalender/):
    day  = Wochentag MO TU WE TH FR SA SU
-   time = Beginn in deutscher Zeit (Europe/Berlin), wie im Titel („DE-Zeit" / „German time")
+   time = Beginn in deutscher Zeit (Europe/Berlin), wie im Titel („DE-Zeit" bzw. „CET")
    timeOdd = nur bei Wochenwechsel: dann gilt `time` in geraden, `timeOdd` in ungeraden
              Kalenderwochen (ISO-KW, wie im Kalender; auch am Jahreswechsel streng nach KW)
    min  = Dauer in Minuten
@@ -16,7 +16,7 @@
 const WEBINARS = [
   { title: 'Auvesta Produktpräsentation und Q&A | MONTAGS 19:00 DE-Zeit | 60 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg',
     day: 'MO', time: '19:00', min: 60, cal: ['kunden'] },
-  { title: 'Auvesta Product Presentation and Q&A | MONDAYS 20:00 German time | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation-eng.jpg',
+  { title: 'Auvesta Product Presentation and Q&A | MONDAYS 20:00 CET | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation-eng.jpg',
     day: 'MO', time: '20:00', min: 60, cal: ['kunden'] },
   { title: 'Business Präsentation | DIENSTAGS 9:30 DE-Zeit | 50 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-ger.jpg',
     day: 'TU', time: '09:30', min: 50, cal: ['kunden', 'influencer'] },
@@ -24,29 +24,29 @@ const WEBINARS = [
     day: 'TU', time: '10:30', min: 120, cal: ['influencer'] },
   { title: 'tegasFX Produktpräsentation und Q&A | DIENSTAGS 19:00 DE-Zeit | 60 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg',
     day: 'TU', time: '19:00', min: 60, cal: ['kunden'] },
-  { title: 'tegasFX Product Presentation and Q&A | TUESDAYS 20:00 German time | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation-eng.jpg',
+  { title: 'tegasFX Product Presentation and Q&A | TUESDAYS 20:00 CET | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation-eng.jpg',
     day: 'TU', time: '20:00', min: 60, cal: ['kunden'] },
-  { title: 'Leader Training | WEDNESDAYS 10:30 German time | 2h', lang: 'ENG', url: 'https://zoom.us/j/95770825858', thumb: 'assets/leader-eng.jpg',
+  { title: 'Leader Training | WEDNESDAYS 10:30 CET | 2h', lang: 'ENG', url: 'https://zoom.us/j/95770825858', thumb: 'assets/leader-eng.jpg',
     day: 'WE', time: '10:30', min: 120, cal: ['influencer'] },
   { title: 'Aionas21 Produktpräsentation und Q&A | MITTWOCHS 19:00 DE-Zeit | 60 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation.jpg',
     day: 'WE', time: '19:00', min: 60, cal: ['kunden'] },
-  { title: 'Aionas21 Product Presentation and Q&A | WEDNESDAYS 20:00 German time | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation-eng.jpg',
+  { title: 'Aionas21 Product Presentation and Q&A | WEDNESDAYS 20:00 CET | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/94836921010', thumb: 'assets/produktpraesentation-eng.jpg',
     day: 'WE', time: '20:00', min: 60, cal: ['kunden'] },
-  { title: 'Salus Global Club Prezentáció | SZERDÁNKÉNT 19:00 német idő | 60 perc', lang: 'HUN', url: 'https://zoom.us/j/4363761606', thumb: 'assets/presentation-hun.jpg',
+  { title: 'Salus Global Club Prezentáció | SZERDÁNKÉNT 19:00 CET | 60 perc', lang: 'HUN', url: 'https://zoom.us/j/4363761606', thumb: 'assets/presentation-hun.jpg',
     day: 'WE', time: '19:00', min: 60, cal: ['influencer'] },
   { title: 'Business Präsentation und Q&A | DONNERSTAGS 19:00 DE-Zeit | 90 Min', lang: 'GER', url: 'https://zoom.us/j/94836921010', thumb: 'assets/business-qna-ger.jpg',
     day: 'TH', time: '19:00', min: 90, cal: ['influencer'] },
-  { title: 'Business Presentation and Q&A | THURSDAYS 20:00 German time | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/4363761606', thumb: 'assets/presentation-eng.jpg',
+  { title: 'Business Presentation and Q&A | THURSDAYS 20:00 CET | 60 Min', lang: 'ENG', url: 'https://zoom.us/j/4363761606', thumb: 'assets/presentation-eng.jpg',
     day: 'TH', time: '20:00', min: 60, cal: ['influencer'] },
-  { title: 'Presentación de negocio | JUEVES 21:00 hora alemana | 60 Min', lang: 'ESP', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-esp.jpg',
+  { title: 'Presentación de negocio | JUEVES 21:00 CET | 60 Min', lang: 'ESP', url: 'https://zoom.us/j/94836921010', thumb: 'assets/presentation-esp.jpg',
     day: 'TH', time: '21:00', min: 60, cal: ['influencer'] },
   { title: 'Community Call | FREITAGS 19:00 DE-Zeit | 60 Min', lang: 'GER', url: 'https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWHIL6N7r.1', thumb: 'assets/update-call-ger.jpg',
     day: 'FR', time: '19:00', min: 60, cal: ['influencer'] },
-  { title: 'Community Call | FRIDAYS 17:30 German time | 60 Min', lang: 'ENG', url: 'https://us06web.zoom.us/j/86751323217?pwd=twdahDFW5ol51WpHHQ0l80CNb9WstO.1', thumb: 'assets/update-call-eng.jpg',
+  { title: 'Community Call | FRIDAYS 17:30 CET | 60 Min', lang: 'ENG', url: 'https://us06web.zoom.us/j/86751323217?pwd=twdahDFW5ol51WpHHQ0l80CNb9WstO.1', thumb: 'assets/update-call-eng.jpg',
     day: 'FR', time: '17:30', min: 60, cal: ['influencer'] },
   { title: 'Starter Training | SAMSTAGS 10:00 DE-Zeit | 55 Min', lang: 'GER', url: 'https://zoom.us/j/95346205331', thumb: 'assets/starter-ger.jpg',
     day: 'SA', time: '10:00', min: 55, cal: ['influencer'] },
-  { title: 'Starter Training | SATURDAYS 12:00 German time | 55 Min', lang: 'ENG', url: 'https://zoom.us/j/97676390953', thumb: 'assets/starter-eng.jpg',
+  { title: 'Starter Training | SATURDAYS 12:00 CET | 55 Min', lang: 'ENG', url: 'https://zoom.us/j/97676390953', thumb: 'assets/starter-eng.jpg',
     day: 'SA', time: '12:00', min: 55, cal: ['influencer'] },
   { title: 'Primeiro Olhar | SEGUNDAS-FEIRAS 19:00 hora de Portugal | 30 Min | com Carlos Repolho', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/presentation-por.jpg',
     sub: 'Introdução ao SALUS GLOBAL CLUB',
