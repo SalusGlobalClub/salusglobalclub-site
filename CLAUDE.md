@@ -8,7 +8,7 @@ Live: https://bio.salusglobal.club
 
 | Was ändert sich | Wo |
 |---|---|
-| Webinar-Links, -Titel, -Zeiten, Sprache | `app.js`, Array `WEBINARS` (Feld `lang`: `GER`/`ENG`/`ESP`/`POR`/`HUN`/`HIN`). Zeit im Titel: Deutsch „DE-Zeit", alle anderen Sprachen „CET" wie in den Telegram-Kanälen (Wunsch des Teams 10.11.2026; „German time" interessiert international niemanden). **Achtung:** CET stimmt nur im Winter. Ab der Sommerzeit (28.03.2027) in den Titeln auf „CEST" umstellen, im Oktober zurück. Kalender sind davon nicht betroffen. **Ausnahme Portugiesisch (seit 31.10.2026):** Titel und `time` in Portugal-Zeit („hora de Portugal") mit Feld `tz: 'Europe/Lisbon'`; weitere Zeitzonen in `TIMEZONES` in `kalender/erzeugen.py` ergänzen. Nur bei POR auf Wunsch: Referent im Titel („com Carlos Repolho") und optionale Felder `sub`/`desc` (Untertitel/Beschreibung auf Karte und im Kalender) |
+| Webinar-Links, -Titel, -Zeiten, Sprache | `app.js`, Array `WEBINARS` (Feld `lang`: `GER`/`ENG`/`ESP`/`POR`/`NLD`/`HUN`/`MKD`/`ALB`/`HIN`). Zeit im Titel: Deutsch „DE-Zeit", alle anderen Sprachen „CET" wie in den Telegram-Kanälen (Wunsch des Teams 10.11.2026; „German time" interessiert international niemanden). **Achtung:** CET stimmt nur im Winter. Ab der Sommerzeit (28.03.2027) in den Titeln auf „CEST" umstellen, im Oktober zurück. Kalender sind davon nicht betroffen. **Ausnahme Portugiesisch (seit 31.10.2026):** Titel und `time` in Portugal-Zeit („hora de Portugal") mit Feld `tz: 'Europe/Lisbon'`; weitere Zeitzonen in `TIMEZONES` in `kalender/erzeugen.py` ergänzen. Nur bei POR auf Wunsch: Referent im Titel („com Carlos Repolho") und optionale Felder `sub`/`desc` (Untertitel/Beschreibung auf Karte und im Kalender) |
 | Sprachfilter: Kürzel, Sprachname, Reihenfolge der Gruppen | `app.js`, Tabelle `LANGUAGES` |
 | Flaggen des Sprachfilters | `app.js`, Tabelle `FLAGS` — gezeichnetes SVG, KEINE Emoji (Windows liefert keine Flaggen-Emoji mit) |
 | Kalender-Daten je Termin (Wochentag, Uhrzeit, Dauer, Kunden/Influencer) | `app.js`, Array `WEBINARS`, zweite Zeile je Eintrag (`day`, `time`, `min`, `cal`). Wochenwechsel (derzeit von keinem Termin genutzt; der deutsche Community Call hatte ihn nur 27./28.10.2026 und ist seitdem wieder fest Fr 19:00): zusätzlich `timeOdd`, dann gilt `time` in geraden und `timeOdd` in ungeraden ISO-KW, auch am Jahreswechsel streng nach KW (01.01. und 08.01.2027 beide ungerade) |
@@ -48,8 +48,8 @@ Wichtig:
 Abonnierbare Kalender (19.10.2026, Wunsch Claudio):
 - Je Sprache ein Kalender für **Kunden** und einer für **Influencer**. Zuordnung über `cal` in `WEBINARS`:
   Produktpräsentationen = Kunden; Business Präsentation Dienstag 9:30 (GER) = beide;
-  übrige Business-Präsentationen, Leader und Starter Training, Community Call = Influencer
-  (Community Call seit 19.10.2026 nicht mehr bei Kunden). Kalender ohne Termine werden weder erzeugt noch als Knopf gezeigt.
+  übrige Business-Präsentationen (auch NLD/MKD/ALB), Leader und Starter Training = Influencer.
+  Community Calls DE/EN am 23.11.2026 ganz entfernt. POR seit 23.11.2026 nur noch Mo/Mi/Fr je 19:00. Kalender ohne Termine werden weder erzeugt noch als Knopf gezeigt.
 - Statische `.ics`-Dateien, bewusst KEINE GitHub Action (Runner-Engpass, siehe unten).
 - **Alle Serien enden am 31.12.2026** (`END` in `kalender/erzeugen.py`, Entscheidung 28.10.2026):
   Die Termine für 2027 werden über die Feiertage neu abgestimmt. Danach `END` weiterschieben,

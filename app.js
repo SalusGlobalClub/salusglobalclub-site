@@ -44,10 +44,6 @@ const WEBINARS = [
     day: 'SA', time: '10:00', min: 55, cal: ['influencer'] },
   { title: 'Starter Training | SATURDAYS 12:00 CET | 55 Min', lang: 'ENG', url: 'https://zoom.us/j/97676390953', thumb: 'assets/starter-eng.jpg',
     day: 'SA', time: '12:00', min: 55, cal: ['influencer'] },
-  { title: 'Community Call | SONNTAGS 18:00 DE-Zeit | 60 Min', lang: 'GER', url: 'https://us06web.zoom.us/j/85377006655?pwd=OZdDRC0xbWdBJqxbYhLa1JWHIL6N7r.1', thumb: 'assets/update-call-ger.jpg',
-    day: 'SU', time: '18:00', min: 60, cal: ['influencer'] },
-  { title: 'Community Call | SUNDAYS 16:00 CET | 60 Min', lang: 'ENG', url: 'https://us06web.zoom.us/j/86751323217?pwd=twdahDFW5ol51WpHHQ0l80CNb9WstO.1', thumb: 'assets/update-call-eng.jpg',
-    day: 'SU', time: '16:00', min: 60, cal: ['influencer'] },
   { title: 'Primeiro Olhar | SEGUNDAS-FEIRAS 19:00 hora de Portugal | 30 Min | com Carlos Repolho', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/presentation-por.jpg',
     sub: 'Introdução ao SALUS GLOBAL CLUB',
     desc: 'Descobre o SALUS GLOBAL CLUB, o nosso conceito internacional e as oportunidades disponíveis. Uma apresentação introdutória de 30 minutos para novos convidados.',
@@ -56,22 +52,16 @@ const WEBINARS = [
     sub: 'Formação de Produto ao Vivo',
     desc: 'Conhece melhor os produtos e serviços do nosso ecossistema. Formação interativa com diferentes temas, explicações práticas e perguntas e respostas.',
     day: 'WE', time: '19:00', tz: 'Europe/Lisbon', min: 60, cal: ['kunden', 'influencer'] },
-  { title: 'Começar Bem | QUARTAS-FEIRAS 20:15 hora de Portugal | 45 Min | com Carlos Repolho', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/starter-por.jpg',
+  { title: 'Começar Bem | SEXTAS-FEIRAS 19:00 hora de Portugal | 45 Min | com Carlos Repolho', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/starter-por.jpg',
     sub: 'Educação ao Vivo – Tudo o que precisas para começar',
     desc: 'Aprende a utilizar o Backoffice, o ClubPilot AI e as ferramentas do SALUS GLOBAL CLUB. Descobre como ativar os produtos e dar os primeiros passos no desenvolvimento do teu negócio.',
-    day: 'WE', time: '20:15', tz: 'Europe/Lisbon', min: 45, cal: ['kunden', 'influencer'] },
-  { title: 'Primeiro Olhar | SEXTAS-FEIRAS 19:00 hora de Portugal | 30 Min | com Carlos Repolho', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/presentation-por.jpg',
-    sub: 'Introdução ao SALUS GLOBAL CLUB',
-    desc: 'Descobre o SALUS GLOBAL CLUB, o nosso conceito internacional e as oportunidades disponíveis. Uma apresentação introdutória de 30 minutos para novos convidados.',
-    day: 'FR', time: '19:00', tz: 'Europe/Lisbon', min: 30, cal: ['influencer'] },
-  { title: 'Entender o Produto | DOMINGOS 19:00 hora de Portugal | 60 Min | com Carlos Repolho', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/produktpraesentation-por.jpg',
-    sub: 'Formação de Produto ao Vivo',
-    desc: 'Conhece melhor os produtos e serviços do nosso ecossistema. Formação interativa com diferentes temas, explicações práticas e perguntas e respostas.',
-    day: 'SU', time: '19:00', tz: 'Europe/Lisbon', min: 60, cal: ['kunden', 'influencer'] },
-  { title: 'Começar Bem | DOMINGOS 20:15 hora de Portugal | 45 Min | com Carlos Repolho', lang: 'POR', url: 'https://us06web.zoom.us/j/82338597067?pwd=UNZGu9Zfma0QPb61gGQbE9nJKxyfS4.1', thumb: 'assets/starter-por.jpg',
-    sub: 'Educação ao Vivo – Tudo o que precisas para começar',
-    desc: 'Aprende a utilizar o Backoffice, o ClubPilot AI e as ferramentas do SALUS GLOBAL CLUB. Descobre como ativar os produtos e dar os primeiros passos no desenvolvimento do teu negócio.',
-    day: 'SU', time: '20:15', tz: 'Europe/Lisbon', min: 45, cal: ['kunden', 'influencer'] },
+    day: 'FR', time: '19:00', tz: 'Europe/Lisbon', min: 45, cal: ['kunden', 'influencer'] },
+  { title: 'Business Presentatie en Q&A | ELKE WOENSDAG 19:30 CET | 60 min', lang: 'NLD', url: 'https://zoom.us/j/99193192143?pwd=W313IAS7yOxzl2bI6v63TTeEGQQf0e.1', thumb: 'assets/presentation-nld.jpg',
+    day: 'WE', time: '19:30', min: 60, cal: ['influencer'] },
+  { title: 'Бизнис презентација и прашања и одговори | СЕКОЈ ПЕТОК 20:00 CET | 60 мин', lang: 'MKD', url: 'https://us06web.zoom.us/j/8569434605?pwd=Z3pSdmNJUHJnYThucWxZREY1Tnd1QT09', thumb: 'assets/presentation-mkd.jpg',
+    day: 'FR', time: '20:00', min: 60, cal: ['influencer'] },
+  { title: 'Prezantim Biznesi dhe Pyetje e Përgjigje | ÇDO TË PREMTE 21:00 CET | 60 min', lang: 'ALB', url: 'https://us06web.zoom.us/j/8569434605?pwd=Z3pSdmNJUHJnYThucWxZREY1Tnd1QT09', thumb: 'assets/presentation-alb.jpg',
+    day: 'FR', time: '21:00', min: 60, cal: ['influencer'] },
 ];
 
 /* Sprachen für Filter-Knöpfe und Gruppen-Überschriften.
@@ -83,7 +73,10 @@ const LANGUAGES = [
   { code: 'ENG', heading: 'English' },
   { code: 'ESP', heading: 'Español' },
   { code: 'POR', heading: 'Português' },
+  { code: 'NLD', heading: 'Nederlands' },
   { code: 'HUN', heading: 'Magyar' },
+  { code: 'MKD', heading: 'Македонски' },
+  { code: 'ALB', heading: 'Shqip' },
   { code: 'HIN', heading: 'हिन्दी · Hindi' },
 ];
 
@@ -156,6 +149,9 @@ const JOIN = {
   GER: 'Per Zoom teilnehmen',
   ESP: 'Unirse por Zoom',
   POR: 'Entrar no Zoom',
+  NLD: 'Deelnemen via Zoom',
+  MKD: 'Приклучи се на Zoom',
+  ALB: 'Bashkohu në Zoom',
 };
 
 /* Abonnierbare Kalender: je Sprache einer pro Zielgruppe (Feld `cal` in WEBINARS).
@@ -191,6 +187,12 @@ const FLAGS = {
   ESP: '<svg viewBox="0 0 21 15"><rect width="21" height="15" fill="#aa151b"/><rect y="3.75" width="21" height="7.5" fill="#f1bf00"/></svg>',
   POR: '<svg viewBox="0 0 21 15"><rect width="21" height="15" fill="#da291c"/><rect width="8.4" height="15" fill="#046a38"/>'
      + '<circle cx="8.4" cy="7.5" r="3.2" fill="#ffe900"/><path d="M6.7 5.7h3.4v2.6a1.7 1.7 0 0 1-3.4 0z" fill="#fff" stroke="#da291c" stroke-width="0.7"/></svg>',
+  NLD: '<svg viewBox="0 0 21 15"><rect width="21" height="15" fill="#21468b"/><rect width="21" height="10" fill="#fff"/><rect width="21" height="5" fill="#ae1c28"/></svg>',
+  MKD: '<svg viewBox="0 0 21 15"><rect width="21" height="15" fill="#d20000"/>'
+     + '<path d="M0 0h3l7.5 7.5zM21 0h-3l-7.5 7.5zM0 15h3l7.5-7.5zM21 15h-3l-7.5-7.5zM9.4 0h2.2l-1.1 7.5zM9.4 15h2.2l-1.1-7.5zM0 6.4v2.2l10.5-1.1zM21 6.4v2.2l-10.5-1.1z" fill="#ffe600"/>'
+     + '<circle cx="10.5" cy="7.5" r="2.4" fill="#ffe600" stroke="#d20000" stroke-width="0.5"/></svg>',
+  ALB: '<svg viewBox="0 0 21 15"><rect width="21" height="15" fill="#e41e20"/>'
+     + '<path d="M9.8 4.6h1.4l.4 3.6-.4 2.4 1 1.6-1.7-.7-1.7.7 1-1.6-.4-2.4z M10 5l-1.8-1.8.3-1 .9.4.6 2.2z M11 5l1.8-1.8-.3-1-.9.4-.6 2.2z M9.7 5.6 6.5 4.2 4 4.6l1.6.9-1.3.6 1.8.3-1 .9 2 .1-.6 1 2.4-.9z M11.3 5.6l3.2-1.4 2.5.4-1.6.9 1.3.6-1.8.3 1 .9-2 .1.6 1-2.4-.9z" fill="#000"/></svg>',
   HUN: '<svg viewBox="0 0 21 15"><rect width="21" height="15" fill="#477050"/><rect width="21" height="10" fill="#fff"/><rect width="21" height="5" fill="#ce2939"/></svg>',
   HIN: '<svg viewBox="0 0 21 15"><rect width="21" height="15" fill="#138808"/><rect width="21" height="10" fill="#fff"/><rect width="21" height="5" fill="#f93"/>'
      + '<circle cx="10.5" cy="7.5" r="1.8" fill="none" stroke="#008" stroke-width="0.55"/><circle cx="10.5" cy="7.5" r="0.45" fill="#008"/></svg>',
